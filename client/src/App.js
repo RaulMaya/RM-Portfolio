@@ -1,7 +1,17 @@
-import "./input.css"
 
-function App() {
-  return <h1 class="text-4xl font-bold underline">Hello there</h1>;
-}
+import HomeFigure from "./components/HomeFigure";
+
+const App = () => {
+  return (
+    <div>
+      <HomeFigure title={"Work"} />
+      <HomeFigure title={"Resume"} />
+      <HomeFigure title={"Connect"} />
+      <HomeFigure title={"About"} />
+      <HomeFigure title={"RM"} />
+      <HomeFigure title={"Extra"} />
+    </div>
+  );
+};
 
 export default App;
