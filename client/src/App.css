@@ -14,21 +14,20 @@
   grid-area: image;
 }
 
-.grid-menu {
-  --s: 250px; /* control the size */
-  --g: 50px; /* control the gap */
-  --f: 2; /* control the scale factor */
-  width: calc(3 * var(--s) + 20 * var(--g));
-  height: calc(3 * var(--s) + 1 * var(--g));
-  aspect-ratio: 1;
-  grid:
-    "projects projects connect" 1fr
-    "resume image connect" 1fr
-    "resume about about" 1fr
-    / 1fr 1fr 1fr;
+.connect:hover {
+  width: 700px;
+  height: 500px;
 }
 
-.grid-menu > div:hover {
-  width: calc(var(--s) * 1.5 * var(--f));
-  height: calc(var(--s) * var(--f));
+.about:hover {
+  width: 1600px;
+  height: 500px;
+}
+.resume:hover {
+  width: 700px;
+  height: 500px;
+}
+.projects:hover {
+  width: 1200px;
+  height: 200px;
 }
