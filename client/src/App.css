@@ -1,38 +1,34 @@
-.App {
-  text-align: center;
+.projects {
+  grid-area: projects;
+}
+.about {
+  grid-area: about;
+}
+.connect {
+  grid-area: connect;
+}
+.resume {
+  grid-area: resume;
+}
+.image {
+  grid-area: image;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.grid-menu {
+  --s: 250px; /* control the size */
+  --g: 50px; /* control the gap */
+  --f: 2; /* control the scale factor */
+  width: calc(3 * var(--s) + 20 * var(--g));
+  height: calc(3 * var(--s) + 1 * var(--g));
+  aspect-ratio: 1;
+  grid:
+    "projects projects connect" 1fr
+    "resume image connect" 1fr
+    "resume about about" 1fr
+    / 1fr 1fr 1fr;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.grid-menu > div:hover {
+  width: calc(var(--s) * 1.5 * var(--f));
+  height: calc(var(--s) * var(--f));
 }

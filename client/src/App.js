@@ -1,41 +1,27 @@
-import HomeFigure from "./components/HomeFigure";
-import React, { useState } from "react";
-
-// const App = () => {
-//   const [hoveredBox, setHoveredBox] = useState(null);
-//   const boxes = Array(5).fill(null);
-//   return (
-//     <div className="container bg-green-500 border-1 border-indigo-600 max-w-full flex items-center justify-center min-h-screen">
-//       <div className="grid grid-rows-5 grid-flow-col w-11/12">
-//         {boxes.map((_, index) => (
-//           <div
-//             key={index}
-//             className={`box-border grid-item flex items-center justify-center row-span-2 col-span-2 p-4 border-t-2 border-s-2 transition-all ${
-//               hoveredBox === index
-//                 ? "h-40 w-40 bg-purple-600"
-//                 : "h-36 w-36 bg-orange-500"
-//             }`}
-//             onMouseEnter={() => setHoveredBox(index)}
-//             onMouseLeave={() => setHoveredBox(null)}
-//           >
-//             Box {index + 1}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
+import React from "react";
+import "./App.css";
+import rmLogo from './rmLogo.png'; 
 
 const App = () => {
   return (
-    <div className="container bg-blue-500 border-2 border-indigo-600 max-w-full flex items-center justify-center min-h-screen">
-      <div className="grid grid-flow-row-dense grid-cols-10 grid-rows-10">
-        <HomeFigure title={"Home"} span={"row-span-4 col-span-6"} />
-        <HomeFigure title={"Connect"} span={"row-span-6 col-span-4"} />
-        <HomeFigure title={"About"} span={"row-span-6 col-span-4"} />
-        <HomeFigure title={"RM"} span={"row-span-2 col-span-2"} />
-        <HomeFigure title={"Resume"} span={"row-span-4 col-span-6"} />
-      </div>
+    <div className="container flex justify-center h-screen min-w-full items-center">
+      <section className="grid-menu bg-white grid">
+        <div className="projects text-5xl font-sans flex justify-center items-center border-2 border-black w-0 h-0 min-w-full min-h-full cursor-pointer transition-all">
+          Projects
+        </div>
+        <div className="about text-5xl font-sans flex justify-center items-center border-2 border-black w-0 h-0 min-w-full min-h-full cursor-pointer transition-all">
+          Contact
+        </div>
+        <div className="connect text-5xl font-sans flex justify-center items-center border-2 border-black w-0 h-0 min-w-full min-h-full cursor-pointer transition-all">
+          Resume
+        </div>
+        <div className="resume text-5xl font-sans  flex justify-center items-center border-2 border-black w-0 h-0 min-w-full min-h-full cursor-pointer transition-all">
+          About
+        </div>
+        <div className="image bg-cyan-300 flex justify-center items-center border-2 border-black w-56 h-56 min-w-full min-h-full cursor-pointer transition-all">
+          <img className="object-contain h-48 w-48" src={rmLogo} alt="Logo of Raul Maya" />
+        </div>
+      </section>
     </div>
   );
 };
