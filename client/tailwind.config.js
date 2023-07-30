@@ -1,16 +1,39 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {
       width: {
-        '120': '30rem', /* 480px */
-        '144': '36rem', /* 576px */
-        // Add as many as you need
-      }
-    }
+        120: "30rem" /* 480px */,
+        144: "36rem" /* 576px */,
+      },
+      animation: {
+        marqueeX: "marqueeX 25s linear infinite",
+        marqueeX2: "marqueeX2 25s linear infinite",
+        marqueeY: "marqueeY 25s linear infinite",
+        marqueeY2: "marqueeY2 25s linear infinite",
+      },
+      keyframes: {
+        marqueeX: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        marqueeX2: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+        marqueeY: {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-100%)" },
+        },
+        marqueeY2: {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0%)" },
+        },
+      },
+    },
   },
   variants: {},
-  plugins: []
-}
+  plugins: [],
+};
