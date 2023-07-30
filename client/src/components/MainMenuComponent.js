@@ -20,25 +20,25 @@ const MainMenu = () => {
         style={gridStyles}
       >
         <RouterLink
-          to="/"
+          to="/projects"
           className="projects text-2xl lg:text-4xl font-mono flex justify-center items-center w-0 h-28 hover:h-60 min-w-full min-h-full cursor-pointer transition-all hover:bg-cyan-300"
         >
           Projects
         </RouterLink>
         <RouterLink
-          to="/"
+          to="/contact"
           className="connect text-2xl lg:text-4xl font-mono flex justify-center items-center border-s-4 border-black w-32 h-0 hover:w-144 hover:h-144 min-w-full min-h-full cursor-pointer transition-all hover:bg-cyan-300"
         >
           Contact
         </RouterLink>
         <RouterLink
-          to="/"
+          to="/resume"
           className="resume text-2xl lg:text-4xl font-mono flex justify-center items-center border-e-4 border-black w-32 h-0 hover:w-144 hover:h-144 min-w-full min-h-full cursor-pointer transition-all hover:bg-cyan-300"
         >
           Resume
         </RouterLink>
         <RouterLink
-          to="/"
+          to="/about"
           className="about text-2xl lg:text-4xl font-mono flex justify-center items-center border-t-4 border-black w-0 h-28 hover:h-60 min-w-full min-h-full cursor-pointer transition-all hover:bg-cyan-300"
         >
           About
