@@ -4,6 +4,9 @@ module.exports = {
   darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {
+      rotate: {
+        '270': '270deg',
+      },
       width: {
         120: "30rem" /* 480px */,
         144: "36rem" /* 576px */,
