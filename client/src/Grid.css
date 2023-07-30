@@ -1,0 +1,35 @@
+.projects {
+  grid-area: projects;
+}
+.about {
+  grid-area: about;
+}
+.connect {
+  grid-area: connect;
+}
+.resume {
+  grid-area: resume;
+}
+.image {
+  grid-area: image;
+}
+
+.grid-container {
+  grid-template-areas:
+    "resume projects connect"
+    "resume image connect"
+    "about about about";
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-areas:
+      "image"
+      "about"
+      "projects"
+      "resume"
+      "connect";
+    grid-template-columns: 1fr;
+  }
+}
