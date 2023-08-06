@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       rotate: {
-        '270': '270deg',
+        270: "270deg",
       },
       width: {
         120: "30rem" /* 480px */,
@@ -38,5 +38,5 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

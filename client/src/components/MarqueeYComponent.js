@@ -8,7 +8,7 @@ const MarqueYComponent = ({ topic, deg }) => {
   return (
     <>
       <div className={degreesOne}>
-        <span className="text-xl">{topic}</span>
+        <span className="text-base">{topic}</span>
       </div>
       <div className={degreesTwo}>
         <span className="flex items-center">
