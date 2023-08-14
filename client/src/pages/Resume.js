@@ -1,7 +1,13 @@
-import React from "react"
+import React from "react";
+import NavBarComponent from "../components/NavBarComponent";
 
 const Resume = () => {
-    return <h1>This is the Resume area</h1>
-}
+    return (
+        <>
+          <h1>This is the resume area</h1>
+          <NavBarComponent />
+        </>
+      );
+};
 
-export default Resume
+export default Resume;

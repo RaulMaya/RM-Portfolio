@@ -1,11 +1,12 @@
 import React from "react";
+import NavBarComponent from "../components/NavBarComponent";
 
 const Contact = () => {
   return (
-    <div className="container min-h-screen">
+    <div className="w-full min-h-screen">
       <div className="flex flex-row">
-        <div className="basis-1/2 border-r-2 border-black min-h-screen bg-red-500 flex justify-center">
-          <form onSubmit={'handleSubmit'} className="w-3/4">
+        <div className="basis-1/2 border-r-2 border-black min-h-screen flex justify-center">
+          <form onSubmit={"handleSubmit"} className="w-3/4">
             <div className="form-group">
               <h2 className="text-2xl font-bold">Simple</h2>
               <div className="mt-8 max-w-md">
@@ -112,6 +113,7 @@ const Contact = () => {
           Actual Form
         </div>
       </div>
+      <NavBarComponent />
     </div>
   );
 };
