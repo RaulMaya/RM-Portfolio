@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
-import MainMenu from "../components/MainMenuComponent";
-import FullMarquee from "../components/FullMarqueeComponent";
+import MainMenu from "../components/Home/MainMenuComponent";
+import FullMarquee from "../components/Home/FullMarqueeComponent";
 
 const Home = () => {
   useEffect(() => {

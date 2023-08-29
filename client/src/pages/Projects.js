@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import NavBarComponent from "../components/NavBarComponent";
-import ProjectListComponent from "../components/ProjectListComponent";
-import ProjectSearchBox from "../components/ProjectSearchComponent";
+import ProjectListComponent from "../components/Projects/ProjectListComponent";
+import ProjectSearchBox from "../components/Projects/ProjectSearchComponent";
 
 const objArr = [
   {
@@ -23,6 +23,46 @@ const objArr = [
     id: 4,
     title: "Spirals Into Museum",
     img: "https://d251cvb8f7e7p0.cloudfront.net/images/Article_Images/ImageForArticle_8421_16342131650378108.jpg",
+  },
+  {
+    id: 5,
+    title: "Frank Gehry’s Home",
+    img: "https://mymodernmet.com/wp/wp-content/uploads/2021/04/contemporary-architecture-top-buildings-frank-gehry-zaha-hadid-sydney-opera-house-my-modern-met-12.jpg",
+  },
+  {
+    id: 6,
+    title: "The Vessel by Heatherwick Studio",
+    img: "https://mymodernmet.com/wp/wp-content/uploads/2021/04/contemporary-architecture-top-buildings-frank-gehry-zaha-hadid-sydney-opera-house-my-modern-met-13.jpg",
+  },
+  {
+    id: 7,
+    title: "Vertical Forest of Milan",
+    img: "https://mymodernmet.com/wp/wp-content/uploads/2021/04/contemporary-architecture-top-buildings-frank-gehry-zaha-hadid-sydney-opera-house-my-modern-met-14.jpg",
+  },
+  {
+    id: 8,
+    title: "Spirals Into Museum",
+    img: "https://mymodernmet.com/wp/wp-content/uploads/2021/04/contemporary-architecture-top-buildings-frank-gehry-zaha-hadid-sydney-opera-house-my-modern-met-3.jpg",
+  },
+  {
+    id: 9,
+    title: "The Shard in London",
+    img: "https://d1v9pyzt136u2g.cloudfront.net/blog/wp-content/uploads/2021/09/05164111/1623680067938615-dark-academia-1.jpg",
+  },
+  {
+    id: 10,
+    title: "Casa Batlló in Barcelona",
+    img: "https://mymodernmet.com/wp/wp-content/uploads/2021/02/art-nouveau-buildings-architecture-style-art-nouveau-examples-my-modern-met-casa-batlo-gaudi-barcelona-1.jpg",
+  },
+  {
+    id: 11,
+    title: "Métro Entrances in Paris, France",
+    img: "https://mymodernmet.com/wp/wp-content/uploads/2021/02/art-nouveau-buildings-architecture-style-art-nouveau-examples-my-modern-met-metro-entrances-metropolitan-paris-hector-guimard-3.jpg",
+  },
+  {
+    id: 12,
+    title: "Secession Building in Vienna, Austria",
+    img: "https://mymodernmet.com/wp/wp-content/uploads/2021/02/art-nouveau-buildings-architecture-style-art-nouveau-examples-my-modern-met-secession-building-vienna-austria-8.jpg",
   },
 ];
 

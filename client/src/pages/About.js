@@ -4,7 +4,7 @@ import NavBarComponent from "../components/NavBarComponent";
 const About = () => {
   return (
     <>
-      <h1>This is the about area</h1>
+      <h1 className="text-center text-10xl">ABOUT ME</h1>
       <NavBarComponent />
     </>
   );

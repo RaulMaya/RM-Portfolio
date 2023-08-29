@@ -1,5 +1,5 @@
 import React from "react";
-import rmSVG from "../rmSVG.svg";
+import rmSVG from "../../rmSVG.svg";
 
 const MarqueXComponent = ({ topic }) => {
   return (

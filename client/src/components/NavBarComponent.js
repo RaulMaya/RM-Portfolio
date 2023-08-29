@@ -1,5 +1,6 @@
 import React from "react";
 import { Link as RouterLink, useLocation } from "react-router-dom";
+import rmSVG from "../rmSVG.svg";
 
 const NavBarComponent = () => {
   const location = useLocation();
@@ -25,11 +26,15 @@ const NavBarComponent = () => {
       </RouterLink>
       <RouterLink
         to="/"
-        className={`border-2 border-black w-full text-center p-5 hover:bg-cyan-400 hover:cursor-pointer ${
+        className={`flex justify-center border-2 border-black items-center w-full p-5 hover:bg-cyan-400 hover:cursor-pointer ${
           isActive("/") ? "bg-cyan-400" : "bg-white"
         }`}
       >
-        Home
+        <img
+          className="text-center h-10 absolute"
+          src={rmSVG}
+          alt="Logo of Raul Maya"
+        />
       </RouterLink>
       <RouterLink
         to="/resume"

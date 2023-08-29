@@ -1,8 +1,8 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
-import rmLogo from "../rmLogo.png";
-import "../Grid.css";
+import rmLogo from "../../rmLogo.png";
+import "../../Grid.css";
 
 const MainMenu = () => {
   return (
