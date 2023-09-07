@@ -1,62 +1,41 @@
 .submitBtnContainer {
-  width: 500px;
-  height: 500px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  position: relative;
+  width: 75px; /* Set a fixed width to contain the elements */
+  height: 75px; /* Set a fixed height to contain the elements */
+}
+
+.submitBtn,
+.submitBg {
+  position: absolute; /* This will stack the elements on top of each other */
+  top: 0; /* Position at the top of the container */
+  left: 0; /* Position at the left of the container */
 }
 
 .submitBtn {
-  width: 100px;
-  height: 100px;
-  border: none;
-  color: inherit;
-  background: crimson;
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 300;
-  outline: none;
-  position: absolute;
+  width: 75px;
+  height: 75px;
+  background: #26C6DA;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
 }
 
 .submitBtn img {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   margin: auto;
 }
 
-.submitBtn:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-}
 
 .submitBg {
   height: 32px;
   width: 32px;
+  background-color: rgb(77, 89, 218);
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  top: 50%; /* Move the top edge to the center of the container */
+  left: 50%; /* Move the left edge to the center of the container */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Shift it back by half its own width and height */
 }
 
 .btn-boarder {
@@ -110,37 +89,3 @@
     opacity: 1;
   }
 }
-.around {
-  width: 101px;
-  height: 101px;
-  border: none;
-  color: inherit;
-  background: none;
-  cursor: pointer;
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 300;
-  outline: none;
-  position: absolute;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.around:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-}
-
-.hide {
-  display: none;
-  transition: all 0.4s;
-}
-

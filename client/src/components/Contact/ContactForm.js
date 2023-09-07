@@ -5,7 +5,8 @@ const ContactForm = () => {
   const [animation, setAnimation] = useState(false);
   const [hide, setHide] = useState(false);
 
-  const animate = () => {
+  const animate = (e) => {
+    e.preventDefault()
     setAnimation(true);
     setTimeout(() => {
       setHide(true);
@@ -102,7 +103,7 @@ const ContactForm = () => {
                 </label>
                 <div className="block">
                   <div className="submitBtnContainer">
-                    <button className="submitBtn btn-inside btn-boarder">
+                    <button className="submitBtn btn-inside btn-boarder" onClick={animate}>
                       <img
                         src="https://i.cloudup.com/gBzAn-oW_S-2000x2000.png"
                         width="64px"
@@ -114,7 +115,7 @@ const ContactForm = () => {
                         }`}
                       />
                     </button>
-                    <div className={`submitBg  ${animation ? "animation2" : "opacity-0"}`}>
+                    <div className={`submitBg opacity-0 ${animation ? "animation2" : ""}`}>
                       <img
                         src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png"
                         id="submitBg"
@@ -123,7 +124,6 @@ const ContactForm = () => {
                         alt="go"
                       />
                     </div>
-                    <div className="around" onClick={animate}></div>
                   </div>
                 </div>
               </section>
