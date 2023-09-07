@@ -1,4 +1,4 @@
-.container {
+.submitBtnContainer {
   width: 500px;
   height: 500px;
   position: absolute;
@@ -9,12 +9,12 @@
   margin: auto;
 }
 
-.btn {
+.submitBtn {
   width: 100px;
   height: 100px;
   border: none;
   color: inherit;
-  background: none;
+  background: crimson;
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -31,7 +31,7 @@
   margin: auto;
 }
 
-.btn img {
+.submitBtn img {
   top: 0;
   bottom: 0;
   left: 0;
@@ -39,7 +39,7 @@
   margin: auto;
 }
 
-.btn:after {
+.submitBtn:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -48,7 +48,7 @@
   transition: all 0.3s;
 }
 
-.bg {
+.submitBg {
   height: 32px;
   width: 32px;
   position: absolute;
@@ -60,7 +60,7 @@
 }
 
 .btn-boarder {
-  border: 2px solid #fff;
+  border: 2px solid #971616;
   border-radius: 50%;
 }
 
@@ -139,7 +139,8 @@
   z-index: -1;
 }
 
-.around-boarder {
-  border: 120px solid #ff7f50;
-  border-radius: 50%;
+.hide {
+  display: none;
+  transition: all 0.4s;
 }
+

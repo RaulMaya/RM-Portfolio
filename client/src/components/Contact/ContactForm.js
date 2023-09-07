@@ -1,21 +1,20 @@
-import React from "react";
+import { React, useState } from "react";
 import "../../submitBtn.css";
 
 const ContactForm = () => {
-  function ani() {
-    document.getElementById("plane").className = "animation";
-  }
-  function anitwo() {
-    document.getElementById("bg").className = "animation2";
-  }
+  const [animation, setAnimation] = useState(false);
+  const [hide, setHide] = useState(false);
 
-  const callAnis = () => {
-    ani();
-    anitwo();
+  const animate = () => {
+    setAnimation(true);
+    setTimeout(() => {
+      setHide(true);
+    }, 150);
   };
+
   return (
     <div className="basis-1/2 border-r-2 border-black min-h-screen flex justify-center">
-      <form onSubmit={"handleSubmit"} className="w-3/4">
+      <form onSubmit={'animate'} className="w-3/4">
         <div className="form-group">
           <div className="mt-8 max-w-md">
             <div className="grid grid-cols-2 gap-6">
@@ -102,29 +101,29 @@ const ContactForm = () => {
                   ></textarea>
                 </label>
                 <div className="block">
-                  <div className="container">
-                    <button className="btn btn-inside btn-boarder">
+                  <div className="submitBtnContainer">
+                    <button className="submitBtn btn-inside btn-boarder">
                       <img
                         src="https://i.cloudup.com/gBzAn-oW_S-2000x2000.png"
                         width="64px"
                         height="64px"
                         id="plane"
                         alt="plane"
+                        className={`${animation ? "animation" : ""} ${
+                          hide ? "hidden" : ""
+                        }`}
                       />
                     </button>
-                    <div className="bg">
+                    <div className={`submitBg  ${animation ? "animation2" : "opacity-0"}`}>
                       <img
                         src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png"
-                        id="bg"
+                        id="submitBg"
                         width="32px"
                         height="32px"
                         alt="go"
                       />
                     </div>
-                    <div
-                      className="around around-boarder"
-                      onClick={callAnis}
-                    ></div>
+                    <div className="around" onClick={animate}></div>
                   </div>
                 </div>
               </section>
