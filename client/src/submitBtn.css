@@ -1,9 +1,3 @@
-.submitBtnContainer {
-  position: relative;
-  width: 75px; /* Set a fixed width to contain the elements */
-  height: 75px; /* Set a fixed height to contain the elements */
-}
-
 .submitBtn,
 .submitBg {
   position: absolute; /* This will stack the elements on top of each other */
@@ -12,9 +6,6 @@
 }
 
 .submitBtn {
-  width: 75px;
-  height: 75px;
-  background: #26C6DA;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
@@ -24,11 +15,9 @@
   margin: auto;
 }
 
-
 .submitBg {
   height: 32px;
   width: 32px;
-  background-color: rgb(77, 89, 218);
   position: absolute;
   top: 50%; /* Move the top edge to the center of the container */
   left: 50%; /* Move the left edge to the center of the container */
@@ -36,11 +25,6 @@
     -50%,
     -50%
   ); /* Shift it back by half its own width and height */
-}
-
-.btn-boarder {
-  border: 2px solid #971616;
-  border-radius: 50%;
 }
 
 .animation {

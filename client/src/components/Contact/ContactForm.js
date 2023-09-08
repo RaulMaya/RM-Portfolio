@@ -6,7 +6,7 @@ const ContactForm = () => {
   const [hide, setHide] = useState(false);
 
   const animate = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setAnimation(true);
     setTimeout(() => {
       setHide(true);
@@ -15,10 +15,11 @@ const ContactForm = () => {
 
   return (
     <div className="basis-1/2 border-r-2 border-black min-h-screen flex justify-center">
-      <form onSubmit={'animate'} className="w-3/4">
-        <div className="form-group">
+      <form onSubmit={animate} className="w-3/4">
+        <h5 className="text-center text-5xl">Get in touch</h5>
+        <div className="form-group flex justify-center">
           <div className="mt-8 max-w-md">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <label className="block">
                 <span className="text-sm text-gray-500">Your Name</span>
                 <input
@@ -85,7 +86,7 @@ const ContactForm = () => {
                   name="phone"
                 />
               </label>
-              <section className="col-span-2">
+              <section className="col-span-1 md:col-span-2">
                 <label className="block">
                   <span className="text-sm text-gray-500">Message</span>
                   <textarea
@@ -102,20 +103,27 @@ const ContactForm = () => {
                   ></textarea>
                 </label>
                 <div className="block">
-                  <div className="submitBtnContainer">
-                    <button className="submitBtn btn-inside btn-boarder" onClick={animate}>
+                  <div className="relative w-16 h-16">
+                    <button
+                      type="submit"
+                      className="submitBtn w-16 h-16 bg-cyan-400 rounded-full"
+                    >
                       <img
                         src="https://i.cloudup.com/gBzAn-oW_S-2000x2000.png"
                         width="64px"
                         height="64px"
                         id="plane"
                         alt="plane"
-                        className={`${animation ? "animation" : ""} ${
-                          hide ? "hidden" : ""
-                        }`}
+                        className={`pointer-events-none ${
+                          animation ? "animation" : ""
+                        } ${hide ? "hidden" : ""}`}
                       />
                     </button>
-                    <div className={`submitBg opacity-0 ${animation ? "animation2" : ""}`}>
+                    <div
+                      className={`submitBg opacity-0 ${
+                        animation ? "animation2" : ""
+                      }`}
+                    >
                       <img
                         src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png"
                         id="submitBg"
