@@ -1,30 +1,28 @@
 import React from "react";
-import raulImage from "./raulImage.jpg";
 
 const PersonalComponent = () => {
-  <section className="flex flex-row justify-center mb-10">
-    <article className="basis-3/4">
-      <h3>Personal</h3>
-      <p>Raul Maya Salazar</p>
-      <p>
-        Web Developer and Data Analytics Engineer with a background in
-        Industrial Engineering and life-long dedication to learning. Certified
-        by Tecnológico de Monterrey Data Analytics & Visualization Bootcamp, and
-        by Tecnológico de Monterrey Web Development Bootcamp. Effective at
-        combining creativity and problem solving to make sense of your
-        information and build easy-to-use applications based on it. Recognized
-        among employees for his sharp mind and attention to detail, no matter
-        how complex the project.
-      </p>
-    </article>
-    <article className="basis-1/4 flex justify-center">
-      <img
-        className="object-cover w-56 h-56"
-        src={raulImage}
-        alt="Raul Maya in the americas tower"
-      />
-    </article>
-  </section>;
+  return (
+    <section className="container flex justify-evenly my-10">
+      <article className="bg-white border border-black rounded-lg shadow-lg p-5">
+        <img
+          className="object-contain w-32 h-32"
+          src="https://www.pngmart.com/files/1/2014-World-Cup-Soccer-Ball-PNG.png"
+          alt="Brazuca ball"
+        />
+        <p>Playing Soccer</p>
+        <p>Is my favorite sport</p>
+      </article>
+      <article className="bg-white border border-black rounded-lg shadow-lg p-5">
+        <img
+          className="object-contain w-32 h-32"
+          src="https://c1.neweggimages.com/ProductImageCompressAll1280/79-261-901-V09.jpg"
+          alt="Brazuca ball"
+        />
+        <p>Playing Soccer</p>
+        <p>Is my favorite sport</p>
+      </article>
+    </section>
+  );
 };
 
-export default PersonalComponent
+export default PersonalComponent;
