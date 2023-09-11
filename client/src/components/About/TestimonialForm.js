@@ -23,7 +23,7 @@ function TestimonialForm() {
   };
 
   return (
-    <section className="pb-10 mb-12">
+    <section className="pb-10">
       <div className="p-4 max-w-xl mx-auto bg-white shadow-md rounded-lg my-12">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
