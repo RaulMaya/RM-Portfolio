@@ -1,16 +1,19 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { Link as RouterLink } from 'react-router-dom';
 
 const ProjectCardComponent = ({ title, image }) => {
   return (
     <>
       <div className="max-w-sm mx-3">
-        <img
-          className="shadow-lg rounded object-cover h-56 w-96 "
-          src={image}
-          alt={title}
-        />
+        <RouterLink to="/project/1">
+          <img
+            className="shadow-lg rounded object-cover h-56 w-96 "
+            src={image}
+            alt={title}
+          />
+        </RouterLink>
         <div className="flex justify-between pb-4">
           <div className="pt-1 text-xl mb-2">{title}</div>
           <div className="flex">

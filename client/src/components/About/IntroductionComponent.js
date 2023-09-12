@@ -3,7 +3,7 @@ import raulImage from "./raulImage.jpg";
 
 const IntroductionComponent = () => {
   return (
-    <section className="flex flex-row justify-center">
+    <section className="container min-w-full flex flex-row justify-center">
       <article className="basis-1/4 flex justify-center">
         <img
           className="object-cover w-64 h-64 drop-shadow-xl"
@@ -12,7 +12,7 @@ const IntroductionComponent = () => {
         />
       </article>
       <article className="basis-3/4">
-        <ul className="me-7 text-2xl tracking-wide">
+        <ul className="me-12 text-2xl tracking-wide">
           <li className="mb-3">
             🎸 Rocking the web as a Developer and Data Analytics Engineer, with a
             sprinkle of Industrial Engineering flair. 🛠️
