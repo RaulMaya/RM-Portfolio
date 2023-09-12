@@ -8,13 +8,16 @@ const Contact = () => {
     document.title = "Contact";
   }, []);
   return (
-    <div className="w-full min-h-screen">
-      <div className="flex flex-row">
-        <ContactForm />
-        <ContactInformation />
+    <>
+      <h1 className="text-center text-10xl">CONTACT</h1>
+      <div className="w-full">
+        <div className="flex flex-row">
+          <ContactForm />
+          <ContactInformation />
+        </div>
+        <NavBarComponent />
       </div>
-      <NavBarComponent />
-    </div>
+    </>
   );
 };
 

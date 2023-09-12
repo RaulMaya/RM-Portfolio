@@ -2,7 +2,7 @@ import React from "react";
 
 const PersonalComponent = () => {
   return (
-    <section className="container flex justify-evenly my-10">
+    <section className="container flex justify-evenly my-10 min-w-full">
       <article className="bg-white border border-black rounded-lg shadow-lg p-5">
         <img
           className="object-contain w-32 h-32"

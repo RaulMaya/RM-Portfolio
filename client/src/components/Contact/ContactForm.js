@@ -14,9 +14,8 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="basis-1/2 border-r-2 border-black min-h-screen flex justify-center">
-      <form onSubmit={animate} className="w-3/4">
-        <h5 className="text-center text-5xl">Get in touch</h5>
+    <div className="basis-1/2 border-r-2 border-t-4 border-black flex justify-center">
+      <form onSubmit={animate} className="w-3/4 my-12">
         <div className="form-group flex justify-center">
           <div className="mt-8 max-w-md">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

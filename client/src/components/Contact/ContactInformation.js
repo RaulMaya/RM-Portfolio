@@ -63,18 +63,18 @@ const ContactInformation = () => {
     },
   ];
   return (
-    <div className="basis-1/2 border-l-2 border-black min-h-screen bg-cyan-400 text-center">
-      <h5 className="text-center text-5xl">Contact Information</h5>
-      <ul className="mt-7 grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="basis-1/2 border-l-2 border-t-4 border-black bg-cyan-400 text-center flex justify-center">
+      <ul className="my-12 grid grid-cols-2 md:grid-cols-3 gap-5">
         {socialApps.map((app) => (
           <li
-            className={`icon relative transition-all flex justify-center w-16 h-16 text-xl flex-col bg-white items-center cursor-pointer shadow-xl relative p-7 m-7 rounded-full ${app.class}`}
+            key={app.name}
+            className={`icon relative transition-all flex justify-center w-28 h-28 flex-col bg-white items-center cursor-pointer shadow-xl relative p-7 m-7 rounded-full ${app.class}`}
           >
-            <span className="tooltip absolute top-0 text-sm bg-white text-white px-2 py-1.5 rounded-md shadow-xl opacity-0 pointer-events-none transition-all whitespace-nowrap">
+            <span className="tooltip absolute top-0 text-lg bg-white text-white px-2 py-1.5 rounded-md shadow-xl opacity-0 pointer-events-none transition-all whitespace-nowrap">
               {app.name}
             </span>
             <a className="icon-url" href={app.url}>
-              <span>
+              <span className="text-3xl">
                 <FontAwesomeIcon icon={app.icon} />
               </span>
             </a>

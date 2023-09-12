@@ -77,26 +77,6 @@ function TestimonialForm() {
             ></textarea>
           </div>
 
-          <div className="mb-4">
-            <label
-              className="block text-sm font-medium text-gray-600"
-              htmlFor="rating"
-            >
-              Rating (1-5)
-            </label>
-            <input
-              type="range"
-              id="rating"
-              name="rating"
-              min="1"
-              max="5"
-              value={formData.rating}
-              onChange={handleChange}
-              className="mt-1"
-            />
-            <span className="text-sm text-gray-600">{formData.rating}</span>
-          </div>
-
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md"
