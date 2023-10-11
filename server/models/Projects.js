@@ -36,8 +36,9 @@ const projectSchema = new Schema(
         type: Number,
         default: 0,
       },
-      likedIPs: {
-        type: [String],
+      likedUsers: {
+        type: [Schema.Types.ObjectId],
+        ref: "User",
       },
       viewsCount: {
         type: Number,

@@ -1,0 +1,12 @@
+const Award = require("./Award");
+const Comment = require("./Comment");
+const Education = require("./Education");
+const Experience = require("./Experience");
+const Language = require("./Language");
+const Projects = require("./Projects");
+const Raul = require("./Raul");
+const Reply = require("./Reply");
+const Testimonial = require("./Testimonial");
+const User = require("./User");
+
+module.exports = { Award, Comment, Education, Experience, Language, Projects, Raul, Reply, Testimonial, User };
