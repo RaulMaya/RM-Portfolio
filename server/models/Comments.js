@@ -31,7 +31,7 @@ const projectCommentSchema = new Schema(
     },
     replies: [{
       type: Schema.Types.ObjectId,
-      ref: 'ProjectComment'
+      ref: 'Comments'
     }],
   },
   {

@@ -1,5 +1,5 @@
 const Award = require("./Award");
-const Comment = require("./Comment");
+const Comment = require("./Comments");
 const Education = require("./Education");
 const Experience = require("./Experience");
 const Language = require("./Language");
