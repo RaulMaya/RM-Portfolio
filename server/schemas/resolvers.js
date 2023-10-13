@@ -5,6 +5,14 @@ const { Award, Comment, Education, Experience,
 const bcrypt = require("bcrypt");
 
 const resolvers = {
+    Comment: {
+        likesCount: (parent) => {
+            return parent.likes.length;
+        },
+        dislikesCount: (parent) => {
+            return parent.dislikes.length;
+        },
+    },
     Query: {
         awards: async () => {
             return await Award.find({})
@@ -68,7 +76,7 @@ const resolvers = {
             } catch (error) {
                 throw new Error(`Failed to create project: ${error.message}`);
             }
-        },        
+        },
         createAward: async (parent, args) => {
             try {
                 const awardCreated = await Award.create(args);
@@ -140,7 +148,7 @@ const resolvers = {
             } catch (error) {
                 throw new Error(`Failed to create testimonial: ${error.message}`);
             }
-        },       
+        },
 
 
         // Update

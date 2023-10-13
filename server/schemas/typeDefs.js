@@ -1,53 +1,60 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  type User {
+  type Award {
     _id: ID
-    username: String
-    email: String
-    password: String
-    dateOfBirth: String
-    profilePic: String
-    comments: [Comment]
-    friends: [User]
-    assistingEvents: [Event]
-    createdEvents: [Event]
+    teacher: String
+    course: String
+    startDate: String
+    endDate: String
+    teacherLogo: String
+    url: String
+    awardImage: String
   }
 
-
-  type Comment {
+  type Comments {
     _id: ID
-    commentText: String
-    createdAt: String
     user: User
-    event: Event
+    title: String
+    comment: String
+    likes: [User]
+    dislikes: [User]
+    likesCount: Int
+    dislikesCount: Int
+    replies: [Reply]
   }
 
-  type Event {
-    _id: ID
-    eventName: String
-    eventDescription: String
-    eventCategory: String
-    mainImg: String
-    portraitImg: String
-    tags: [String!]!
-    eventStartDate: String
-    eventLocation: EventLocation!
-    eventCapacity: Int!
-    eventInvitation: Boolean!
-    minAge: Int!
-    createdAt: String!
-    usersAssisting: [User]
-    createdBy: User
-    comments: [Comment]
-  }
-
-
-  type Query {
+  type Education {
 
   }
 
-  type Mutation {
+  type Experience {
+
+  }
+
+  type Language {
+
+  }
+
+  type Projects {
+
+  }
+
+  type Raul {
+
+  }
+
+
+  type Reply {
+
+  }
+
+  type Testimonial {
+
+  }
+
+  type User {
+    
   }
 `;
 

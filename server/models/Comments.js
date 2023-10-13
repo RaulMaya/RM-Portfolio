@@ -31,7 +31,7 @@ const projectCommentSchema = new Schema(
     },
     replies: [{
       type: Schema.Types.ObjectId,
-      ref: 'Comments'
+      ref: 'Reply'
     }],
   },
   {
@@ -41,6 +41,14 @@ const projectCommentSchema = new Schema(
     id: false,
   }
 );
+
+projectCommentSchema.virtual('likesCount').get(function () {
+  return this.likes.length;
+});
+
+projectCommentSchema.virtual('dislikesCount').get(function () {
+  return this.dislikes.length;
+});
 
 const ProjectComment = model("ProjectComment", projectCommentSchema);
 module.exports = ProjectComment;
