@@ -7,7 +7,7 @@ const testimonialSchema = new Schema(
       required: true,
       trim: true,
     },
-    title: {
+    company: {
       type: String,
       required: true,
       maxLength: 50,

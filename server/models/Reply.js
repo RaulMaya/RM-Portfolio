@@ -7,21 +7,16 @@ const replySchema = new Schema(
       ref: 'User',
       required: true,
     },
+    comment: {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
+      required: true,
+    },
     reply: {
       type: String,
       required: true,
       maxLength: 200,
       minLength: 1,
-    },
-    likes: {
-      type: [Schema.Types.ObjectId], // Array of User IDs
-      ref: 'User',
-      default: [],
-    },
-    dislikes: {
-      type: [Schema.Types.ObjectId], // Array of User IDs
-      ref: 'User',
-      default: [],
     },
   },
   {

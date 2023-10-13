@@ -5,7 +5,12 @@ const { Award, Comment, Education, Experience,
 const bcrypt = require("bcrypt");
 
 const resolvers = {
-    Comment: {
+    Projects: {
+        likesCount: (parent) => {
+            return parent.likedUsers.length
+        }
+    },
+    Comments: {
         likesCount: (parent) => {
             return parent.likes.length;
         },
@@ -38,7 +43,7 @@ const resolvers = {
                 .populate("user")
         },
         raul: async () => {
-            return await Raul.find({})
+            return await Raul.findOne({name: "Raul"})
                 .populate("experience")
                 .populate("education")
                 .populate("awards")
