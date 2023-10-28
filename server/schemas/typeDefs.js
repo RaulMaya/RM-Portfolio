@@ -1,6 +1,24 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  type User {
+    _id: ID
+    username: String!
+    email: String!
+    dateOfBirth: String!
+    company: String!
+    comments: [Comment]  # Assuming Comment is defined elsewhere in your GraphQL schema
+    replies: [Reply]     
+  }
+
+  input CreateUserInput {
+    username: String!
+    email: String!
+    password: String!
+    dateOfBirth: String!
+    company: String!
+  }
+
   type Award {
     _id: ID
     teacher: String

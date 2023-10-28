@@ -48,8 +48,8 @@ const projectSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ['Not Started', 'In Progress', 'Completed'],
-      default: 'Not Started'
+      enum: ['NotStarted', 'InProgress', 'Completed'],
+      default: 'NotStarted'
     },
     deployment: {
       type: String,

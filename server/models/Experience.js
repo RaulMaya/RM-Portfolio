@@ -24,8 +24,8 @@ const experienceSchema = new Schema(
         },
         status: {
             type: String,
-            enum: ['Past Employment', 'Current Job'],
-            default: 'Past Employment'
+            enum: ['PastEmployment', 'CurrentJob'],
+            default: 'PastEmployment'
         },
         companyLogo: {
             type: String,

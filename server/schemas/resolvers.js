@@ -1,7 +1,7 @@
 const { Award, Comment, Education, Experience,
     Language, Projects, Raul, Reply, Testimonial, User } = require("../models");
 // const { AuthenticationError } = require("apollo-server-express");
-// const { signToken } = require("../utils/auth");
+const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
 
 const resolvers = {
@@ -43,7 +43,7 @@ const resolvers = {
                 .populate("user")
         },
         raul: async () => {
-            return await Raul.findOne({name: "Raul"})
+            return await Raul.findOne({ name: "Raul" })
                 .populate("experience")
                 .populate("education")
                 .populate("awards")
@@ -74,10 +74,16 @@ const resolvers = {
                 throw new Error(`Failed to create Raul: ${error.message}`);
             }
         },
+        createUser: async (parent, args) => {
+            const userCreated = await User.create(args);
+            const token = signToken(userCreated);
+
+            return { token, user: userCreated };
+        },
         createProjects: async (parent, args) => {
             try {
                 const projectsCreated = await Projects.create(args);
-                return { project: projectsCreated };
+                return projectsCreated;
             } catch (error) {
                 throw new Error(`Failed to create project: ${error.message}`);
             }
@@ -93,7 +99,7 @@ const resolvers = {
                 raul.awards.push(awardCreated._id);
                 await raul.save();
 
-                return { award: awardCreated };
+                return awardCreated;
             } catch (error) {
                 throw new Error(`Failed to create and link award: ${error.message}`);
             }
@@ -109,7 +115,7 @@ const resolvers = {
                 raul.education.push(eduactionCreated._id);
                 await raul.save();
 
-                return { education: eduactionCreated };
+                return eduactionCreated;
             } catch (error) {
                 throw new Error(`Failed to create and link education: ${error.message}`);
             }
@@ -117,15 +123,19 @@ const resolvers = {
         createExperience: async (parent, args) => {
             try {
                 const experienceCreated = await Experience.create(args);
+                console.log(experienceCreated);
 
                 const raul = await Raul.findOne({ name: "Raul" });
+                console.log(raul);
+
                 if (!raul) {
                     throw new Error("Raul not found");
                 }
+
                 raul.experience.push(experienceCreated._id);
                 await raul.save();
 
-                return { experience: experienceCreated };
+                return experienceCreated; // Return the experience directly
             } catch (error) {
                 throw new Error(`Failed to create and link experience: ${error.message}`);
             }
@@ -141,7 +151,7 @@ const resolvers = {
                 raul.languages.push(languageCreated._id);
                 await raul.save();
 
-                return { language: languageCreated };
+                return languageCreated;
             } catch (error) {
                 throw new Error(`Failed to create and link language: ${error.message}`);
             }
@@ -149,7 +159,7 @@ const resolvers = {
         createTestimonials: async (parent, args) => {
             try {
                 const testimonialsCreated = await Testimonial.create(args);
-                return { testiomonial: testimonialsCreated };
+                return testimonialsCreated;
             } catch (error) {
                 throw new Error(`Failed to create testimonial: ${error.message}`);
             }
