@@ -12,7 +12,7 @@ const languageSchema = new Schema(
             type: String,
         },
         expertise: {
-            type: Date,
+            type: String,
             required: true  // The start date is required
         }
     },

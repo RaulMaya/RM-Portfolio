@@ -5,9 +5,10 @@ const typeDefs = gql`
     _id: ID
     username: String!
     email: String!
+    password: String!
     dateOfBirth: String!
     company: String!
-    comments: [Comment]  # Assuming Comment is defined elsewhere in your GraphQL schema
+    comments: [Comments]
     replies: [Reply]     
   }
 
@@ -19,6 +20,22 @@ const typeDefs = gql`
     company: String!
   }
 
+  type Raul {
+    _id: ID
+    name: String
+    midName: String
+    lastName: String
+    phoneNumber: String
+    email: String
+    location: String
+    socialMedias: socialApps
+    description: String
+    experience: [Experience]
+    education: [Education]
+    awards: [Award]
+    languages: [Language]
+  }
+
   type Award {
     _id: ID
     teacher: String
@@ -28,6 +45,11 @@ const typeDefs = gql`
     teacherLogo: String
     url: String
     awardImage: String
+  }
+
+  type Auth {
+    token: ID!
+    user: User
   }
 
   type Comments {
@@ -114,23 +136,6 @@ const typeDefs = gql`
     github: String
   }
 
-  type Raul {
-    _id: ID
-    name: String
-    midName: String
-    lastName: String
-    phoneNumber: String
-    email: String
-    location: String
-    socialMedias: socialApps
-    description: String
-    experiences: [Experience]
-    educations: [Education]
-    awards: [Award]
-    languages: [Language]
-  }
-
-
   type Reply {
     _id: ID
     users: User
@@ -143,17 +148,6 @@ const typeDefs = gql`
     name: String
     company: String
     comment: String
-  }
-
-  type User {
-    _id: ID
-    username: User
-    email: String
-    password: String
-    dateOfBirth: String
-    company: String
-    comments: [Comments]
-    replies: [Reply]
   }
 
   type Query {
@@ -180,6 +174,14 @@ const typeDefs = gql`
       socialMedias: socialAppsInput
       description: String
       ): Raul
+
+    createUser(
+      username: String!
+      email: String!
+      password: String!
+      dateOfBirth: String!
+      company: String!
+      ): Auth
 
     createProjects(
       name: String

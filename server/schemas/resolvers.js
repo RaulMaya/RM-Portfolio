@@ -1,6 +1,6 @@
 const { Award, Comment, Education, Experience,
     Language, Projects, Raul, Reply, Testimonial, User } = require("../models");
-// const { AuthenticationError } = require("apollo-server-express");
+const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
 
@@ -43,11 +43,13 @@ const resolvers = {
                 .populate("user")
         },
         raul: async () => {
-            return await Raul.findOne({ name: "Raul" })
+            const raulDocument = await Raul.findOne({ name: "Raul" })
                 .populate("experience")
                 .populate("education")
                 .populate("awards")
-                .populate("languages")
+                .populate("languages");
+            console.log(raulDocument)
+            return raulDocument;
         },
         replies: async () => {
             return await Reply.find({})
@@ -112,7 +114,10 @@ const resolvers = {
                 if (!raul) {
                     throw new Error("Raul not found");
                 }
+                console.log(eduactionCreated._id)
                 raul.education.push(eduactionCreated._id);
+                console.log('Raul found:', raul);
+
                 await raul.save();
 
                 return eduactionCreated;
