@@ -9,6 +9,7 @@ const ProjectListComponent = ({ projects }) => {
           key={project.id}
           title={project.title}
           image={project.img}
+          id={project.id}
         />
       ))}
     </div>
