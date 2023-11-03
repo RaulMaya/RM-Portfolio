@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 const Testimonials = () => {
   return (
-    <section className="container flex justify-around min-w-full">
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl">
+    <section className="container flex flex-wrap justify-around min-w-full">
+      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
         <FontAwesomeIcon
           className="text-5xl mb-3 text-cyan-200"
           icon={faQuoteLeft}
@@ -22,7 +22,7 @@ const Testimonials = () => {
         <p className="font-bold">Jordan Smith</p>
         <p className="text-sm">CEO of TechSolutions Inc.</p>
       </article>
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl">
+      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
         <FontAwesomeIcon
           className="text-5xl mb-3 text-cyan-200"
           icon={faQuoteLeft}
@@ -40,7 +40,7 @@ const Testimonials = () => {
         <p className="font-bold">Jordan Smith</p>
         <p className="text-sm">CEO of TechSolutions Inc.</p>
       </article>
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl">
+      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
         <FontAwesomeIcon
           className="text-5xl mb-3 text-cyan-200"
           icon={faQuoteLeft}
@@ -58,7 +58,7 @@ const Testimonials = () => {
         <p className="font-bold">Jordan Smith</p>
         <p className="text-sm">CEO of TechSolutions Inc.</p>
       </article>
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl">
+      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
         <FontAwesomeIcon
           className="text-5xl mb-3 text-cyan-200"
           icon={faQuoteLeft}
@@ -76,7 +76,7 @@ const Testimonials = () => {
         <p className="font-bold">Jordan Smith</p>
         <p className="text-sm">CEO of TechSolutions Inc.</p>
       </article>
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl">
+      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
         <FontAwesomeIcon
           className="text-5xl mb-3 text-cyan-200"
           icon={faQuoteLeft}

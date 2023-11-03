@@ -10,19 +10,19 @@ const NavBarComponent = () => {
     <div className="flex justify-between fixed bottom-0 left-0 right-0">
       <RouterLink
         to="/projects"
-        className={`border-2 border-black w-full text-center p-5 hover:bg-cyan-400 hover:cursor-pointer ${
+        className={`font-semibold tracking-wider border-2 border-black w-full text-center p-5 hover:bg-cyan-400 hover:cursor-pointer ${
           isActive("/projects") ? "bg-cyan-400" : "bg-white"
         }`}
       >
-        Projects
+        PROJECTS
       </RouterLink>
       <RouterLink
         to="/about"
-        className={`border-2 border-black w-full text-center p-5 hover:bg-cyan-400 hover:cursor-pointer ${
+        className={`font-semibold tracking-wider border-2 border-black w-full text-center p-5 hover:bg-cyan-400 hover:cursor-pointer ${
           isActive("/about") ? "bg-cyan-400" : "bg-white"
         }`}
       >
-        About
+        ABOUT
       </RouterLink>
       <RouterLink
         to="/"
@@ -38,19 +38,19 @@ const NavBarComponent = () => {
       </RouterLink>
       <RouterLink
         to="/resume"
-        className={`border-2 border-black w-full text-center p-5 hover:bg-cyan-400 hover:cursor-pointer ${
+        className={`font-semibold tracking-wider border-2 border-black w-full text-center p-5 hover:bg-cyan-400 hover:cursor-pointer ${
           isActive("/resume") ? "bg-cyan-400" : "bg-white"
         }`}
       >
-        Resume
+        RESUME
       </RouterLink>
       <RouterLink
         to="/contact"
-        className={`border-2 border-black w-full text-center p-5 hover:bg-cyan-400 hover:cursor-pointer ${
+        className={`font-semibold tracking-wider border-2 border-black w-full text-center p-5 hover:bg-cyan-400 hover:cursor-pointer ${
           isActive("/contact") ? "bg-cyan-400" : "bg-white"
         }`}
       >
-        Contact
+        CONTACT
       </RouterLink>
     </div>
   );
