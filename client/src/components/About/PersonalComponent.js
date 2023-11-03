@@ -4,51 +4,53 @@ import raulFutbol from "./RaulFutbol.jpg";
 const PersonalComponent = () => {
   return (
     <>
-      <section className="container flex justify-evenly my-12 min-w-full">
-        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 ">
+      <section className="container flex flex-wrap justify-evenly my-12 min-w-full">
+        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-5">
           <img
             className="object-contain m-auto w-32 h-32"
             src="https://www.pngmart.com/files/1/2014-World-Cup-Soccer-Ball-PNG.png"
             alt="Brazuca ball"
           />
-          <p>Playing Soccer</p>
-          <p>Is my favorite sport</p>
+          <strong>Playing Soccer</strong>
+          <p>Passionate about soccer, I've played at university and fervently support Tottenham Hotspur and Bayern München, embodying the teamwork and strategy I bring to my professional life.</p>
         </article>
-        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 ">
+        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-5">
+          <p>Videogames</p>
+          <p>Immersed in the virtual worlds of "Red Dead Redemption" and "FIFA," I currently find adventure swinging through New York City in "Spider-Man: Miles Morales."</p>
           <img
             className="object-contain m-auto w-32 h-32"
             src="https://c1.neweggimages.com/ProductImageCompressAll1280/79-261-901-V09.jpg"
             alt="Brazuca ball"
           />
-          <p>Videogames</p>
-          <p>Is my favorite sport</p>
         </article>
-        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 ">
+        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-5">
           <img
             className="object-contain m-auto w-32 h-32"
             src="https://pngimg.com/uploads/dumbbell/dumbbell_PNG16376.png"
             alt="Brazuca ball"
           />
           <p>Lifting Weights</p>
-          <p>Is my favorite sport</p>
+          <p>My daily morning visits to the gym are a testament to my dedication to fitness, embodying the discipline and stoicism that guide my pursuit of self-improvement.</p>
         </article>
-        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 ">
+        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-5">
+
+          <strong>Watch Movies</strong>
+          <p>I'm captivated by the mind-bending twists of "The Butterfly Effect" and the intense drama of "Breaking Bad," my go-to film and series for a narrative thrill.</p>
+
           <img
             className="object-contain m-auto w-32 h-32"
             src="https://www.freepnglogos.com/uploads/film-reel-png/film-reel-the-movies-owens-valley-12.png"
             alt="Brazuca ball"
           />
-          <p>Watch Movies</p>
-          <p>Is my favorite sport</p>
         </article>
-        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 ">
+        <article className="bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-5">
           <img
             className="object-contain m-auto w-32 h-32"
             src="https://www.megaidea.net/wp-content/uploads/2022/01/Lego-4-1024x837.png"
             alt="Brazuca ball"
           />
           <p>Build Legos</p>
-          <p>Is my favorite sport</p>
+          <p>The art of assembly fuels my passion, as I meticulously piece together the complex world of LEGO Technic models.</p>
         </article>
       </section>
 

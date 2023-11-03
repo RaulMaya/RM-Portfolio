@@ -6,13 +6,13 @@ const IntroductionComponent = () => {
     <section className="container min-w-full flex flex-row justify-center">
       <article className="basis-1/4 flex justify-center">
         <img
-          className="object-cover w-64 h-64 drop-shadow-xl"
+          className="object-cover w-full h-auto drop-shadow-xl max-w-md"
           src={raulImage}
           alt="Raul Maya in the americas tower"
         />
       </article>
       <article className="basis-3/4">
-        <ul className="me-12 text-2xl tracking-wide">
+        <ul className="mx-12 xl:text-4xl lg:text-xl md:text-lg sm:text-base tracking-wide">
           <li className="mb-3">
             🎸 Rocking the web as a Developer and Data Analytics Engineer, with a
             sprinkle of Industrial Engineering flair. 🛠️
