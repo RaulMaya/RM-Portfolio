@@ -10,6 +10,7 @@ const SingleProjectComponent = () => {
             <ProjectInformation />
             <ProjectCommentForm />
             <ProjectComments />
+            <ProjectComments />
         </div >
     )
 }
