@@ -20,14 +20,16 @@ const userSchema = new Schema(
             required: true,
             minlength: 8,
         },
-        dateOfBirth: {
-            type: Date,
-            required: true,
-        },
         company: {
             type: String,
             required: true,
         },
+        testimonials: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Testimonial",
+            },
+        ],
         comments: [
             {
                 type: Schema.Types.ObjectId,

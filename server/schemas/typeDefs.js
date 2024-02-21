@@ -6,7 +6,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    dateOfBirth: String!
+    testimonials: [Testimonial]
     company: String!
     comments: [Comments]
     replies: [Reply]     
@@ -144,9 +144,8 @@ const typeDefs = gql`
 
   type Testimonial {
     _id: ID
-    name: String
-    company: String
-    comment: String
+    users: User
+    testimonial: String
   }
 
   type Query {
@@ -232,9 +231,8 @@ const typeDefs = gql`
       ): Language
 
     createTestimonials(
-      name: String
-      company: String
-      comment: String
+      userId: ID!
+      testimonial: String!
       ): Testimonial
 
     createComment(projectId: ID!, userId: ID!, comment: String!): Comments

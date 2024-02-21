@@ -63,6 +63,7 @@ const resolvers = {
         users: async () => {
             return await User.find({})
                 .populate("comments")
+                .populate("testimonials")
                 .populate("replies")
         }
     },
@@ -200,12 +201,32 @@ const resolvers = {
                 throw new Error(`Failed to create and link language: ${error.message}`);
             }
         },
-        createTestimonials: async (parent, args) => {
+        createTestimonials: async (parent, {userId, testimonial }) => {
             try {
-                const testimonialsCreated = await Testimonial.create(args);
+                // Check if the user exists
+                const user = await User.findById(userId);
+                if (!user) {
+                    throw new Error("User not found");
+                }
+
+                // Create the new comment
+                const testimonialsCreated = new Testimonial({
+                    testimonial,
+                    user: user._id,
+                });
+
+                // Save the comment
+                await testimonialsCreated.save();
+
+                // Add the comment to the user's comments array
+                user.testimonials.push(testimonialsCreated._id);
+                await user.save();
+
+                // Return the testiomonial comment
                 return testimonialsCreated;
             } catch (error) {
-                throw new Error(`Failed to create testimonial: ${error.message}`);
+                console.error("Error creating testiomonial:", error);
+                throw new Error("Failed to create testiomonial");
             }
         },
 
