@@ -19,7 +19,7 @@ const LogSignHeader = () => {
                 <p onClick={openSignUpModal} className="text-gray-300 text-xl hover:text-black ease-in duration-300 cursor-pointer">Sign Up</p>
             </div>
             <LoginModal openSign={openSignUpModal} isOpen={isLoginOpen} onClose={closeLoginModal} />
-            <SignUpModal isOpen={isSignUpOpen} onClose={closeSignUpModal} />
+            <SignUpModal openLog={openLoginModal} isOpen={isSignUpOpen} onClose={closeSignUpModal} />
         </div>
     );
 };
