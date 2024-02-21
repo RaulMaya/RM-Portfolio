@@ -55,7 +55,6 @@ const typeDefs = gql`
   type Comments {
     _id: ID
     users: User
-    title: String
     comment: String
     likes: [User]
     dislikes: [User]
@@ -237,6 +236,8 @@ const typeDefs = gql`
       company: String
       comment: String
       ): Testimonial
+
+    createComment(projectId: ID!, userId: ID!, comment: String!): Comments
   }
 `;
 

@@ -90,6 +90,45 @@ const resolvers = {
                 throw new Error(`Failed to create project: ${error.message}`);
             }
         },
+        createComment: async (parent, { projectId, userId, comment }) => {
+            try {
+                // Check if the event exists
+                const project = await Projects.findById(projectId);
+                if (!project) {
+                    throw new Error("Project not found");
+                }
+
+                // Check if the user exists
+                const user = await User.findById(userId);
+                if (!user) {
+                    throw new Error("User not found");
+                }
+
+                // Create the new comment
+                const newComment = new Comment({
+                    comment,
+                    user: user._id,
+                    project: project._id,
+                });
+
+                // Save the comment
+                await newComment.save();
+
+                // Add the comment to the event's comments array
+                project.comments.push(newComment._id);
+                await project.save();
+
+                // Add the comment to the user's comments array
+                user.comments.push(newComment._id);
+                await user.save();
+
+                // Return the created comment
+                return newComment;
+            } catch (error) {
+                console.error("Error creating comment:", error);
+                throw new Error("Failed to create comment");
+            }
+        },
         createAward: async (parent, args) => {
             try {
                 const awardCreated = await Award.create(args);

@@ -7,12 +7,6 @@ const projectCommentSchema = new Schema(
       ref: 'User',
       required: true,
     },
-    title: {
-      type: String,
-      required: true,
-      maxLength: 50,
-      minLength: 1,
-    },
     comment: {
       type: String,
       required: true,
@@ -50,5 +44,5 @@ projectCommentSchema.virtual('dislikesCount').get(function () {
   return this.dislikes.length;
 });
 
-const ProjectComment = model("ProjectComment", projectCommentSchema);
+const ProjectComment = model("Comment", projectCommentSchema);
 module.exports = ProjectComment;
