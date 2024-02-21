@@ -1,22 +1,21 @@
 const ProjectCommentForm = () => {
     return (
-        <div className="container m-auto flex justify-center">
-            <form>
-                <label className="block text-center mt-3">
-                    <span className="text-sm text-gray-500">What do you think about this project?</span>
-                    <textarea
-                        className="
+        <div className="container mx-auto flex flex-col justify-center mb-10 mt-5">
+            <h1 className="text-3xl mb-3">Comment Section</h1>
+            <form className="w-full">
+                <textarea
+                    className="
                         mt-1
+                        w-full
                         block
                         rounded-md
-                        border-gray-300
+                        border-black
                         shadow-sm
                         focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50
                         "
-                        rows="3"
-                        cols="33"
-                    ></textarea>
-                </label>
+                    placeholder="What do you think about this project?"
+                ></textarea>
+
             </form>
         </div>)
 }

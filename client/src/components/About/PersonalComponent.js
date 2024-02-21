@@ -1,64 +1,60 @@
 import React from "react";
 import raulFutbol from "./RaulFutbol.jpg";
 
+const hobbiesArr = [{
+  id: 1,
+  title: "Soccer",
+  description: "Passionate about soccer, I've played at university and fervently support Tottenham Hotspur and Bayern München, embodying the teamwork and strategy I bring to my professional life.",
+  image: "https://www.pngmart.com/files/1/2014-World-Cup-Soccer-Ball-PNG.png",
+  bg: "https://w0.peakpx.com/wallpaper/431/548/HD-wallpaper-fifa-19-stadium-iphone-xs-max-background-and-soccer-pitch.jpg"
+}, {
+  id: 2,
+  title: "Videogames",
+  description: "Immersed in the virtual worlds of 'Red Dead Redemption' and 'FIFA', I currently find adventure swinging through New York City in 'Spider-Man: Miles Morales'.",
+  image: "https://cdn.pixabay.com/photo/2020/06/21/20/43/playstation-5326719_1280.png",
+  bg: "https://mcdn.wallpapersafari.com/medium/29/15/0WoCwm.png"
+}, {
+  id: 3,
+  title: "Lifting Weights",
+  description: "My daily morning visits to the gym are a testament to my dedication to fitness, embodying the discipline and stoicism that guide my pursuit of self-improvement.",
+  image: "https://pngimg.com/uploads/dumbbell/dumbbell_PNG102651.png",
+  bg: "https://wallpapers.com/images/high/gym-iphone-okdize5crhlw5lcu.webp"
+}, {
+  id: 4,
+  title: "Watch Movies",
+  description: "I'm captivated by the mind-bending twists of 'The Butterfly Effect' and the intense drama of 'Breaking Bad', my go-to film and series for a narrative thrill",
+  image: "https://www.freepnglogos.com/uploads/film-reel-png/film-reel-the-movies-owens-valley-12.png",
+  bg: "https://e1.pxfuel.com/desktop-wallpaper/773/9/desktop-wallpaper-breaking-bad-iphone-breaking-bad-phone.jpg"
+}, {
+  id: 5,
+  title: "Build Legos",
+  description: "The art of assembly fuels my passion, as I meticulously piece together the complex world of LEGO Technic models.",
+  image: "https://www.lego.com/cdn/cs/set/assets/bltc2661d66536e8c5d/42127.png?format=webply&fit=bounds&quality=75&width=800&height=800&dpr=1",
+  bg: "https://wallpapers.com/images/high/lego-bricks-red-iphone-nw72nlgfqug6tq1o.webp"
+},]
+
 const PersonalComponent = () => {
+
+  const renderHobbies = hobbiesArr.map((hobbie) => {
+    return <div class="cursor-pointer group h-120 w-80 [perspective:1000px] my-5">
+      <div class="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+        <div class="absolute inset-0">
+          <img class="h-full w-full rounded-xl object-cover shadow-xl shadow-black/40" src={hobbie.bg} alt="" />
+        </div>
+        <div class="absolute inset-0 h-full w-full rounded-xl bg-black/80 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+          <div class="flex min-h-full flex-col items-center justify-center">
+            <h1 class="text-3xl font-bold">{hobbie.title}</h1>
+            <p class="text-base">{hobbie.description}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  })
   return (
     <>
       <section className="container flex flex-wrap justify-evenly my-12 min-w-full">
-        <article className="flex flex-col justify-between bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-7 mx-2">
-          <img
-            className="object-contain m-auto w-32 h-32"
-            src="https://www.pngmart.com/files/1/2014-World-Cup-Soccer-Ball-PNG.png"
-            alt="Brazuca ball"
-          />
-          <strong>Playing Soccer</strong>
-          <p className="text-sm mt-3">Passionate about soccer, I've played at university and fervently support Tottenham Hotspur and Bayern München, embodying the teamwork and strategy I bring to my professional life.</p>
-        </article>
-        <article className="flex flex-col justify-between bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-7 mx-2">
-          <header>
-            <strong>Videogames</strong>
-            <p className="text-sm mt-3 mb-5">Immersed in the virtual worlds of "Red Dead Redemption" and "FIFA," I currently find adventure swinging through New York City in "Spider-Man: Miles Morales."</p>
-          </header>
-          <img
-            className="object-contain m-auto w-32 h-32 mb-5"
-            src="https://c1.neweggimages.com/ProductImageCompressAll1280/79-261-901-V09.jpg"
-            alt="Brazuca ball"
-          />
-        </article>
-
-        <article className="flex flex-col justify-between bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-7 mx-2">
-          <img
-            className="object-contain m-auto w-32 h-32"
-            src="https://pngimg.com/uploads/dumbbell/dumbbell_PNG16376.png"
-            alt="Brazuca ball"
-          />
-          <header>
-            <strong>Lifting Weights</strong>
-            <p className="text-sm mt-3">My daily morning visits to the gym are a testament to my dedication to fitness, embodying the discipline and stoicism that guide my pursuit of self-improvement.</p>
-          </header>
-        </article>
-        <article className="flex flex-col justify-between bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-7 mx-2">
-          <header>
-            <strong>Watch Movies</strong>
-            <p className="text-sm mt-3">I'm captivated by the mind-bending twists of "The Butterfly Effect" and the intense drama of "Breaking Bad," my go-to film and series for a narrative thrill.</p>
-          </header>
-          <img
-            className="object-contain m-auto w-32 h-32"
-            src="https://www.freepnglogos.com/uploads/film-reel-png/film-reel-the-movies-owens-valley-12.png"
-            alt="Brazuca ball"
-          />
-        </article>
-        <article className="flex flex-col justify-between bg-white text-center border border-black rounded-lg shadow-lg p-5 w-64 h-96 mt-7 mx-2">
-          <img
-            className="object-contain m-auto w-32 h-32"
-            src="https://www.megaidea.net/wp-content/uploads/2022/01/Lego-4-1024x837.png"
-            alt="Brazuca ball"
-          />
-          <header>
-            <strong>Build Legos</strong>
-            <p className="text-sm mt-3">The art of assembly fuels my passion, as I meticulously piece together the complex world of LEGO Technic models.</p>
-          </header>
-        </article>
+        {renderHobbies}
       </section>
 
       <section className="container my-12 min-w-full flex flex-row justify-center">

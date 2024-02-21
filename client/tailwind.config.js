@@ -25,6 +25,10 @@ module.exports = {
         120: "30rem" /* 480px */,
         144: "36rem" /* 576px */,
       },
+      height: {
+        120: "30rem" /* 480px */,
+        144: "36rem" /* 576px */,
+      },
       animation: {
         marqueeX: "marqueeX 25s linear infinite",
         marqueeX2: "marqueeX2 25s linear infinite",
