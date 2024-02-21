@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 import NavBarComponent from "../components/NavBarComponent";
 import ProjectListComponent from "../components/Projects/ProjectListComponent";
 import ProjectSearchBox from "../components/Projects/ProjectSearchComponent";
+import LogSignHeader from "../components/LogInSignUp/LogSignHeaderComponent";
 
 const objArr = [
   {
@@ -81,7 +82,10 @@ const Projects = () => {
 
   return (
     <>
-      <h1 className="text-center text-10xl">PROJECTS</h1>
+      <LogSignHeader />
+      <div className="text-center">
+        <h1 className="text-10xl">PROJECTS</h1>
+      </div>
       <ProjectSearchBox searchInput={searchInput} />
       <ProjectListComponent projects={projects} />
       <NavBarComponent />

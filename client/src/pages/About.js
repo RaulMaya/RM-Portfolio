@@ -3,6 +3,7 @@ import IntroductionComponent from "../components/About/IntroductionComponent";
 import PersonalComponent from "../components/About/PersonalComponent";
 import Testimonials from "../components/About/Testimonials";
 import TestimonialForm from "../components/About/TestimonialForm";
+import LogSignHeader from "../components/LogInSignUp/LogSignHeaderComponent";
 
 import NavBarComponent from "../components/NavBarComponent";
 
@@ -12,6 +13,7 @@ const About = () => {
   }, []);
   return (
     <>
+      <LogSignHeader />
       <h1 className="text-center text-10xl">ABOUT ME</h1>
       <IntroductionComponent />
       <PersonalComponent />
