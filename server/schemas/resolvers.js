@@ -92,6 +92,29 @@ const resolvers = {
 
     },
     Mutation: {
+        login: async (parent, { email, password }) => {
+            try {
+                // Find the user by username or email
+                const user = await User.findOne({ email });
+                if (!user) {
+                    throw new AuthenticationError("Invalid username/email");
+                }
+
+                // Compare the provided password with the stored password hash
+                const isPasswordMatch = await user.isCorrectPassword(password);
+
+                if (!isPasswordMatch) {
+                    throw new AuthenticationError("Invalid password");
+                }
+
+                // Password is correct, return the user
+                const token = signToken(user);
+                return { token, user };
+            } catch (error) {
+                console.error("Error logging in:", error);
+                throw new Error("Failed to log in");
+            }
+        },
         // Create
         createRaul: async (parent, args) => {
             try {

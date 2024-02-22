@@ -185,7 +185,6 @@ const typeDefs = gql`
       username: String!
       email: String!
       password: String!
-      dateOfBirth: String!
       company: String!
       ): Auth
 
@@ -258,6 +257,8 @@ const typeDefs = gql`
     dislikeComment(userId: ID!, commentId: ID!): Comments
 
     quitdisLikeComment(userId: ID!, commentId: ID!): Comments
+
+    login(email: String!, password: String!): Auth
   }
 `;
 
