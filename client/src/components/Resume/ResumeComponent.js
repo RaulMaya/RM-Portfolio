@@ -9,12 +9,13 @@ import {
 
 import ResumeTrack from "./ResumeTrack";
 import ResumeHero from "./ResumeHero";
+import TechStack from "./TechStack";
 
 const ResumeComponent = () => {
   return (
     <>
       <ResumeHero />
-      <div className="container m-auto">
+      <div className="container m-auto mb-12 pb-12">
         <hr className="border border-black mb-2 mt-10" />
         <div className="flex justify-evenly flex-wrap">
           <p className="flex items-center">
@@ -46,8 +47,10 @@ const ResumeComponent = () => {
           </p>
         </div>
         <hr className="border border-black mt-3 mb-10" />
+        <ResumeTrack />
+        <TechStack />
       </div>
-      <ResumeTrack />
+
     </>
   );
 };
