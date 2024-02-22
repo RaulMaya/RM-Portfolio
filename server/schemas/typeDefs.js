@@ -63,6 +63,7 @@ const typeDefs = gql`
     dislikes: [User]
     likesCount: Int
     dislikesCount: Int
+    netLikes: Int
     replies: [Reply]
   }
 
@@ -165,7 +166,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    projectDetails(projectId: ID!): Project
+    projectDetails(projectId: ID!): Projects
   }
 
   type Mutation {
@@ -252,6 +253,11 @@ const typeDefs = gql`
     
     likeComment(userId: ID!, commentId: ID!): Comments
 
+    quitLikeComment(userId: ID!, commentId: ID!): Comments
+
+    dislikeComment(userId: ID!, commentId: ID!): Comments
+
+    quitdisLikeComment(userId: ID!, commentId: ID!): Comments
   }
 `;
 

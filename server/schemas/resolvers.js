@@ -386,6 +386,105 @@ const resolvers = {
                 throw new Error("Error liking project");
             }
         },
+        quitLikeComment: async (parent, { userId, commentId }) => {
+            try {
+                // Find the user and project
+                const authUser = await User.findById(userId);
+                const comment = await Comment.findById(commentId);
+
+                if (!authUser || !comment) {
+                    throw new Error("User or comment not found");
+                }
+
+                // Check if the user has already liked the comment
+                const userIndex = comment.likes.indexOf(authUser._id);
+                if (userIndex === -1) {
+                    throw new Error("You haven't liked this comment yet");
+                }
+
+                // Remove the user from the comment's likedUsers array
+                comment.likes.splice(userIndex, 1);
+                await comment.save();
+
+                // Remove the project from the user's likedComments array
+                const commentIndex = authUser.likedComments.indexOf(comment._id);
+                if (commentIndex !== -1) {
+                    authUser.likedComments.splice(commentIndex, 1);
+                    await authUser.save();
+                }
+
+                // Return the updated comment
+                return comment;
+            } catch (error) {
+                console.error("Error disliking comment:", error);
+                throw new Error("Error disliking comment");
+            }
+        },
+        dislikeComment: async (parent, { userId, commentId }) => {
+            try {
+                // Find the user and comment
+                const authUser = await User.findById(userId);
+                const comment = await Comment.findById(commentId);
+
+                if (!authUser || !comment) {
+                    throw new Error("User or comment not found");
+                }
+
+                // Check if the user is already attending the event
+                if (comment.dislikes.includes(userId)) {
+                    throw new Error("You already dislikes this comment");
+                }
+
+                // Add the user to the project's likedUsers array
+                comment.dislikes.push(authUser);
+                await comment.save();
+
+                // Add the project to the user's likedProjects array
+                authUser.disLikedComments.push(comment);
+                await authUser.save();
+
+                // Return the updated project
+                return comment;
+            } catch (error) {
+
+                throw new Error("Error liking project");
+            }
+        },
+        quitdisLikeComment: async (parent, { userId, commentId }) => {
+            try {
+                // Find the user and project
+                const authUser = await User.findById(userId);
+                const comment = await Comment.findById(commentId);
+
+                if (!authUser || !comment) {
+                    throw new Error("User or comment not found");
+                }
+
+                // Check if the user has already liked the comment
+                const userIndex = comment.dislikes.indexOf(authUser._id);
+                if (userIndex === -1) {
+                    throw new Error("You haven't disliked this comment yet");
+                }
+
+                // Remove the user from the comment's dislikes array
+                comment.dislikes.splice(userIndex, 1);
+                await comment.save();
+
+                // Remove the project from the user's disLikedComments array
+                const commentIndex = authUser.disLikedComments.indexOf(comment._id);
+                if (commentIndex !== -1) {
+                    authUser.disLikedComments.splice(commentIndex, 1);
+                    await authUser.save();
+                }
+
+                // Return the updated comment
+                return comment;
+            } catch (error) {
+                console.error("Error disliking comment:", error);
+                throw new Error("Error disliking comment");
+            }
+        },
+
         // Update
         // Delete
     },
