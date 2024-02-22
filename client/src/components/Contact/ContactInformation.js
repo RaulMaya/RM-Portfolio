@@ -68,7 +68,7 @@ const ContactInformation = () => {
         {socialApps.map((app) => (
           <li
             key={app.name}
-            className={`icon relative transition-all flex justify-center w-28 h-28 flex-col bg-white items-center border-2 border-black cursor-pointer shadow-xl relative p-7 m-7 ${app.class}`}
+            className={`icon relative transition-all flex justify-center w-20 h-20 md:w-28 md:h-28 flex-col bg-white items-center border-2 border-black cursor-pointer shadow-xl relative p-7 m-7 ${app.class}`}
           >
             <span className="tooltip absolute top-0 text-lg bg-white text-white px-2 py-1.5 rounded-md shadow-xl opacity-0 pointer-events-none transition-all whitespace-nowrap">
               {app.name}

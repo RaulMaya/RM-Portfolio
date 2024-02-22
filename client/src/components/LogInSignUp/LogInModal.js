@@ -27,7 +27,7 @@ const LoginModal = ({ openSign, isOpen, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
-            <div ref={contentRef} className="bg-white pt-6 w-1/4 rounded-lg shadow-lg sborder border-black p-6">
+            <div ref={contentRef} className="bg-white pt-6 w-1/2 md:w-1/4 rounded-lg shadow-lg sborder border-black p-6">
                 <h2 className="text-2xl mx-auto text-center font-semibold mb-6">Login</h2>
                 <hr className='mb-6 border border-gray-200'/>
                 <div className="mb-6">
@@ -52,7 +52,7 @@ const LoginModal = ({ openSign, isOpen, onClose }) => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <p>Don't have an account? <span className='text-cyan-400 font-bold cursor-pointer' onClick={switchLogToSign}>Create one</span></p>
+                    <p>Don't have an account? <span className='text-cyan-400 font-semibold cursor-pointer' onClick={switchLogToSign}>Create one</span></p>
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
-            <div ref={contentRef} className="bg-white pt-6 w-1/4 rounded-lg shadow-lg sborder border-black p-6">
+            <div ref={contentRef} className="bg-white pt-6 w-1/2 md:w-1/4 rounded-lg shadow-lg sborder border-black p-6">
                 <h2 className="text-2xl mx-auto text-center font-semibold mb-6">Sign Up</h2>
                 <hr className='mb-6 border border-gray-200' />
                 <div className="mb-6">
@@ -60,7 +60,7 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                     </button>
                 </div>
                 <div className='flex justify-center'>
-                    <p>Already have an account? <span className='text-cyan-400 font-bold cursor-pointer' onClick={switchSignToLog}>Log In</span></p>
+                    <p>Already have an account? <span className='text-cyan-400 font-semibold cursor-pointer' onClick={switchSignToLog}>Log In</span></p>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ const SingleProject = () => {
   return (
     <>
       <LogSignHeader />
-      <h1 className="text-center text-10xl">ART NOUVEAU</h1>
+      <h1 className="text-center text-8xl md:text-10xl">ART NOUVEAU</h1>
       <SingleProjectComponent />
       <NavBarComponent />
     </>

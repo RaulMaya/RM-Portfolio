@@ -103,34 +103,9 @@ const ContactForm = () => {
                 </label>
                 <div className="block">
                   <div className="relative w-16 h-16">
-                    <button
-                      type="submit"
-                      className="submitBtn w-16 h-16 bg-cyan-400 rounded-full"
-                    >
-                      <img
-                        src="https://i.cloudup.com/gBzAn-oW_S-2000x2000.png"
-                        width="64px"
-                        height="64px"
-                        id="plane"
-                        alt="plane"
-                        className={`pointer-events-none ${
-                          animation ? "animation" : ""
-                        } ${hide ? "hidden" : ""}`}
-                      />
+                    <button type="submit" className="mt-6 bg-cyan-400 hover:bg-cyan-600 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline transition duration-150 ease-out hover:ease-in">
+                      Send
                     </button>
-                    <div
-                      className={`submitBg opacity-0 ${
-                        animation ? "animation2" : ""
-                      }`}
-                    >
-                      <img
-                        src="https://i.cloudup.com/2ZAX3hVsBE-3000x3000.png"
-                        id="submitBg"
-                        width="32px"
-                        height="32px"
-                        alt="go"
-                      />
-                    </div>
                   </div>
                 </div>
               </section>

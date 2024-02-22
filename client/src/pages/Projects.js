@@ -84,7 +84,7 @@ const Projects = () => {
     <>
       <LogSignHeader />
       <div className="text-center">
-        <h1 className="text-10xl">PROJECTS</h1>
+        <h1 className="text-8xl md:text-10xl">PROJECTS</h1>
       </div>
       <ProjectSearchBox searchInput={searchInput} />
       <ProjectListComponent projects={projects} />

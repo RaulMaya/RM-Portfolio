@@ -11,7 +11,7 @@ const Resume = () => {
   return (
     <>
       <LogSignHeader />
-      <h1 className="text-center text-10xl">MY RESUME</h1>
+      <h1 className="text-center text-8xl md:text-10xl">MY RESUME</h1>
       <ResumeComponent />
       <NavBarComponent />
     </>

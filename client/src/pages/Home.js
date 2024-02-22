@@ -7,8 +7,9 @@ const Home = () => {
   useEffect(() => {
     document.title = "Home";
   }, []);
+
   return (
-    <div className="container relative flex justify-center h-screen min-w-full items-center bg-gray-100 p-10">
+    <div className="container relative flex justify-center h-screen min-w-full items-center bg-gray-100 md:p-10">
       <FullMarquee />
       <MainMenu />
     </div>
