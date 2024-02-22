@@ -34,6 +34,7 @@ const resolvers = {
         projects: async () => {
             return await Projects.find({})
                 .populate("likedUsers")
+                .populate("comments")
         },
         comments: async () => {
             return await Comment.find({})
@@ -53,8 +54,7 @@ const resolvers = {
         },
         replies: async () => {
             return await Reply.find({})
-                .populate("likes")
-                .populate("dislikes")
+                .populate("comment")
                 .populate("user")
         },
         testimonials: async () => {
@@ -65,7 +65,31 @@ const resolvers = {
                 .populate("comments")
                 .populate("testimonials")
                 .populate("replies")
+        },
+        // Resolver for getting project details and incrementing viewsCount
+        projectDetails: async (parent, { projectId }) => {
+            try {
+                // Find the project by ID
+                const project = await Projects.findById(projectId);
+
+                if (!project) {
+                    throw new Error('Project not found');
+                }
+
+                // Increment viewsCount
+                project.viewsCount += 1;
+
+                // Save the updated project
+                await project.save();
+
+                // Return the project details
+                return project;
+            } catch (error) {
+                console.error('Error fetching project details:', error);
+                throw new Error('Failed to fetch project details');
+            }
         }
+
     },
     Mutation: {
         // Create
@@ -125,6 +149,45 @@ const resolvers = {
 
                 // Return the created comment
                 return newComment;
+            } catch (error) {
+                console.error("Error creating comment:", error);
+                throw new Error("Failed to create comment");
+            }
+        },
+        createReply: async (parent, { commentId, userId, reply }) => {
+            try {
+                // Check if the comment exists
+                const comment = await Comment.findById(commentId);
+                if (!comment) {
+                    throw new Error("Comment not found");
+                }
+
+                // Check if the user exists
+                const user = await User.findById(userId);
+                if (!user) {
+                    throw new Error("User not found");
+                }
+
+                // Create the new reply
+                const newReply = new Reply({
+                    reply,
+                    user: user._id,
+                    comment: comment._id,
+                });
+
+                // Save the reply
+                await newReply.save();
+
+                // Add the reply to the comments replies array
+                comment.replies.push(newReply._id);
+                await comment.save();
+
+                // Add the reply to the user's replies array
+                user.replies.push(newReply._id);
+                await user.save();
+
+                // Return the created reply
+                return newReply;
             } catch (error) {
                 console.error("Error creating comment:", error);
                 throw new Error("Failed to create comment");
@@ -201,7 +264,7 @@ const resolvers = {
                 throw new Error(`Failed to create and link language: ${error.message}`);
             }
         },
-        createTestimonials: async (parent, {userId, testimonial }) => {
+        createTestimonials: async (parent, { userId, testimonial }) => {
             try {
                 // Check if the user exists
                 const user = await User.findById(userId);
@@ -229,8 +292,100 @@ const resolvers = {
                 throw new Error("Failed to create testiomonial");
             }
         },
+        likedProject: async (parent, { userId, projectId }) => {
+            try {
+                // Find the user and event
+                const authUser = await User.findById(userId);
+                const project = await Projects.findById(projectId);
 
+                if (!authUser || !project) {
+                    throw new Error("User or project not found");
+                }
 
+                // Check if the user is already attending the event
+                if (project.likedUsers.includes(userId)) {
+                    throw new Error("You already like this project");
+                }
+
+                // Add the user to the project's likedUsers array
+                project.likedUsers.push(authUser);
+                await project.save();
+
+                // Add the project to the user's likedProjects array
+                authUser.likedProjects.push(project);
+                await authUser.save();
+
+                // Return the updated project
+                return project;
+            } catch (error) {
+
+                throw new Error("Error liking project");
+            }
+        },
+        dislikeProject: async (parent, { userId, projectId }) => {
+            try {
+                // Find the user and project
+                const authUser = await User.findById(userId);
+                const project = await Projects.findById(projectId);
+
+                if (!authUser || !project) {
+                    throw new Error("User or project not found");
+                }
+
+                // Check if the user has already liked the project
+                const userIndex = project.likedUsers.indexOf(authUser._id);
+                if (userIndex === -1) {
+                    throw new Error("You haven't liked this project yet");
+                }
+
+                // Remove the user from the project's likedUsers array
+                project.likedUsers.splice(userIndex, 1);
+                await project.save();
+
+                // Remove the project from the user's likedProjects array
+                const projectIndex = authUser.likedProjects.indexOf(project._id);
+                if (projectIndex !== -1) {
+                    authUser.likedProjects.splice(projectIndex, 1);
+                    await authUser.save();
+                }
+
+                // Return the updated project
+                return project;
+            } catch (error) {
+                console.error("Error disliking project:", error);
+                throw new Error("Error disliking project");
+            }
+        },
+        likeComment: async (parent, { userId, commentId }) => {
+            try {
+                // Find the user and comment
+                const authUser = await User.findById(userId);
+                const comment = await Comment.findById(commentId);
+
+                if (!authUser || !comment) {
+                    throw new Error("User or comment not found");
+                }
+
+                // Check if the user is already attending the event
+                if (comment.likes.includes(userId)) {
+                    throw new Error("You already like this comment");
+                }
+
+                // Add the user to the project's likedUsers array
+                comment.likes.push(authUser);
+                await comment.save();
+
+                // Add the project to the user's likedProjects array
+                authUser.likedComments.push(comment);
+                await authUser.save();
+
+                // Return the updated project
+                return comment;
+            } catch (error) {
+
+                throw new Error("Error liking project");
+            }
+        },
         // Update
         // Delete
     },

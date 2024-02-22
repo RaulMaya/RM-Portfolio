@@ -44,5 +44,10 @@ projectCommentSchema.virtual('dislikesCount').get(function () {
   return this.dislikes.length;
 });
 
+// Virtual for calculating net likes
+projectCommentSchema.virtual('netLikes').get(function () {
+  return this.likes.length - this.dislikes.length;
+});
+
 const ProjectComment = model("Comment", projectCommentSchema);
 module.exports = ProjectComment;

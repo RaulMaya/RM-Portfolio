@@ -42,6 +42,24 @@ const userSchema = new Schema(
                 ref: "Reply",
             },
         ],
+        likedProjects: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Project"
+            }
+        ],
+        disLikedComments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Comment"
+            }
+        ],
+        likedComments: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Comment"
+            }
+        ]
     },
     {
         toJSON: {

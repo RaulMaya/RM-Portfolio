@@ -7,6 +7,9 @@ const typeDefs = gql`
     email: String!
     password: String!
     testimonials: [Testimonial]
+    likedprojects: [Projects]
+    likedcomments: [Comments]
+    dislikedcomments: [Comments]
     company: String!
     comments: [Comments]
     replies: [Reply]     
@@ -54,7 +57,7 @@ const typeDefs = gql`
 
   type Comments {
     _id: ID
-    users: User
+    user: User
     comment: String
     likes: [User]
     dislikes: [User]
@@ -137,9 +140,9 @@ const typeDefs = gql`
 
   type Reply {
     _id: ID
-    users: User
+    user: User
     comment: Comments
-    replies: String
+    reply: String
   }
 
   type Testimonial {
@@ -159,6 +162,10 @@ const typeDefs = gql`
     replies: [Reply]
     testimonials: [Testimonial]
     users: [User]
+  }
+
+  type Query {
+    projectDetails(projectId: ID!): Project
   }
 
   type Mutation {
@@ -236,6 +243,15 @@ const typeDefs = gql`
       ): Testimonial
 
     createComment(projectId: ID!, userId: ID!, comment: String!): Comments
+
+    createReply(commentId: ID!, userId: ID!, reply: String!): Reply
+
+    likedProject(userId: ID!, projectId: ID!): Projects
+
+    dislikeProject(userId: ID!, projectId: ID!): Projects
+    
+    likeComment(userId: ID!, commentId: ID!): Comments
+
   }
 `;
 
