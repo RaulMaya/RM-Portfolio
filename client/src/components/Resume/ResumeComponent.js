@@ -17,7 +17,7 @@ const ResumeComponent = () => {
       <ResumeHero />
       <div className="container m-auto mb-12 pb-12">
         <hr className="border border-black mb-2 mt-10" />
-        <div className="flex justify-evenly flex-wrap">
+        <div className="flex justify-center md:justify-evenly flex-wrap">
           <p className="flex items-center">
             <FontAwesomeIcon icon={faMobilePhone} />
             <span className="mx-3 tracking-wider font-semibold">
@@ -25,7 +25,7 @@ const ResumeComponent = () => {
             </span>{" "}
             +52 833 159 7006
           </p>
-          <p>|</p>
+          <p className="hidden md:block">|</p>
           <p className="flex items-center">
             <FontAwesomeIcon icon={faEnvelopeOpen} />
             <span className="mx-3 tracking-wider font-semibold">
@@ -33,13 +33,13 @@ const ResumeComponent = () => {
             </span>{" "}
             raulmayas20@gmail.com
           </p>
-          <p>|</p>
+          <p className="hidden md:block">|</p>
           <p className="flex items-center">
             <FontAwesomeIcon icon={faGithub} />
             <span className="mx-3 tracking-wider font-semibold">Github:</span>
             https://github.com/RaulMaya
           </p>
-          <p>|</p>
+          <p className="hidden md:block">|</p>
           <p className="flex items-center">
             <FontAwesomeIcon icon={faLocationArrow} />
             <span className="mx-3 tracking-wider font-semibold">Location:</span>
