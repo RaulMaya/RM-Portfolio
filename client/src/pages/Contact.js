@@ -4,7 +4,7 @@ import ContactInformation from "../components/Contact/ContactInformation";
 import ContactForm from "../components/Contact/ContactForm";
 import LogSignHeader from "../components/LogInSignUp/LogSignHeaderComponent";
 
-const Contact = () => {
+const Contact = ({isLoggedIn}) => {
   useEffect(() => {
     document.title = "Contact";
   }, []);

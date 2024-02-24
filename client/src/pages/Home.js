@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import MainMenu from "../components/Home/MainMenuComponent";
 import FullMarquee from "../components/Home/FullMarqueeComponent";
 
-const Home = () => {
+const Home = ({isLoggedIn}) => {
   useEffect(() => {
     document.title = "Home";
   }, []);

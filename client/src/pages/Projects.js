@@ -67,7 +67,7 @@ const objArr = [
   },
 ];
 
-const Projects = () => {
+const Projects = ({isLoggedIn}) => {
   const [projects, setProjects] = useState(objArr)
   useEffect(() => {
     document.title = "Projects";

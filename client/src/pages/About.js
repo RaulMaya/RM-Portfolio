@@ -7,13 +7,13 @@ import LogSignHeader from "../components/LogInSignUp/LogSignHeaderComponent";
 
 import NavBarComponent from "../components/NavBarComponent";
 
-const About = () => {
+const About = ({ isLoggedIn }) => {
   useEffect(() => {
     document.title = "About Me";
   }, []);
   return (
     <>
-      <LogSignHeader />
+      <LogSignHeader isLoggedIn={isLoggedIn} />
       <h1 className="text-center text-8xl md:text-10xl">ABOUT ME</h1>
       <IntroductionComponent />
       <PersonalComponent />

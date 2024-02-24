@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LoginModal from './LogInModal';
 import SignUpModal from './SignUpModal';
 
-const LogSignHeader = () => {
+const LogSignHeader = ({ isLoggedIn }) => {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
 

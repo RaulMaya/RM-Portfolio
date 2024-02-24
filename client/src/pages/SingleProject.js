@@ -3,7 +3,7 @@ import NavBarComponent from "../components/NavBarComponent";
 import SingleProjectComponent from "../components/Projects/SingleProjectComponent"
 import LogSignHeader from "../components/LogInSignUp/LogSignHeaderComponent";
 
-const SingleProject = () => {
+const SingleProject = ({ isLoggedIn }) => {
   return (
     <>
       <LogSignHeader />

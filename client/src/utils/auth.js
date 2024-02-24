@@ -1,12 +1,16 @@
 // use this to decode a token and get the user's information out of it
-import decode from "jwt-decode";
+// import decode from "jwt-decode";
+// import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
+
+
 
 // create a new class to instantiate for a user
 class AuthService {
     // get user data from JSON web token by decoding it
     getUser() {
         const token = this.getToken();
-        return token ? decode(token) : null;
+        return token ? jwtDecode(token) : null;
     }
 
     loggedIn() {
@@ -17,7 +21,7 @@ class AuthService {
 
     isTokenExpired(token) {
         // Decode the token to get its expiration time that was set by the server
-        const decoded = decode(token);
+        const decoded = jwtDecode(token);
         // If the expiration time is less than the current time (in seconds), the token is expired and we return `true`
         if (decoded.exp < Date.now() / 1000) {
             localStorage.removeItem("id_token");
