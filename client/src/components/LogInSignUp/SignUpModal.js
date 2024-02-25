@@ -11,7 +11,11 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
         email: "",
         company: "",
         password: "",
+        confirmPassword: '',
     })
+
+    const [passwordMismatch, setPasswordMismatch] = useState(false);
+
 
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -41,8 +45,25 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
         openLog()
     }
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setSignUpForm({
+            ...signUpForm,
+            [name]: value,
+        });
+    };
+
     const handleSignUp = async (e) => {
         e.preventDefault();
+
+        // Check if passwords match
+        if (signUpForm.password !== signUpForm.confirmPassword) {
+            setPasswordMismatch(true); // Show password mismatch error
+            return; // Stop the form submission
+        } else {
+            setPasswordMismatch(false); // Hide password mismatch error
+            // Proceed with form submission logic...
+        }
         try {
             const { data } = await createUser({
                 variables: { ...signUpForm },
@@ -64,15 +85,16 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                     <div className="mb-6">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
-                            htmlFor="user"
+                            htmlFor="username"
                         >
                             Username
                         </label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50"
-                            id="user"
+                            id="username"
+                            name="username"
                             type="text"
-                            placeholder="John Bravo"
+                            onChange={handleChange}
                             value={signUpForm.username} />
                     </div>
                     <div className="mb-6">
@@ -84,8 +106,9 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50"
                             id="email"
+                            name="email"
                             type="email"
-                            placeholder="my_email@hotmail.com"
+                            onChange={handleChange}
                             value={signUpForm.email} />
                     </div>
                     <div className="mb-6">
@@ -97,8 +120,9 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50"
                             id="company"
+                            name="company"
                             type="text"
-                            placeholder="Ford Motor Company"
+                            onChange={handleChange}
                             value={signUpForm.company} />
                     </div>
                     <div className="mb-6">
@@ -108,28 +132,32 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                             Create Password
                         </label>
                         <input
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50"
+                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight ${passwordMismatch ? 'focus:border-red-500 focus:ring focus:ring-red-400' : 'focus:border-cyan-300 focus:ring focus:ring-cyan-400'} focus:ring-opacity-50`}
                             id="password"
+                            name="password"
                             type="password"
-                            placeholder="******************"
+                            onChange={handleChange}
                             value={signUpForm.password} />
                     </div>
                     <div className="mb-6">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
-                            htmlFor="conPassword">
+                            htmlFor="confirmPassword">
                             Confirm Password
                         </label>
                         <input
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50"
-                            id="conPassword"
+                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight ${passwordMismatch ? 'focus:border-red-500 focus:ring focus:ring-red-400' : 'focus:border-cyan-300 focus:ring focus:ring-cyan-400'} focus:ring-opacity-50`}
+                            id="confirmPassword"
+                            name="confirmPassword"
                             type="password"
-                            placeholder="******************"
-                            value={signUpForm.password} />
+                            onChange={handleChange}
+                            value={signUpForm.confirmPassword} />
+                        {passwordMismatch && <p className="text-red-500 text-xs italic">Passwords do not match.</p>}
                     </div>
                     <div className="flex items-center justify-center mb-5">
                         <button
                             className="bg-cyan-400 hover:bg-cyan-600 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline transition duration-150 ease-out hover:ease-in"
+                            name="submitBtn"
                             type="submit">
                             Sign Up
                         </button>

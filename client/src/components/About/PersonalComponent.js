@@ -36,15 +36,15 @@ const hobbiesArr = [{
 const PersonalComponent = () => {
 
   const renderHobbies = hobbiesArr.map((hobbie) => {
-    return <div class="cursor-pointer group h-120 w-80 [perspective:1000px] my-5">
-      <div class="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-        <div class="absolute inset-0">
-          <img class="h-full w-full rounded-xl object-cover shadow-xl shadow-black/40" src={hobbie.bg} alt="" />
+    return <div key={hobbie.id} className="cursor-pointer group h-120 w-80 [perspective:1000px] my-5">
+      <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+        <div className="absolute inset-0">
+          <img className="h-full w-full rounded-xl object-cover shadow-xl shadow-black/40" src={hobbie.bg} alt="" />
         </div>
-        <div class="absolute inset-0 h-full w-full rounded-xl bg-black/80 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-          <div class="flex min-h-full flex-col items-center justify-center">
-            <h1 class="text-3xl font-bold">{hobbie.title}</h1>
-            <p class="text-base">{hobbie.description}</p>
+        <div className="absolute inset-0 h-full w-full rounded-xl bg-black/80 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+          <div className="flex min-h-full flex-col items-center justify-center">
+            <h1 className="text-3xl font-bold">{hobbie.title}</h1>
+            <p className="text-base">{hobbie.description}</p>
           </div>
         </div>
       </div>
