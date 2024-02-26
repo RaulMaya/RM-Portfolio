@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import Projects from "./pages/Projects";
 import Resume from "./pages/Resume";
 import SingleProject from "./pages/SingleProject";
+import UserDashboard from "./pages/UserDashboard";
 
 import AuthService from './utils/auth';
 
@@ -60,6 +61,7 @@ const client = new ApolloClient({
 
 const App = () => {
   const isAuthenticated = AuthService.loggedIn();
+  console.log(isAuthenticated)
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -70,6 +72,7 @@ const App = () => {
           <Route path="/contact" element={<Contact isLoggedIn={isAuthenticated} />} />
           <Route path="/projects" element={<Projects isLoggedIn={isAuthenticated} />} />
           <Route path="/project/:id" element={<SingleProject isLoggedIn={isAuthenticated} />} />
+          <Route path="/userdashboard" element={<UserDashboard isLoggedIn={isAuthenticated} />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Router>

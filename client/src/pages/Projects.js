@@ -82,7 +82,7 @@ const Projects = ({isLoggedIn}) => {
 
   return (
     <>
-      <LogSignHeader />
+      <LogSignHeader isLoggedIn={isLoggedIn} />
       <div className="text-center">
         <h1 className="text-8xl md:text-10xl">PROJECTS</h1>
       </div>

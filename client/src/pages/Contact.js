@@ -10,7 +10,7 @@ const Contact = ({isLoggedIn}) => {
   }, []);
   return (
     <>
-      <LogSignHeader />
+      <LogSignHeader isLoggedIn={isLoggedIn} />
       <h1 className="text-center text-8xl md:text-10xl">CONTACT</h1>
       <div className="w-full">
         <div className="flex flex-row">

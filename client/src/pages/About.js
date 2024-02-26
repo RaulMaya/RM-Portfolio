@@ -8,6 +8,7 @@ import LogSignHeader from "../components/LogInSignUp/LogSignHeaderComponent";
 import NavBarComponent from "../components/NavBarComponent";
 
 const About = ({ isLoggedIn }) => {
+  console.log(isLoggedIn)
   useEffect(() => {
     document.title = "About Me";
   }, []);
