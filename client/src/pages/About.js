@@ -19,7 +19,7 @@ const About = ({ isLoggedIn }) => {
       <IntroductionComponent />
       <PersonalComponent />
       <Testimonials />
-      <TestimonialForm />
+      <TestimonialForm isLoggedIn={isLoggedIn}/>
       <NavBarComponent />
     </>
   );

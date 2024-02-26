@@ -1,3 +1,5 @@
+import {useState} from "react"
+
 import ProjectReplies from "./ProjectReplies";
 import { FaReply } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
@@ -5,6 +7,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 
 const ProjectComments = () => {
+
     return (
         <div className="container mx-auto mt-5 pt-5 px-5 rounded-md shadow-lg border border-black">
             <div className="flex justify-start gap-x-4 mb-5">

@@ -3,12 +3,12 @@ import ProjectInformation from "./ProjectInformation";
 import ProjectCommentForm from "./ProjectCommentForm";
 import ProjectComments from "./ProjectComments";
 
-const SingleProjectComponent = () => {
+const SingleProjectComponent = ({ isLoggedIn }) => {
     return (
         <div className="pb-12 mb-12">
             <ProjectImage />
             <ProjectInformation />
-            <ProjectCommentForm />
+            <ProjectCommentForm isLoggedIn={isLoggedIn} />
             <ProjectComments />
             <ProjectComments />
         </div >
