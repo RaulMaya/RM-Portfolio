@@ -9,7 +9,7 @@ const SingleProjectComponent = ({ isLoggedIn }) => {
             <ProjectImage />
             <ProjectInformation />
             <ProjectCommentForm isLoggedIn={isLoggedIn} />
-            <ProjectComments />
+            <ProjectComments isLoggedIn={isLoggedIn} />
             <ProjectComments />
         </div >
     )

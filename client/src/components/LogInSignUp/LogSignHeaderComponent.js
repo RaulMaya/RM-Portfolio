@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoIosLogOut } from "react-icons/io";
+import { FaRegUserCircle, FaSignInAlt } from "react-icons/fa";
+import { MdAppRegistration } from "react-icons/md";
 
 import LoginModal from './LogInModal';
 import SignUpModal from './SignUpModal';
@@ -29,15 +31,15 @@ const LogSignHeader = ({ isLoggedIn }) => {
                 {isLoggedIn ? (
                     <div className="flex gap-x-4 items-center">
                         <Link to="/userdashboard" className="text-gray-300 text-base md:text-xl hover:text-black ease-in duration-300 cursor-pointer">
-                            User Dashboard
+                            <FaRegUserCircle />
                         </Link>
                         <IoIosLogOut className="text-gray-300 text-base md:text-xl hover:text-black ease-in duration-300 cursor-pointer" onClick={logout} />
                     </div>
                 ) : (
                     <>
                         <div className="flex gap-x-4">
-                            <p onClick={openLoginModal} className="text-gray-300 text-base md:text-xl hover:text-black ease-in duration-300 cursor-pointer">Login</p>
-                            <p onClick={openSignUpModal} className="text-gray-300 text-base md:text-xl hover:text-black ease-in duration-300 cursor-pointer">Sign Up</p>
+                            <p onClick={openLoginModal} className="text-gray-300 text-base md:text-xl hover:text-black ease-in duration-300 cursor-pointer"><FaSignInAlt /></p>
+                            <p onClick={openSignUpModal} className="text-gray-300 text-base md:text-xl hover:text-black ease-in duration-300 cursor-pointer"><MdAppRegistration /></p>
                         </div>
                         <LoginModal openSign={openSignUpModal} isOpen={isLoginOpen} onClose={closeLoginModal} />
                         <SignUpModal openLog={openLoginModal} isOpen={isSignUpOpen} onClose={closeSignUpModal} />

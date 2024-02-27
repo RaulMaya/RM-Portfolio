@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import LoginModal from "../LogInSignUp/LogInModal";
+import SignUpModal from "../LogInSignUp/SignUpModal";
 
 function TestimonialForm({ isLoggedIn }) {
   const [formData, setFormData] = useState({
@@ -6,6 +8,15 @@ function TestimonialForm({ isLoggedIn }) {
     title: "",
     comment: "",
   });
+
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+
+  const openLoginModal = () => setIsLoginOpen(true);
+  const closeLoginModal = () => setIsLoginOpen(false);
+
+  const openSignUpModal = () => setIsSignUpOpen(true);
+  const closeSignUpModal = () => setIsSignUpOpen(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,8 +34,9 @@ function TestimonialForm({ isLoggedIn }) {
 
   return (
     <section className="pb-10">
-      <div className="p-4 max-w-xl mx-auto bg-white shadow-md rounded-lg my-12">
-        {isLoggedIn ? (
+
+      {isLoggedIn ? (
+        <div className="p-4 max-w-xl mx-auto bg-white shadow-md rounded-lg my-12">
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
@@ -84,21 +96,26 @@ function TestimonialForm({ isLoggedIn }) {
               Submit
             </button>
           </form>
-        ) : (
-          <div className="bg-black text-white p-12 md:p-24">
+        </div>
+      ) : (
+        <>
+          <div className="bg-black text-white w-full p-12 md:p-24 mt-7 border-t-4 border-cyan-400">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-3xl md:text-5xl font-bold mb-6">Leave your experience with Raul!</h1>
               <p className="text-lg md:text-xl mb-8">Create an account or Sign In!</p>
               <div className="space-x-4">
-                <a href="/signup" className="bg-cyan-400 text-white font-bold py-2 px-6 rounded hover:bg-cyan-500 transition duration-150 ease-in-out">Create Account</a>
-                <a href="/signin" className="bg-gray-200 text-black font-bold py-2 px-6 rounded hover:bg-gray-300 transition duration-150 ease-in-out">Sign In</a>
+                <button onClick={openSignUpModal} className="bg-cyan-400 text-white font-bold py-2 px-6 rounded hover:bg-cyan-500 transition duration-150 ease-in-out">Create Account</button>
+                <button onClick={openLoginModal} className="bg-gray-200 text-black font-bold py-2 px-6 rounded hover:bg-gray-300 transition duration-150 ease-in-out">Sign In</button>
               </div>
             </div>
           </div>
+          <LoginModal openSign={openSignUpModal} isOpen={isLoginOpen} onClose={closeLoginModal} />
+          <SignUpModal openLog={openLoginModal} isOpen={isSignUpOpen} onClose={closeSignUpModal} />
+        </>
 
-        )}
+      )}
 
-      </div>
+
     </section>
   );
 }
