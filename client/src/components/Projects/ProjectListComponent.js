@@ -7,9 +7,9 @@ const ProjectListComponent = ({ projects }) => {
       {projects.map((project) => (
         <ProjectCardComponent
           key={project.id}
-          title={project.title}
-          image={project.img}
-          id={project.id}
+          title={project.name}
+          image={project.portrait}
+          id={project._id}
         />
       ))}
     </div>

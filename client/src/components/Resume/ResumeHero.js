@@ -5,7 +5,7 @@ import RaulResume from "./Raul_Maya_Salazar_Resume.pdf";
 const ResumeHero = () => {
   return (
     <div className="container flex justify-evenly m-auto">
-      <section className="flex justify-evenly items-end">
+      <section className="flex flex-wrap justify-evenly items-end">
         <article className="mx-10">
           <a
             href={RaulResume}
@@ -30,7 +30,7 @@ const ResumeHero = () => {
           </div>
         </article>
 
-        <article className="mx-10">
+        <article className="mx-10 mt-3 md:mt-0">
           <div className="flex justify-start items-end">
             <p className="text-3xl me-5 tracking-wider">Raul</p>
             <img

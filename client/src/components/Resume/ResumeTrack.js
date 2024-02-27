@@ -7,7 +7,7 @@ import Languages from "./Languages";
 const ResumeTrack = () => {
   return (
     <div className="container m-auto">
-      <section className="flex flex-wrap justify-evenly">
+      <section className="flex flex-wrap gap-x-3 justify-evenly">
         <Experience />
         <Education />
         <Awards />

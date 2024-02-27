@@ -65,6 +65,7 @@ const typeDefs = gql`
     dislikesCount: Int
     netLikes: Int
     replies: [Reply]
+    createdAt: String
   }
 
   enum EducationStatus {
@@ -144,6 +145,7 @@ const typeDefs = gql`
     user: User
     comment: Comments
     reply: String
+    createdAt: String
   }
 
   type Testimonial {
@@ -194,11 +196,8 @@ const typeDefs = gql`
       description: String
       portrait: String
       images: [String]
-      likesCount: Int
-      viewsCount: Int
       startDate: String
       endDate: String
-      status: ProjectStatus
       deployment: String
       ): Projects
 

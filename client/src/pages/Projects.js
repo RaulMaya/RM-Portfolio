@@ -1,8 +1,14 @@
 import { React, useEffect, useState } from "react";
+
+import { useQuery } from '@apollo/client';
+import { QUERY_ALL_PROJECTS } from '../utils/queries';
+
 import NavBarComponent from "../components/NavBarComponent";
 import ProjectListComponent from "../components/Projects/ProjectListComponent";
 import ProjectSearchBox from "../components/Projects/ProjectSearchComponent";
 import LogSignHeader from "../components/LogInSignUp/LogSignHeaderComponent";
+
+
 
 const objArr = [
   {
@@ -67,15 +73,20 @@ const objArr = [
   },
 ];
 
-const Projects = ({isLoggedIn}) => {
-  const [projects, setProjects] = useState(objArr)
+const Projects = ({ isLoggedIn }) => {
+  const { loading, error, data, refetch } = useQuery(QUERY_ALL_PROJECTS);
+
+  const my_projects = data?.projects || [];
+  console.log(my_projects)
+
+  const [projects, setProjects] = useState(my_projects)
   useEffect(() => {
     document.title = "Projects";
   }, []);
 
   const searchInput = (searchText) => {
-    const arrResult = objArr.filter((project) =>
-      project.title.toLowerCase().includes(searchText.toLowerCase())
+    const arrResult = my_projects.filter((project) =>
+      project.name.toLowerCase().includes(searchText.toLowerCase())
     );
     setProjects(arrResult)
   };
