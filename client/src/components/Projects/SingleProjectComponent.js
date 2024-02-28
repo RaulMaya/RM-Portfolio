@@ -15,6 +15,7 @@ const SingleProjectComponent = ({ isLoggedIn }) => {
 
     const projectDetail = data?.projectDetails || []
     console.log(projectDetail)
+    console.log(projectDetail.comments)
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
@@ -23,11 +24,10 @@ const SingleProjectComponent = ({ isLoggedIn }) => {
         <>
             <h1 className="text-center text-8xl md:text-10xl">{projectDetail.name.toUpperCase()}</h1>
             <div className="pb-12 mb-12">
-                <ProjectImage />
+                <ProjectImage image={projectDetail.portrait} />
                 <ProjectInformation tags={projectDetail.tags} description={projectDetail.description} deployment={projectDetail.deployment} />
                 <ProjectCommentForm isLoggedIn={isLoggedIn} />
-                <ProjectComments isLoggedIn={isLoggedIn} />
-                <ProjectComments />
+                <ProjectComments isLoggedIn={isLoggedIn} commentDetail={projectDetail.comments} />
             </div>
         </>
     )

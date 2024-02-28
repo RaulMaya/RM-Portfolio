@@ -70,7 +70,21 @@ const resolvers = {
         projectDetails: async (parent, { projectId }) => {
             try {
                 // Find the project by ID
-                const project = await Projects.findById(projectId);
+                const project = await Projects.findById(projectId)
+                    .populate({
+                        path: 'comments', // First, populate the comments
+                        populate: [
+                            {
+                                path: 'user' // Populate the user in each comment
+                            },
+                            {
+                                path: 'replies', // Then, within each comment, populate the replies
+                                populate: {
+                                    path: 'user' // Finally, within each reply, populate the user
+                                }
+                            }
+                        ]
+                    });
 
                 if (!project) {
                     throw new Error('Project not found');

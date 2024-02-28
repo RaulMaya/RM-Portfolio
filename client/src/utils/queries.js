@@ -14,27 +14,30 @@ export const QUERY_ALL_PROJECTS = gql`
 
 export const QUERY_SINGLE_PROJECT = gql`
 query Query($projectId: ID!) {
-    projectDetails(projectId: $projectId) {
-      name
-      portrait
-      tags
-      deployment
-      description
-      comments {
+  projectDetails(projectId: $projectId) {
+    _id
+    name
+    portrait
+    tags
+    deployment
+    description
+    comments {
+      user {
+        username
+      }
+      _id
+      comment
+      netLikes
+      replies {
+        _id
+        reply
+        createdAt
         user {
           username
         }
-        comment
-        netLikes
-        replies {
-          reply
-          createdAt
-          user {
-            username
-          }
-        }
-        createdAt
       }
+      createdAt
     }
   }
+}
 `;
