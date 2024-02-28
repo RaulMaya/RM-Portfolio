@@ -6,7 +6,7 @@ const ProjectListComponent = ({ projects }) => {
     <div className="flex flex-wrap justify-center justify-evenly mb-12 pb-5">
       {projects.map((project) => (
         <ProjectCardComponent
-          key={project.id}
+          key={project._id}
           title={project.name}
           image={project.portrait}
           id={project._id}
