@@ -1,99 +1,38 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
+
+const testimonials = [
+  { "id": 1, "name": "John Doe", "testimonial": "This service has been an absolute game-changer for my business! The level of detail and attention to our needs has exceeded all expectations. I cannot express enough how much this has positively impacted our operations.", "company_name": "Doe Enterprises" },
+  { "id": 2, "name": "Jane Smith", "testimonial": "The results we've seen have been incredible, truly exceeding all my expectations. The team's dedication and expertise have brought our projects to new heights. I am thoroughly impressed and grateful for their hard work.", "company_name": "Smith Consulting" },
+  { "id": 3, "name": "Emily Johnson", "testimonial": "I've experienced nothing but professional, efficient, and utterly satisfying service. The team's approach is hands-on and personalized, and they really go the extra mile to ensure all needs are met with precision and care.", "company_name": "Johnson Digital" },
+  { "id": 4, "name": "Michael Brown", "testimonial": "From start to finish, my experience has been truly outstanding. The professionalism, creativity, and attention to detail have been beyond what I could have asked for. This has set a new standard for what I expect from service providers.", "company_name": "Brown Media" },
+  { "id": 5, "name": "Linda Davis", "testimonial": "I couldn't be happier with the results! The service provided has been exceptional from start to finish. The attention to detail, the constant communication, and the final outcome have all been beyond my expectations.", "company_name": "Davis Retail" }
+]
+
 const Testimonials = () => {
+  const testiComs = testimonials.map(t => {
+    return (
+      <article key={t.id} className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
+        <FontAwesomeIcon
+          className="text-5xl mb-3 text-cyan-200"
+          icon={faQuoteLeft}
+        />
+        <p className="italic text-gray-700 text-sm tracking-wide">
+          {t.testimonial}
+        </p>
+        <hr className=" my-3" />
+        <p className="font-bold">{t.name}</p>
+        <p className="text-sm">{t.company_name}</p>
+      </article>
+    )
+  })
   return (
-    <section className="container flex flex-wrap justify-around min-w-full">
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
-        <FontAwesomeIcon
-          className="text-5xl mb-3 text-cyan-200"
-          icon={faQuoteLeft}
-        />
-        <p className="italic text-gray-700 text-sm tracking-wide">
-          "Working with Raul was an absolute delight! Their expertise in
-          software engineering is evident in the seamless and user-friendly
-          applications they create. Not only are they technically proficient,
-          but their ability to understand and translate our vision into reality
-          was unparalleled.If you're looking for a developer who brings a
-          perfect blend of skill, innovation, and professionalism, look no
-          further than Raul. Highly recommended!"
-        </p>
-        <hr className=" my-3" />
-        <p className="font-bold">Jordan Smith</p>
-        <p className="text-sm">CEO of TechSolutions Inc.</p>
-      </article>
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
-        <FontAwesomeIcon
-          className="text-5xl mb-3 text-cyan-200"
-          icon={faQuoteLeft}
-        />
-        <p className="italic text-gray-700 text-sm tracking-wide">
-          "Working with Raul was an absolute delight! Their expertise in
-          software engineering is evident in the seamless and user-friendly
-          applications they create. Not only are they technically proficient,
-          but their ability to understand and translate our vision into reality
-          was unparalleled.If you're looking for a developer who brings a
-          perfect blend of skill, innovation, and professionalism, look no
-          further than Raul. Highly recommended!"
-        </p>
-        <hr className=" my-3" />
-        <p className="font-bold">Jordan Smith</p>
-        <p className="text-sm">CEO of TechSolutions Inc.</p>
-      </article>
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
-        <FontAwesomeIcon
-          className="text-5xl mb-3 text-cyan-200"
-          icon={faQuoteLeft}
-        />
-        <p className="italic text-gray-700 text-sm tracking-wide">
-          "Working with Raul was an absolute delight! Their expertise in
-          software engineering is evident in the seamless and user-friendly
-          applications they create. Not only are they technically proficient,
-          but their ability to understand and translate our vision into reality
-          was unparalleled.If you're looking for a developer who brings a
-          perfect blend of skill, innovation, and professionalism, look no
-          further than Raul. Highly recommended!"
-        </p>
-        <hr className=" my-3" />
-        <p className="font-bold">Jordan Smith</p>
-        <p className="text-sm">CEO of TechSolutions Inc.</p>
-      </article>
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
-        <FontAwesomeIcon
-          className="text-5xl mb-3 text-cyan-200"
-          icon={faQuoteLeft}
-        />
-        <p className="italic text-gray-700 text-sm tracking-wide">
-          "Working with Raul was an absolute delight! Their expertise in
-          software engineering is evident in the seamless and user-friendly
-          applications they create. Not only are they technically proficient,
-          but their ability to understand and translate our vision into reality
-          was unparalleled.If you're looking for a developer who brings a
-          perfect blend of skill, innovation, and professionalism, look no
-          further than Raul. Highly recommended!"
-        </p>
-        <hr className=" my-3" />
-        <p className="font-bold">Jordan Smith</p>
-        <p className="text-sm">CEO of TechSolutions Inc.</p>
-      </article>
-      <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl mt-7">
-        <FontAwesomeIcon
-          className="text-5xl mb-3 text-cyan-200"
-          icon={faQuoteLeft}
-        />
-        <p className="italic text-gray-700 text-sm tracking-wide">
-          "Working with Raul was an absolute delight! Their expertise in
-          software engineering is evident in the seamless and user-friendly
-          applications they create. Not only are they technically proficient,
-          but their ability to understand and translate our vision into reality
-          was unparalleled.If you're looking for a developer who brings a
-          perfect blend of skill, innovation, and professionalism, look no
-          further than Raul. Highly recommended!"
-        </p>
-        <hr className=" my-3" />
-        <p className="font-bold">Jordan Smith</p>
-        <p className="text-sm">CEO of TechSolutions Inc.</p>
-      </article>
+    <section className="container min-w-full">
+      <h1 className="text-center text-5xl font-semibold underline underline-offset-4 decoration-cyan-400 mb-5">Testimonials</h1>
+      <div className="flex flex-wrap justify-around">
+        {testiComs}
+      </div>
     </section>
   );
 };

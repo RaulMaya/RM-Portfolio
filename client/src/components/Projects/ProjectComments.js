@@ -43,12 +43,12 @@ const ProjectComments = ({ isLoggedIn, commentDetail }) => {
 
                     </section>
                 </div>
-                <hr className="my-5 ease-in duration-300" />
                 {showReplies ? (
                     <>
+                        <hr className="my-5 ease-in duration-300" />
                         <ProjectReplies isLoggedIn={isLoggedIn} replies={comment.replies} />
-                        <button onClick={handleClick}>Hide Replies</button>
-                    </>) : (<button onClick={handleClick}>Aint Nobody Fucking with my Clique({comment.replies.length})</button>)}
+                        <button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Hide Replies</button>
+                    </>) : (<button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Show Replies ({comment.replies.length})</button>)}
 
             </div>
         )

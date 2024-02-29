@@ -43,7 +43,7 @@ const PersonalComponent = () => {
         </div>
         <div className="absolute inset-0 h-full w-full rounded-xl bg-black/80 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="flex min-h-full flex-col items-center justify-center">
-            <h1 className="text-3xl font-bold">{hobbie.title}</h1>
+            <h1 className="text-5xl font-bold">{hobbie.title}</h1>
             <p className="text-base">{hobbie.description}</p>
           </div>
         </div>
@@ -53,32 +53,39 @@ const PersonalComponent = () => {
   })
   return (
     <>
-      <section className="container flex flex-wrap justify-evenly my-12 min-w-full">
-        {renderHobbies}
+      <section className="container mt-12 min-w-full bg-cyan-400 py-5 border-y-4 border-black">
+        <h1 className="text-center text-5xl font-semibold underline underline-offset-4 decoration-white tracking-wide mb-5">My Hobbies</h1>
+        <article className="flex flex-wrap justify-evenly">
+          {renderHobbies}
+        </article>
       </section>
 
-      <section className="container my-12 min-w-full flex flex-row justify-center">
-        <article className="basis-3/4">
-          <p className="mx-12 mb-5 xl:text-4xl lg:text-xl md:text-lg sm:text-base tracking-wide">
-            Hey there! I'm Raul Maya, a dedicated web developer and data
-            engineer with a passion that's only rivaled by my love for coffee.
-            Each cup fuels my creativity, helping me craft seamless digital
-            solutions. Based in vibrant Mexico, I cherish moments with my
-            family, our Shih-Tzu being the star, of course. While football
-            captures my athletic side, my intellectual pursuits involve
-            assembling intricate Lego Technic sets and delving into suspenseful
-            reads, with "The Analyst" by John Katzenbach being a recent
-            favorite. With a blend of technical prowess and a rich palette of
-            interests, I strive to bring a unique perspective to every project.
-          </p>
-        </article>
-        <article className="basis-1/4 flex justify-center">
-          <img
-            className="object-cover w-full h-auto drop-shadow-xl max-w-md"
-            src={raulFutbol}
-            alt="Raul Maya in the americas tower"
-          />
-        </article>
+      <section className="container mb-5 pt-5 min-w-full bg-black border-b-4 border-cyan-400 text-white">
+        <h1 className="text-center text-5xl font-semibold underline underline-offset-4 decoration-cyan-400 tracking-wide mb-5">A little bit of me</h1>
+        <div className="flex flex-row justify-center">
+          <article className="basis-3/4">
+
+            <p className="mx-12 mb-5 xl:text-4xl lg:text-xl md:text-lg sm:text-base tracking-wide">
+              Hey there! I'm Raul Maya, a dedicated web developer and data
+              engineer with a passion that's only rivaled by my love for coffee.
+              Each cup fuels my creativity, helping me craft seamless digital
+              solutions. Based in vibrant Mexico, I cherish moments with my
+              family, our Shih-Tzu being the star, of course. While football
+              captures my athletic side, my intellectual pursuits involve
+              assembling intricate Lego Technic sets and delving into suspenseful
+              reads, with "The Analyst" by John Katzenbach being a recent
+              favorite. With a blend of technical prowess and a rich palette of
+              interests, I strive to bring a unique perspective to every project.
+            </p>
+          </article>
+          <article className="basis-1/4 flex justify-center">
+            <img
+              className="object-cover w-full h-auto drop-shadow-xl max-w-md"
+              src={raulFutbol}
+              alt="Raul Maya in the americas tower"
+            />
+          </article>
+        </div>
       </section>
     </>
   );
