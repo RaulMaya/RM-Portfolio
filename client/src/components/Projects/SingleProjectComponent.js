@@ -26,7 +26,7 @@ const SingleProjectComponent = ({ isLoggedIn }) => {
                 <ProjectImage image={projectDetail.portrait} />
                 <ProjectInformation tags={projectDetail.tags} description={projectDetail.description} deployment={projectDetail.deployment} />
                 <ProjectCommentForm isLoggedIn={isLoggedIn} id={id} refetch={refetch} />
-                <ProjectComments isLoggedIn={isLoggedIn} commentDetail={projectDetail.comments} />
+                <ProjectComments isLoggedIn={isLoggedIn} commentDetail={projectDetail.comments} refetch={refetch} />
             </div>
         </>
     )

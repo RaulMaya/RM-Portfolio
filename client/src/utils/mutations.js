@@ -43,3 +43,11 @@ mutation Mutation($projectId: ID!, $userId: ID!, $comment: String!) {
   }
 }
 `
+
+export const DELETE_COMMENT = gql`
+mutation Mutation($userId: ID!, $commentId: ID!) {
+  deleteComment(userId: $userId, commentId: $commentId) {
+    _id
+  }
+}
+`

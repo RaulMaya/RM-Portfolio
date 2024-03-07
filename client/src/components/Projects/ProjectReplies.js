@@ -8,7 +8,7 @@ const ProjectReplies = ({ isLoggedIn, replies }) => {
 
     const comReplies = replies.map(r => {
         const replyDate = new Date(Number(r.createdAt))
-        console.log(replyDate)
+        
         const diff = currentDate - replyDate;
         const minutes = Math.floor(diff / (1000 * 60));
         const hours = Math.floor(diff / (1000 * 60 * 60));

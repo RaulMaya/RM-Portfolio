@@ -6,20 +6,39 @@ import { AiOutlineLike } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 
-const ProjectComments = ({ isLoggedIn, commentDetail }) => {
+import { DELETE_COMMENT } from "../../utils/mutations";
+import { useMutation } from '@apollo/client';
+import Auth from "../../utils/auth";
+
+const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
     const currentDate = new Date();
 
     const [showReplies, setShowReplies] = useState(false)
+    const [deleteComment, { error: deleteCommentError }] = useMutation(DELETE_COMMENT);
 
     const handleClick = () => {
         setShowReplies(!showReplies)
     }
 
-    console.log(commentDetail)
+    const handleCommentDelete = async (commentId) => {
+        try {
+            await deleteComment({
+                variables: {
+                    userId: Auth.getUser().data._id,
+                    commentId,
+                },
+            });
+
+            refetch();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     const projComments = commentDetail.map(comment => {
         const commentDate = new Date(Number(comment.createdAt))
-        console.log(commentDate)
+
         const diff = currentDate - commentDate;
         const minutes = Math.floor(diff / (1000 * 60));
         const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -49,10 +68,10 @@ const ProjectComments = ({ isLoggedIn, commentDetail }) => {
 
                         {isLoggedIn && (
                             <section className="flex justify-start gap-x-3">
-                                <div className="cursor-pointer"><FaReply /></div>
-                                <div className="cursor-pointer"><AiOutlineLike /></div>
-                                <div className="cursor-pointer"><FaTrashAlt /></div>
-                                <div className="cursor-pointer"><CiEdit /></div>
+                                <FaReply className="cursor-pointer" />
+                                <AiOutlineLike className="cursor-pointer" />
+                                <FaTrashAlt className="cursor-pointer" onClick={() => handleCommentDelete(comment._id)} />
+                                <CiEdit className="cursor-pointer" />
                             </section>
                         )
                         }
