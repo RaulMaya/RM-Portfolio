@@ -2,7 +2,13 @@ import { useState } from "react"
 import LoginModal from "../LogInSignUp/LogInModal"
 import SignUpModal from "../LogInSignUp/SignUpModal"
 
-const ProjectCommentForm = ({ isLoggedIn }) => {
+import { useQuery, useMutation } from '@apollo/client';
+import { CREATE_COMMENT } from "../../utils/mutations"
+import Auth from "../../utils/auth"
+
+const ProjectCommentForm = ({ isLoggedIn, id, refetch }) => {
+    const [commentText, setCommentText] = useState('');
+    const [createComment, { error: createCommentError }] = useMutation(CREATE_COMMENT);
 
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isSignUpOpen, setIsSignUpOpen] = useState(false);
@@ -13,12 +19,27 @@ const ProjectCommentForm = ({ isLoggedIn }) => {
     const openSignUpModal = () => setIsSignUpOpen(true);
     const closeSignUpModal = () => setIsSignUpOpen(false);
 
+    const handleCommentSubmit = async (event) => {
+        event.preventDefault();
+        await createComment({
+            variables: {
+                projectId: id,
+                userId: Auth.getUser().data._id, // use the logged in user's id
+                comment: commentText,
+            },
+        });
+        setCommentText('');
+        refetch();
+    }
+
     return (
         <div className="container mx-auto flex flex-col justify-center mb-10 mt-5">
             {isLoggedIn ? (<>
                 <h1 className="text-3xl mb-3">Comment Section</h1>
-                <form className="w-full">
+                <form onSubmit={handleCommentSubmit} className="w-full flex gap-x-8">
                     <textarea
+                        type="text"
+                        name="commentText"
                         className="
                         mt-1
                         w-full
@@ -29,8 +50,13 @@ const ProjectCommentForm = ({ isLoggedIn }) => {
                         focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50
                         "
                         placeholder="What do you think about this project?"
+                        value={commentText}
+                        onChange={(e) => setCommentText(e.target.value)}
+                        required
                     ></textarea>
-
+                    <button type="submit" className="mt-1 w-36 bg-cyan-400 hover:bg-cyan-600 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-out hover:ease-in">
+                        Send
+                    </button>
                 </form>
             </>
             ) : (

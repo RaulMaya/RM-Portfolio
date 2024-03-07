@@ -34,3 +34,12 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const CREATE_COMMENT = gql`
+mutation Mutation($projectId: ID!, $userId: ID!, $comment: String!) {
+  createComment(projectId: $projectId, userId: $userId, comment: $comment) {
+    _id
+    comment
+  }
+}
+`

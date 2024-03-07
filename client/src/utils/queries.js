@@ -38,6 +38,7 @@ query Query($projectId: ID!) {
       }
       createdAt
     }
+    viewsCount
   }
 }
 `;

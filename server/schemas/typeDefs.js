@@ -258,6 +258,8 @@ const typeDefs = gql`
     quitdisLikeComment(userId: ID!, commentId: ID!): Comments
 
     login(email: String!, password: String!): Auth
+
+    deleteComment(userId: ID!, commentId: ID!): Comments
   }
 `;
 

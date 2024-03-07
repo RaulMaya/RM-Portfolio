@@ -7,6 +7,8 @@ import { FaTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 
 const ProjectComments = ({ isLoggedIn, commentDetail }) => {
+    const currentDate = new Date();
+
     const [showReplies, setShowReplies] = useState(false)
 
     const handleClick = () => {
@@ -16,6 +18,21 @@ const ProjectComments = ({ isLoggedIn, commentDetail }) => {
     console.log(commentDetail)
 
     const projComments = commentDetail.map(comment => {
+        const commentDate = new Date(Number(comment.createdAt))
+        console.log(commentDate)
+        const diff = currentDate - commentDate;
+        const minutes = Math.floor(diff / (1000 * 60));
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+        let since;
+        if (days) {
+            since = `${days}d`
+        } else if (hours) {
+            since = `${hours}h`
+        } else {
+            since = `${minutes}m`
+        }
         return (
             <div key={comment._id} className="container mx-auto mt-5 pt-5 px-5 rounded-md shadow-lg border border-black">
                 <div className="flex justify-start gap-x-4 mb-5">
@@ -26,7 +43,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail }) => {
                     <section className="flex flex-col justify-start w-full">
                         <div className="flex justify-between">
                             <div className="text-cyan-400 font-semibold">{comment.user.username}</div>
-                            <div className="text-gray-600 font-semibold">{comment.createdAt}</div>
+                            <div className="text-gray-600 font-semibold">{since}</div>
                         </div>
                         <div className="pt-2 pb-4">{comment.comment}</div>
 

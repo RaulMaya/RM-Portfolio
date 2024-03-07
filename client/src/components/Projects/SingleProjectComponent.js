@@ -10,12 +10,11 @@ import { QUERY_SINGLE_PROJECT } from '../../utils/queries';
 const SingleProjectComponent = ({ isLoggedIn }) => {
     const { id } = useParams();
     const { loading, error, data, refetch } = useQuery(QUERY_SINGLE_PROJECT, {
-        variables: { projectId: id },
+        variables: { projectId: id }
     });
 
+
     const projectDetail = data?.projectDetails || []
-    console.log(projectDetail)
-    console.log(projectDetail.comments)
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error</p>;
@@ -26,7 +25,7 @@ const SingleProjectComponent = ({ isLoggedIn }) => {
             <div className="pb-12 mb-12">
                 <ProjectImage image={projectDetail.portrait} />
                 <ProjectInformation tags={projectDetail.tags} description={projectDetail.description} deployment={projectDetail.deployment} />
-                <ProjectCommentForm isLoggedIn={isLoggedIn} />
+                <ProjectCommentForm isLoggedIn={isLoggedIn} id={id} refetch={refetch} />
                 <ProjectComments isLoggedIn={isLoggedIn} commentDetail={projectDetail.comments} />
             </div>
         </>

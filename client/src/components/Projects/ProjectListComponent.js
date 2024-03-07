@@ -10,6 +10,7 @@ const ProjectListComponent = ({ projects }) => {
           title={project.name}
           image={project.portrait}
           id={project._id}
+          views={project.viewsCount}
         />
       ))}
     </div>
