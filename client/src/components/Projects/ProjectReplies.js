@@ -4,8 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const ProjectReplies = ({ isLoggedIn, replies }) => {
     const currentDate = new Date();
-
-
+    
     const comReplies = replies.map(r => {
         const replyDate = new Date(Number(r.createdAt))
         

@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import ProjectReplies from "./ProjectReplies";
+import ReplyModal from "./ReplyModalForm";
 import { FaReply } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
@@ -13,7 +14,18 @@ import Auth from "../../utils/auth";
 const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
     const currentDate = new Date();
 
+    const [replyModalStates, setReplyModalStates] = useState({});
     const [showReplies, setShowReplies] = useState(false)
+
+    const toggleReplyModal = (commentId) => {
+        setReplyModalStates(prev => ({ ...prev, [commentId]: !prev[commentId] }));
+    };
+
+    const closeReplyModal = (commentId) => {
+        setReplyModalStates(prev => ({ ...prev, [commentId]: false }));
+    };
+
+
     const [deleteComment, { error: deleteCommentError }] = useMutation(DELETE_COMMENT);
 
     const handleClick = () => {
@@ -68,7 +80,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
 
                         {isLoggedIn && (
                             <section className="flex justify-start gap-x-3">
-                                <FaReply className="cursor-pointer" />
+                                <FaReply className="cursor-pointer" onClick={() => toggleReplyModal(comment._id)} />
                                 <AiOutlineLike className="cursor-pointer" />
                                 <FaTrashAlt className="cursor-pointer" onClick={() => handleCommentDelete(comment._id)} />
                                 <CiEdit className="cursor-pointer" />
@@ -85,7 +97,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                         <ProjectReplies isLoggedIn={isLoggedIn} replies={comment.replies} />
                         <button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Hide Replies</button>
                     </>) : (<button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Show Replies ({comment.replies.length})</button>)}
-
+                <ReplyModal isOpen={replyModalStates[comment._id]} onClose={() => closeReplyModal(comment._id)} />
             </div>
         )
     })
