@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Auth from '../../utils/auth';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../utils/mutations';
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 
 const SignUpModal = ({ openLog, isOpen, onClose }) => {
@@ -15,7 +16,16 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
     })
 
     const [passwordMismatch, setPasswordMismatch] = useState(false);
+    const [showCreatePassword, setShowCreatePassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+    const toggleCreatePasswordVisibility = () => {
+        setShowCreatePassword(!showCreatePassword);
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    };
 
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -125,7 +135,7 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                             onChange={handleChange}
                             value={signUpForm.company} />
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-6 relative">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
                             htmlFor="password">
@@ -135,11 +145,17 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                             className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight ${passwordMismatch ? 'focus:border-red-500 focus:ring focus:ring-red-400' : 'focus:border-cyan-300 focus:ring focus:ring-cyan-400'} focus:ring-opacity-50`}
                             id="password"
                             name="password"
-                            type="password"
+                            type={showCreatePassword ? "text" : "password"}
                             onChange={handleChange}
                             value={signUpForm.password} />
+                        <button
+                            onClick={toggleCreatePasswordVisibility}
+                            type="button"
+                            className="absolute inset-y-11 right-0 pr-3 flex items-center text-sm leading-5">
+                            <span className='text-xl'>{showCreatePassword ? <BiSolidHide /> : <BiSolidShow />}</span>
+                        </button>
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-6 relative">
                         <label
                             className="block text-gray-700 text-sm font-bold mb-2"
                             htmlFor="confirmPassword">
@@ -149,9 +165,15 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                             className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight ${passwordMismatch ? 'focus:border-red-500 focus:ring focus:ring-red-400' : 'focus:border-cyan-300 focus:ring focus:ring-cyan-400'} focus:ring-opacity-50`}
                             id="confirmPassword"
                             name="confirmPassword"
-                            type="password"
+                            type={showConfirmPassword ? "text" : "password"}
                             onChange={handleChange}
                             value={signUpForm.confirmPassword} />
+                        <button
+                            onClick={toggleConfirmPasswordVisibility}
+                            type="button"
+                            className="absolute inset-y-11 right-0 pr-3 flex items-center text-sm leading-5">
+                            <span className='text-xl'>{showConfirmPassword ? <BiSolidHide /> : <BiSolidShow />}</span>
+                        </button>
                         {passwordMismatch && <p className="text-red-500 text-xs italic">Passwords do not match.</p>}
                     </div>
                     <div className="flex items-center justify-center mb-5">

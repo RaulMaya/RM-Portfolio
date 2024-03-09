@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 import { useMutation } from '@apollo/client';
 
 import { LOGIN } from '../../utils/mutations';
@@ -10,6 +11,13 @@ const LoginModal = ({ openSign, isOpen, onClose }) => {
         email: '',
         password: '',
     });
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     const [login, { loading, error, data }] = useMutation(LOGIN);
 
     useEffect(() => {
@@ -80,7 +88,7 @@ const LoginModal = ({ openSign, isOpen, onClose }) => {
                         onChange={handleChange}
                         required />
                 </div>
-                <div className="mb-3">
+                <div className="mb-3 relative">
                     <label
                         className="block text-gray-700 text-sm font-bold mb-2"
                         htmlFor="password">
@@ -89,13 +97,21 @@ const LoginModal = ({ openSign, isOpen, onClose }) => {
                     <input
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50"
                         id="password"
-                        name='password'
-                        type="password"
+                        name="password"
+                        type={showPassword ? "text" : "password"}
                         placeholder="******************"
                         value={formData.password}
                         onChange={handleChange}
-                        required />
+                        required
+                    />
+                    <button
+                        onClick={togglePasswordVisibility}
+                        type="button"
+                        className="absolute inset-y-11 right-0 pr-3 flex items-center text-sm leading-5">
+                        <span className='text-xl'>{showPassword ? <BiSolidHide /> : <BiSolidShow />}</span>
+                    </button>
                 </div>
+
                 <a
                     className="inline-block align-baseline font-bold text-sm text-cyan-400 hover:text-blue-800 mb-6"
                     href="/">
