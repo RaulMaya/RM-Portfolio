@@ -1,12 +1,64 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FaRegHeart, FaHeart, FaEye } from "react-icons/fa";
 import { Link as RouterLink } from 'react-router-dom';
+import Auth from "../../utils/auth";
+import { LIKE_PROJECT, DISLIKE_PROJECT } from "../../utils/mutations";
+import { useMutation } from '@apollo/client';
 
-const ProjectCardComponent = ({ title, image, id, views }) => {
+
+
+const ProjectCardComponent = ({ title, image, id, views, likes, userLiked, refetch }) => {
+
+  const [likeProject, { error: likeProjectError }] = useMutation(LIKE_PROJECT);
+  const [dislikeProject, { error: dislikeProjectError }] = useMutation(DISLIKE_PROJECT);
+
+  const handleLikeProject = async (projectId) => {
+    try {
+      await likeProject({
+        variables: {
+          userId: Auth.getUser().data._id,
+          projectId,
+        },
+      });
+
+      refetch();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  const handleDislikeProject = async (projectId) => {
+    try {
+      await dislikeProject({
+        variables: {
+          userId: Auth.getUser().data._id,
+          projectId,
+        },
+      });
+
+      refetch();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   const routeTo = "/project/" + id
-  console.log(routeTo)
+
+  const isStringInArray = (userId, likesId) => {
+    return likesId.includes(userId);
+  }
+
+  const likeIcon = isStringInArray(Auth.getUser().data._id, userLiked) ?
+    (<FaHeart
+      onClick={() => handleDislikeProject(id)} 
+      className="ease-linear duration-300 cursor-pointer pt-3 me-1 text-red-500 hover:text-red-700 text-3xl"
+    />) :
+    (<FaRegHeart
+      onClick={() => handleLikeProject(id)} 
+      className="ease-linear duration-300 cursor-pointer pt-3 me-1 text-red-500 hover:text-red-700 text-3xl"
+    />);
   return (
     <>
       <div className="max-w-sm mx-3">
@@ -21,14 +73,11 @@ const ProjectCardComponent = ({ title, image, id, views }) => {
           <div className="pt-1 text-xl mb-2">{title}</div>
           <div className="flex justify-between gap-x-4">
             <div className="flex justify-center">
-              <FontAwesomeIcon
-                className="pt-3 me-1 text-red-500 hover:text-red-700"
-                icon={faHeart}
-              />
-              <p className="text-sm pt-3">3</p>
+              {likeIcon}
+              <p className="text-sm pt-3">{likes}</p>
             </div>
             <div className="flex justify-center">
-              <FontAwesomeIcon className="pt-3 me-1" icon={faEye} />
+              <FaEye className="pt-3 me-1 text-3xl" />
               <p className="text-sm pt-3">{views}</p>
             </div>
           </div>

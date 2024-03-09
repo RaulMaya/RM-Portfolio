@@ -8,6 +8,9 @@ export const QUERY_ALL_PROJECTS = gql`
         portrait
         likesCount
         viewsCount
+        likedUsers {
+          _id
+        }
         }
     }
 `;

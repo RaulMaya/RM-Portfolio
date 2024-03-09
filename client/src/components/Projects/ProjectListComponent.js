@@ -1,7 +1,8 @@
 import { React } from "react";
 import ProjectCardComponent from "./ProjectCardComponent";
 
-const ProjectListComponent = ({ projects }) => {
+const ProjectListComponent = ({ projects, refetch }) => {
+  console.log(projects)
   return (
     <div className="flex flex-wrap justify-center justify-evenly mb-12 pb-5">
       {projects.map((project) => (
@@ -11,8 +12,12 @@ const ProjectListComponent = ({ projects }) => {
           image={project.portrait}
           id={project._id}
           views={project.viewsCount}
+          likes={project.likesCount}
+          userLiked={project.likedUsers.map(user => user._id)}
+          refetch={refetch}
         />
-      ))}
+      ))
+      }
     </div>
   );
 };

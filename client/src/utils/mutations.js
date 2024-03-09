@@ -51,3 +51,19 @@ mutation Mutation($userId: ID!, $commentId: ID!) {
   }
 }
 `
+
+export const LIKE_PROJECT = gql`
+mutation LikedProject($userId: ID!, $projectId: ID!) {
+  likedProject(userId: $userId, projectId: $projectId) {
+    _id
+  }
+}
+`
+
+export const DISLIKE_PROJECT = gql`
+mutation DislikeProject($userId: ID!, $projectId: ID!) {
+  dislikeProject(userId: $userId, projectId: $projectId) {
+    _id
+  }
+}
+`
