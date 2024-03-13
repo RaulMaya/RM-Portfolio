@@ -1,13 +1,62 @@
-
+import React, { useState } from 'react'
 import { CiEdit } from "react-icons/ci";
 import { FaTrashAlt } from "react-icons/fa";
 
-const ProjectReplies = ({ isLoggedIn, replies }) => {
+import Auth from '../../utils/auth';
+import { DELETE_REPLY } from '../../utils/mutations';
+
+import { useMutation } from '@apollo/client';
+
+import DeleteConfirmationModal from "./Modals/DeleteConfirmationModal";
+
+const ProjectReplies = ({ isLoggedIn, replies, refetch }) => {
     const currentDate = new Date();
-    
+
+    const [showReplyConfirmation, setShowReplyConfirmation] = useState(false);
+    const [replyToDelete, setReplyToDelete] = useState(null);
+
+    const promptDeleteReply = (replyId) => {
+        setReplyToDelete(replyId);
+        setShowReplyConfirmation(true);
+    };
+
+    const confirmDeleteReply = () => {
+        if (replyToDelete) {
+            // Place your existing deletion logic here
+            handleReplyDelete(replyToDelete);
+        }
+        // Close the modal and reset the comment to delete
+        setShowReplyConfirmation(false);
+        setReplyToDelete(null);
+    };
+
+    const cancelDelete = () => {
+        setShowReplyConfirmation(false);
+        setReplyToDelete(null);
+    };
+
+
+    const [deleteReply, { error: deleteReplyError }] = useMutation(DELETE_REPLY);
+
+
+    const handleReplyDelete = async (replyId) => {
+        try {
+            await deleteReply({
+                variables: {
+                    userId: Auth.getUser().data._id,
+                    replyId,
+                },
+            });
+
+            refetch();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const comReplies = replies.map(r => {
         const replyDate = new Date(Number(r.createdAt))
-        
+
         const diff = currentDate - replyDate;
         const minutes = Math.floor(diff / (1000 * 60));
         const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -37,11 +86,15 @@ const ProjectReplies = ({ isLoggedIn, replies }) => {
 
                     {isLoggedIn && (
                         <section className="flex justify-start gap-x-3">
-                            <div className="cursor-pointer"><FaTrashAlt /></div>
-                            <div className="cursor-pointer"><CiEdit /></div>
+                            <FaTrashAlt className="cursor-pointer" onClick={() => promptDeleteReply(r._id)} />
+                            <CiEdit className="cursor-pointer" />
                         </section>
                     )
                     }
+
+                    {showReplyConfirmation && (
+                        <DeleteConfirmationModal confirmDeleteComment={confirmDeleteReply} cancelDelete={cancelDelete} />
+                    )}
 
                 </section>
             </div >

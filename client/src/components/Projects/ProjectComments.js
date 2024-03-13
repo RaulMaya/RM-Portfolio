@@ -120,7 +120,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                 {showReplies ? (
                     <>
                         <hr className="my-5 ease-in duration-300" />
-                        <ProjectReplies isLoggedIn={isLoggedIn} replies={comment.replies} />
+                        <ProjectReplies isLoggedIn={isLoggedIn} replies={comment.replies} refetch={refetch} />
                         <button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Hide Replies</button>
                     </>) : (<button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Show Replies ({comment.replies.length})</button>)}
                 <ReplyModal commentId={comment._id} isOpen={replyModalStates[comment._id]} onClose={() => closeReplyModal(comment._id)} refetch={refetch} />

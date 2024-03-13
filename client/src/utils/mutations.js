@@ -75,3 +75,12 @@ mutation Mutation($commentId: ID!, $userId: ID!, $reply: String!) {
   }
 }
 `
+
+export const DELETE_REPLY = gql`
+mutation Mutation($userId: ID!, $replyId: ID!) {
+  deleteReply(userId: $userId, replyId: $replyId) {
+    _id
+  }
+}
+
+`

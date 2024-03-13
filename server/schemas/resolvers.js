@@ -545,6 +545,21 @@ const resolvers = {
 
             // Once all replies are deleted, delete the comment itself
             await Comment.deleteOne({ _id: commentId });
+        },
+        deleteReply: async (parent, { userId, replyId }) => {
+            // Find the reply by ID
+            const myReply = await Reply.findById(replyId);
+            if (!myReply) {
+                throw new Error('Reply not found');
+            }
+
+            // Check if the userId matches the reply's owner
+            if (myReply.user.toString() !== userId.toString()) {
+                throw new Error('User is not the owner of the comment');
+            }
+
+            // Once all replies are deleted, delete the comment itself
+            await Reply.deleteOne({ _id: replyId });
         }
     },
 };
