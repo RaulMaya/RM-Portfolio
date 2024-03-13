@@ -113,7 +113,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                         )}
 
                         {showDeleteConfirmation && (
-                            <DeleteConfirmationModal confirmDeleteComment cancelDelete />
+                            <DeleteConfirmationModal confirmDeleteComment={confirmDeleteComment} cancelDelete={cancelDelete} />
                         )}
                     </section>
                 </div>
