@@ -12,11 +12,13 @@ const ProjectCardComponent = ({ title, image, id, views, likes, userLiked, refet
   const [likeProject, { error: likeProjectError }] = useMutation(LIKE_PROJECT);
   const [dislikeProject, { error: dislikeProjectError }] = useMutation(DISLIKE_PROJECT);
 
+  const isAuthenticated = Auth.getUser() != null;
+
   const handleLikeProject = async (projectId) => {
     try {
       await likeProject({
         variables: {
-          userId: Auth.getUser().data._id,
+          userId: isAuthenticated.data._id,
           projectId,
         },
       });
@@ -32,7 +34,7 @@ const ProjectCardComponent = ({ title, image, id, views, likes, userLiked, refet
     try {
       await dislikeProject({
         variables: {
-          userId: Auth.getUser().data._id,
+          userId: isAuthenticated.data._id,
           projectId,
         },
       });
@@ -50,15 +52,23 @@ const ProjectCardComponent = ({ title, image, id, views, likes, userLiked, refet
     return likesId.includes(userId);
   }
 
-  const likeIcon = isStringInArray(Auth.getUser().data._id, userLiked) ?
-    (<FaHeart
-      onClick={() => handleDislikeProject(id)} 
-      className="ease-linear duration-300 cursor-pointer pt-3 me-1 text-red-500 hover:text-red-700 text-3xl"
-    />) :
-    (<FaRegHeart
-      onClick={() => handleLikeProject(id)} 
-      className="ease-linear duration-300 cursor-pointer pt-3 me-1 text-red-500 hover:text-red-700 text-3xl"
-    />);
+  const likeIcon = isAuthenticated ? (
+    isStringInArray(Auth.getUser().data._id, userLiked) ? (
+      <FaHeart
+        onClick={() => handleDislikeProject(id)}
+        className="ease-linear duration-300 cursor-pointer pt-3 me-1 text-red-500 hover:text-red-700 text-3xl"
+      />
+    ) : (
+      <FaRegHeart
+        onClick={() => handleLikeProject(id)}
+        className="ease-linear duration-300 cursor-pointer pt-3 me-1 text-red-500 hover:text-red-700 text-3xl"
+      />
+    )
+  ) : (
+    <FaRegHeart
+      className="ease-linear duration-300 pt-3 me-1 text-gray-500 text-3xl"
+    />
+  );
   return (
     <>
       <div className="max-w-sm mx-3">

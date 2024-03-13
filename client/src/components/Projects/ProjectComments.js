@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 import ProjectReplies from "./ProjectReplies";
-import ReplyModal from "./ReplyModalForm";
+import ReplyModal from "./Modals/ReplyModalForm";
 import { FaReply } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { FaTrashAlt } from "react-icons/fa";
@@ -11,11 +11,16 @@ import { DELETE_COMMENT } from "../../utils/mutations";
 import { useMutation } from '@apollo/client';
 import Auth from "../../utils/auth";
 
+import DeleteConfirmationModal from "./Modals/DeleteConfirmationModal";
+
 const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
     const currentDate = new Date();
 
     const [replyModalStates, setReplyModalStates] = useState({});
     const [showReplies, setShowReplies] = useState(false)
+
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [commentToDelete, setCommentToDelete] = useState(null);
 
     const toggleReplyModal = (commentId) => {
         setReplyModalStates(prev => ({ ...prev, [commentId]: !prev[commentId] }));
@@ -23,6 +28,26 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
 
     const closeReplyModal = (commentId) => {
         setReplyModalStates(prev => ({ ...prev, [commentId]: false }));
+    };
+
+    const promptDeleteComment = (commentId) => {
+        setCommentToDelete(commentId);
+        setShowDeleteConfirmation(true);
+    };
+
+    const confirmDeleteComment = () => {
+        if (commentToDelete) {
+            // Place your existing deletion logic here
+            handleCommentDelete(commentToDelete);
+        }
+        // Close the modal and reset the comment to delete
+        setShowDeleteConfirmation(false);
+        setCommentToDelete(null);
+    };
+
+    const cancelDelete = () => {
+        setShowDeleteConfirmation(false);
+        setCommentToDelete(null);
     };
 
 
@@ -82,13 +107,14 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                             <section className="flex justify-start gap-x-3">
                                 <FaReply className="cursor-pointer" onClick={() => toggleReplyModal(comment._id)} />
                                 <AiOutlineLike className="cursor-pointer" />
-                                <FaTrashAlt className="cursor-pointer" onClick={() => handleCommentDelete(comment._id)} />
+                                <FaTrashAlt className="cursor-pointer" onClick={() => promptDeleteComment(comment._id)} />
                                 <CiEdit className="cursor-pointer" />
                             </section>
-                        )
-                        }
+                        )}
 
-
+                        {showDeleteConfirmation && (
+                            <DeleteConfirmationModal confirmDeleteComment cancelDelete />
+                        )}
                     </section>
                 </div>
                 {showReplies ? (
@@ -97,7 +123,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                         <ProjectReplies isLoggedIn={isLoggedIn} replies={comment.replies} />
                         <button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Hide Replies</button>
                     </>) : (<button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Show Replies ({comment.replies.length})</button>)}
-                <ReplyModal isOpen={replyModalStates[comment._id]} onClose={() => closeReplyModal(comment._id)} />
+                <ReplyModal commentId={comment._id} isOpen={replyModalStates[comment._id]} onClose={() => closeReplyModal(comment._id)} refetch={refetch} />
             </div>
         )
     })

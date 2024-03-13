@@ -1,12 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import Auth from '../../utils/auth';
+import { CREATE_REPLY } from '../../../utils/mutations';
+import Auth from '../../../utils/auth';
 
-const ReplyModal = ({ isOpen, onClose }) => {
+const ReplyModal = ({ commentId, isOpen, onClose, refetch }) => {
     const contentReplyRef = useRef();
-    const [formData, setFormData] = useState({
-        reply: '',
-    });
+    const [replyText, setReplyText] = useState('');
+
+    const [createReply, { error: createReplyError }] = useMutation(CREATE_REPLY);
+
+
+    const handleReplySubmit = async (event) => {
+        event.preventDefault()
+        await createReply({
+            variables: {
+                commentId: commentId,
+                userId: Auth.getUser().data._id, // use the logged in user's id
+                reply: replyText,
+            },
+        });
+        setReplyText('');
+        refetch();
+        onClose();
+    }
 
     useEffect(() => {
         const clickOutside = (e) => {
@@ -27,10 +43,11 @@ const ReplyModal = ({ isOpen, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
-            <form ref={contentReplyRef} className="bg-white pt-6 w-1/2 md:w-1/4 rounded-lg shadow-lg sborder border-black p-6">
+            <form onSubmit={handleReplySubmit} ref={contentReplyRef} className="bg-white pt-6 w-1/2 md:w-1/4 rounded-lg shadow-lg sborder border-black p-6">
                 <h2 className="text-2xl mx-auto text-center font-semibold mb-6">Reply</h2>
                 <hr className='mb-6 border border-gray-200' />
                 <textarea
+                    value={replyText}
                     type="text"
                     name="replyText"
                     className="
@@ -42,6 +59,10 @@ const ReplyModal = ({ isOpen, onClose }) => {
                         shadow-sm
                         focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50
                         "
+                    onChange={(e) => {
+                        console.log(e.target.value); // Debugging line to see what you're typing in real-time
+                        setReplyText(e.target.value);
+                    }}
                     placeholder="Enter your reply to the comment"
                     required
                 ></textarea>

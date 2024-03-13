@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_SINGLE_PROJECT } from '../../utils/queries';
 
+import LoaderComponent from "../LoaderComponent";
+
 const SingleProjectComponent = ({ isLoggedIn }) => {
     const { id } = useParams();
     const { loading, error, data, refetch } = useQuery(QUERY_SINGLE_PROJECT, {
@@ -16,7 +18,7 @@ const SingleProjectComponent = ({ isLoggedIn }) => {
 
     const projectDetail = data?.projectDetails || []
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <LoaderComponent />;
     if (error) return <p>Error</p>;
 
     return (

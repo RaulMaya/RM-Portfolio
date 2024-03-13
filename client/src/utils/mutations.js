@@ -67,3 +67,11 @@ mutation DislikeProject($userId: ID!, $projectId: ID!) {
   }
 }
 `
+
+export const CREATE_REPLY = gql`
+mutation Mutation($commentId: ID!, $userId: ID!, $reply: String!) {
+  createReply(commentId: $commentId, userId: $userId, reply: $reply) {
+    _id
+  }
+}
+`

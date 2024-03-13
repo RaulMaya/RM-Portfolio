@@ -49,7 +49,6 @@ const resolvers = {
                 .populate("education")
                 .populate("awards")
                 .populate("languages");
-            console.log(raulDocument)
             return raulDocument;
         },
         replies: async () => {
@@ -205,6 +204,10 @@ const resolvers = {
                     throw new Error("User not found");
                 }
 
+                if (!reply || reply.trim().length === 0) {
+                    throw new Error("Reply content is required");
+                }
+
                 // Create the new reply
                 const newReply = new Reply({
                     reply,
@@ -226,8 +229,8 @@ const resolvers = {
                 // Return the created reply
                 return newReply;
             } catch (error) {
-                console.error("Error creating comment:", error);
-                throw new Error("Failed to create comment");
+                console.error("Error creating reply:", error);
+                throw new Error("Failed to create reply");
             }
         },
         createAward: async (parent, args) => {
