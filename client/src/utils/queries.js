@@ -47,3 +47,17 @@ query Query($projectId: ID!) {
   }
 }
 `;
+
+export const QUERY_TESTIMONIALS = gql`
+query Testimonials {
+  testimonials {
+    _id
+    testimonial
+    user {
+      company
+      username
+      _id
+    }
+  }
+}
+`

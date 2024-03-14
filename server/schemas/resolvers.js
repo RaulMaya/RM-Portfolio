@@ -58,6 +58,7 @@ const resolvers = {
         },
         testimonials: async () => {
             return await Testimonial.find({})
+                .populate("user")
         },
         users: async () => {
             return await User.find({})

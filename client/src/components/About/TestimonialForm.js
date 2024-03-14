@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import LoginModal from "../LogInSignUp/LogInModal";
 import SignUpModal from "../LogInSignUp/SignUpModal";
 
-function TestimonialForm({ isLoggedIn }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    title: "",
-    comment: "",
-  });
+import { useMutation } from '@apollo/client';
+import { CREATE_TESTIMONIAL } from "../../utils/mutations"
+import Auth from "../../utils/auth"
+
+function TestimonialForm({ isLoggedIn, refetch }) {
+  const [testimonialText, setTestimonialText] = useState("")
+  const [createTestimonial, { error: createTestimonialError }] = useMutation(CREATE_TESTIMONIAL);
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
@@ -18,80 +19,45 @@ function TestimonialForm({ isLoggedIn }) {
   const openSignUpModal = () => setIsSignUpOpen(true);
   const closeSignUpModal = () => setIsSignUpOpen(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-    // Handle form submission logic here
-  };
+  const handleTestimonialSubmit = async (event) => {
+    event.preventDefault();
+    await createTestimonial({
+      variables: {
+        userId: Auth.getUser().data._id, // use the logged in user's id
+        testimonial: testimonialText,
+      },
+    });
+    setTestimonialText('');
+    refetch();
+  }
 
   return (
     <section className="pb-10">
 
       {isLoggedIn ? (
         <div className="p-4 max-w-xl mx-auto bg-white shadow-md rounded-lg my-12">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label
-                className="block text-sm font-medium text-gray-600"
-                htmlFor="name"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="mt-1 p-2 w-full border rounded-md"
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-sm font-medium text-gray-600"
-                htmlFor="title"
-              >
-                Title
-              </label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                className="mt-1 p-2 w-full border rounded-md"
-              />
-            </div>
+          <form onSubmit={handleTestimonialSubmit}>
 
             <div className="mb-4">
               <label
                 className="block text-sm font-medium text-gray-600"
                 htmlFor="comment"
               >
-                Comment
+                Enter your experience with Raul:
               </label>
               <textarea
                 id="comment"
                 name="comment"
-                value={formData.comment}
-                onChange={handleChange}
+                value={testimonialText}
+                onChange={(e) => setTestimonialText(e.target.value)}
                 rows="4"
-                className="mt-1 p-2 w-full border rounded-md"
+                className="mt-1 p-2 w-full border rounded-md focus:border-cyan-300 focus:ring focus:ring-cyan-400 focus:ring-opacity-50"
               ></textarea>
             </div>
 
             <button
               type="submit"
-              className="bg-cyan-400 hover:bg-blue-600 text-white p-2 rounded-md"
+              className="bg-cyan-400 hover:bg-cyan-600 text-white font-bold p-2 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-out hover:ease-in"
             >
               Submit
             </button>

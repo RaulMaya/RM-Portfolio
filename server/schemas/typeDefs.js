@@ -150,7 +150,7 @@ const typeDefs = gql`
 
   type Testimonial {
     _id: ID
-    users: User
+    user: User
     testimonial: String
   }
 

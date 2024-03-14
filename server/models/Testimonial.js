@@ -2,10 +2,15 @@ const { Schema, model } = require("mongoose");
 
 const testimonialSchema = new Schema(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
     testimonial: {
       type: String,
       required: true,
-      maxLength: 450,
+      maxLength: 500,
       minLength: 1,
     },
   },

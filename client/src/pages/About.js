@@ -18,8 +18,7 @@ const About = ({ isLoggedIn }) => {
       <h1 className="text-center text-8xl md:text-10xl">ABOUT ME</h1>
       <IntroductionComponent />
       <PersonalComponent />
-      <Testimonials />
-      <TestimonialForm isLoggedIn={isLoggedIn}/>
+      <Testimonials isLoggedIn={isLoggedIn} />
       <NavBarComponent />
     </>
   );

@@ -2,7 +2,7 @@ import { useState } from "react"
 import LoginModal from "../LogInSignUp/LogInModal"
 import SignUpModal from "../LogInSignUp/SignUpModal"
 
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { CREATE_COMMENT } from "../../utils/mutations"
 import Auth from "../../utils/auth"
 

@@ -82,5 +82,12 @@ mutation Mutation($userId: ID!, $replyId: ID!) {
     _id
   }
 }
+`
 
+export const CREATE_TESTIMONIAL = gql`
+mutation Mutation($userId: ID!, $testimonial: String!) {
+  createTestimonials(userId: $userId, testimonial: $testimonial) {
+    _id
+  }
+}
 `
