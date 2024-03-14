@@ -12,12 +12,12 @@ import LoaderComponent from "../LoaderComponent";
 const SingleProjectComponent = ({ isLoggedIn }) => {
     const { id } = useParams();
     const { loading, error, data, refetch } = useQuery(QUERY_SINGLE_PROJECT, {
-        variables: { projectId: id }
+        variables: { projectId: id },
     });
 
 
     const projectDetail = data?.projectDetails || []
-
+    
     if (loading) return <LoaderComponent />;
     if (error) return <p>Error</p>;
 

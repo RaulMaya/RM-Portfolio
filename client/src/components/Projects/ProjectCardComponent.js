@@ -12,34 +12,42 @@ const ProjectCardComponent = ({ title, image, id, views, likes, userLiked, refet
   const [likeProject, { error: likeProjectError }] = useMutation(LIKE_PROJECT);
   const [dislikeProject, { error: dislikeProjectError }] = useMutation(DISLIKE_PROJECT);
 
+  // Check if the user is authenticated
   const isAuthenticated = Auth.getUser() != null;
 
+  // Get the user data
+  const userData = isAuthenticated ? Auth.getUser().data : null;
+
+  // Then in your async functions:
   const handleLikeProject = async (projectId) => {
     try {
-      await likeProject({
-        variables: {
-          userId: isAuthenticated.data._id,
-          projectId,
-        },
-      });
+      if (userData) {
+        await likeProject({
+          variables: {
+            userId: userData._id, // Use userData._id here
+            projectId,
+          },
+        });
 
-      refetch();
+        refetch();
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
-
   const handleDislikeProject = async (projectId) => {
     try {
-      await dislikeProject({
-        variables: {
-          userId: isAuthenticated.data._id,
-          projectId,
-        },
-      });
+      if (userData) {
+        await dislikeProject({
+          variables: {
+            userId: userData._id, // Use userData._id here
+            projectId,
+          },
+        });
 
-      refetch();
+        refetch();
+      }
     } catch (error) {
       console.error(error);
     }

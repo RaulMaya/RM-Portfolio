@@ -102,13 +102,17 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                             <div className="text-gray-600 font-semibold">{since}</div>
                         </div>
                         <div className="pt-2 pb-4">{comment.comment}</div>
-
                         {isLoggedIn && (
                             <section className="flex justify-start gap-x-3">
-                                <FaReply className="cursor-pointer" onClick={() => toggleReplyModal(comment._id)} />
-                                <AiOutlineLike className="cursor-pointer" />
-                                <FaTrashAlt className="cursor-pointer" onClick={() => promptDeleteComment(comment._id)} />
-                                <CiEdit className="cursor-pointer" />
+                                <FaReply className="cursor-pointer hover:text-cyan-400 ease-in duration-200" onClick={() => toggleReplyModal(comment._id)} />
+                                <AiOutlineLike className="cursor-pointer hover:text-cyan-400 ease-in duration-200" />
+
+                                {comment.user._id === Auth.getUser().data._id && (
+                                    <>
+                                        <FaTrashAlt className="cursor-pointer hover:text-cyan-400 ease-in duration-200" onClick={() => promptDeleteComment(comment._id)} />
+                                        <CiEdit className="cursor-pointer hover:text-cyan-400 ease-in duration-200" />
+                                    </>
+                                )}
                             </section>
                         )}
 

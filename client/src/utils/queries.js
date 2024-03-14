@@ -26,6 +26,7 @@ query Query($projectId: ID!) {
     description
     comments {
       user {
+        _id
         username
       }
       _id
@@ -36,6 +37,7 @@ query Query($projectId: ID!) {
         reply
         createdAt
         user {
+          _id
           username
         }
       }

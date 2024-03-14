@@ -84,13 +84,12 @@ const ProjectReplies = ({ isLoggedIn, replies, refetch }) => {
                     </div>
                     <div className="pt-2 pb-4">{r.reply}</div>
 
-                    {isLoggedIn && (
+                    {isLoggedIn && r.user._id === Auth.getUser().data._id && (
                         <section className="flex justify-start gap-x-3">
-                            <FaTrashAlt className="cursor-pointer" onClick={() => promptDeleteReply(r._id)} />
-                            <CiEdit className="cursor-pointer" />
+                            <FaTrashAlt className="cursor-pointer hover:text-cyan-400 ease-in duration-200" onClick={() => promptDeleteReply(r._id)} />
+                            <CiEdit className="cursor-pointer hover:text-cyan-400 ease-in duration-200" />
                         </section>
-                    )
-                    }
+                    )}
 
                     {showReplyConfirmation && (
                         <DeleteConfirmationModal confirmDeleteComment={confirmDeleteReply} cancelDelete={cancelDelete} />
