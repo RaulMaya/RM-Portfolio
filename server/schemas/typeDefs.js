@@ -262,6 +262,8 @@ const typeDefs = gql`
     deleteComment(userId: ID!, commentId: ID!): Comments
 
     deleteReply(userId: ID!, replyId: ID!): Reply
+
+    deleteTestimonial(userId: ID!, testimonialId: ID!): Testimonial
   }
 `;
 

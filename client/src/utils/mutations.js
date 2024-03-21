@@ -91,3 +91,11 @@ mutation Mutation($userId: ID!, $testimonial: String!) {
   }
 }
 `
+export const DELETE_TESTIMONIAL = gql`
+mutation Mutation($userId: ID!, $testimonialId: ID!) {
+  deleteTestimonial(userId: $userId, testimonialId: $testimonialId) {
+    _id
+    testimonial
+  }
+}
+`

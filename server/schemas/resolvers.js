@@ -561,6 +561,21 @@ const resolvers = {
 
             // Once all replies are deleted, delete the comment itself
             await Reply.deleteOne({ _id: replyId });
+        },
+        deleteTestimonial: async (parent, { userId, testimonialId }) => {
+            // Find the testimonial by ID
+            const myTestimonial = await Testimonial.findById(testimonialId);
+            if (!myTestimonial) {
+                throw new Error('Testimonial not found');
+            }
+
+            // Check if the userId matches the testimonial's owner
+            if (myTestimonial.user.toString() !== userId.toString()) {
+                throw new Error('User is not the owner of the comment');
+            }
+
+            // Delete the testimonials
+            await Testimonial.deleteOne({ _id: testimonialId });
         }
     },
 };
