@@ -32,6 +32,12 @@ query Query($projectId: ID!) {
       _id
       comment
       netLikes
+      likes {
+        _id
+      }
+      dislikes {
+        _id
+      }
       replies {
         _id
         reply

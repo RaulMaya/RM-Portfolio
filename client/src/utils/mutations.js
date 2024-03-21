@@ -99,3 +99,34 @@ mutation Mutation($userId: ID!, $testimonialId: ID!) {
   }
 }
 `
+
+export const DISLIKE_COMMENT = gql`
+mutation DislikeComment($userId: ID!, $commentId: ID!) {
+  dislikeComment(userId: $userId, commentId: $commentId) {
+    _id
+  }
+}
+`
+
+export const LIKE_COMMENT = gql`
+mutation LikeComment($userId: ID!, $commentId: ID!) {
+  likeComment(userId: $userId, commentId: $commentId) {
+    _id
+  }
+}
+`
+
+export const QUIT_LIKE_COMMENT = gql`
+mutation QuitLikeComment($userId: ID!, $commentId: ID!) {
+  quitLikeComment(userId: $userId, commentId: $commentId) {
+    _id
+  }
+}
+`
+export const QUIT_DISLIKE_COMMENT = gql`
+mutation QuitdisLikeComment($userId: ID!, $commentId: ID!) {
+  quitdisLikeComment(userId: $userId, commentId: $commentId) {
+    _id
+  }
+}
+`
