@@ -402,7 +402,7 @@ const resolvers = {
                 // Find the user and comment
                 const authUser = await User.findById(userId);
                 const comment = await Comment.findById(commentId);
-
+        
                 if (!authUser || !comment) {
                     throw new Error("User or comment not found");
                 }
@@ -416,14 +416,14 @@ const resolvers = {
                 comment.likes.push(authUser);
                 await comment.save();
 
-                // Add the project to the user's likedProjects array
+                // Add the comment to the user's likedProjects array
                 authUser.likedComments.push(comment);
                 await authUser.save();
 
                 // Return the updated project
                 return comment;
             } catch (error) {
-
+                console.log(error)
                 throw new Error("Error liking project");
             }
         },

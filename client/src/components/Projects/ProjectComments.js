@@ -3,10 +3,10 @@ import { useState } from "react"
 import ProjectReplies from "./ProjectReplies";
 import ReplyModal from "./Modals/ReplyModalForm";
 import { FaReply } from "react-icons/fa";
-import { FaTrashAlt, FaRegThumbsDown, FaRegThumbsUp } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 
-import { DELETE_COMMENT, LIKE_COMMENT, DISLIKE_COMMENT, QUIT_DISLIKE_COMMENT, QUIT_LIKE_COMMENT } from "../../utils/mutations";
+import { DELETE_COMMENT } from "../../utils/mutations";
 import { useMutation } from '@apollo/client';
 import Auth from "../../utils/auth";
 
@@ -23,87 +23,11 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
     const [commentToDelete, setCommentToDelete] = useState(null);
 
-    const [likeComment, { error: likeCommentError }] = useMutation(LIKE_COMMENT);
-    const [quitLikeComment, { error: quitLikeCommentError }] = useMutation(QUIT_LIKE_COMMENT);
-
-    const [dislikeComment, { error: dislikeCommentError }] = useMutation(DISLIKE_COMMENT);
-    const [quitDislikeComment, { error: quitDislikeCommentError }] = useMutation(QUIT_DISLIKE_COMMENT);
-
     // Check if the user is authenticated
     const isAuthenticated = Auth.getUser() != null;
 
     // Get the user data
     const userData = isAuthenticated ? Auth.getUser().data : null;
-
-    // Then in your async functions:
-    const handleLikeComment = async (commentId) => {
-        try {
-            if (userData) {
-                await likeComment({
-                    variables: {
-                        userId: userData._id, // Use userData._id here
-                        commentId,
-                    },
-                });
-
-                refetch();
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    const handleQuitLikeComment = async (commentId) => {
-        try {
-            if (userData) {
-                await quitLikeComment({
-                    variables: {
-                        userId: userData._id, // Use userData._id here
-                        commentId,
-                    },
-                });
-
-                refetch();
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    // Then in your async functions:
-    const handleDislikeComment = async (commentId) => {
-        try {
-            if (userData) {
-                await dislikeComment({
-                    variables: {
-                        userId: userData._id, // Use userData._id here
-                        commentId,
-                    },
-                });
-
-                refetch();
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    const handleQuitDislikeComment = async (commentId) => {
-        try {
-            if (userData) {
-                await quitDislikeComment({
-                    variables: {
-                        userId: userData._id, // Use userData._id here
-                        commentId,
-                    },
-                });
-
-                refetch();
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     const toggleReplyModal = (commentId) => {
         setReplyModalStates(prev => ({ ...prev, [commentId]: !prev[commentId] }));
@@ -159,6 +83,8 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
     const projComments = commentDetail.map(comment => {
         const commentDate = new Date(Number(comment.createdAt))
 
+        console.log("NetLikes",comment.netLikes)
+        const netLikes = comment.netLikes
         const diff = currentDate - commentDate;
         const minutes = Math.floor(diff / (1000 * 60));
         const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -199,7 +125,10 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                                 <CommentActions
                                     likedUsers={comment.likes.map(user => user._id)}
                                     dislikedUsers={comment.dislikes.map(user => user._id)}
-                                    netlikes={comment.netLikes}
+                                    netLikes={netLikes}
+                                    refetch={refetch}
+                                    comID={comment._id}
+                                    userId={userData._id}
                                 />
                             </section>
                         )}
