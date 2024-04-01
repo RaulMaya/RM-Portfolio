@@ -1,5 +1,5 @@
 const { Award, Comment, Education, Experience,
-    Language, Projects, Raul, Reply, Testimonial, User } = require("../models");
+    Language, Projects, Raul, Reply, Testimonial, User, JobProject } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
@@ -59,6 +59,9 @@ const resolvers = {
         testimonials: async () => {
             return await Testimonial.find({})
                 .populate("user")
+        },
+        jobproject: async () => {
+            return await JobProject.find({})
         },
         users: async () => {
             return await User.find({})
@@ -150,6 +153,14 @@ const resolvers = {
                 return projectsCreated;
             } catch (error) {
                 throw new Error(`Failed to create project: ${error.message}`);
+            }
+        },
+        createJobProjects: async (parent, args) => {
+            try {
+                const jobProjectsCreated = await JobProject.create(args);
+                return jobProjectsCreated;
+            } catch (error) {
+                throw new Error(`Failed to create JOB project: ${error.message}`);
             }
         },
         createComment: async (parent, { projectId, userId, comment }) => {
@@ -402,7 +413,7 @@ const resolvers = {
                 // Find the user and comment
                 const authUser = await User.findById(userId);
                 const comment = await Comment.findById(commentId);
-        
+
                 if (!authUser || !comment) {
                     throw new Error("User or comment not found");
                 }

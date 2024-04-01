@@ -1,11 +1,7 @@
 import React from "react";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
-
 import TrackModal from "./TracksModal";
 
-const TrackComponent = ({ title, data, action, isOpen, onClose }) => {
+const TrackComponent = ({ icon, title, data, action, isOpen, onClose }) => {
 
   const dataContent = data.map(d => {
     return (
@@ -28,8 +24,8 @@ const TrackComponent = ({ title, data, action, isOpen, onClose }) => {
   return (
     <>
       <article className="border-2 border-black shadow-xl rounded-lg px-5 pt-5 mb-12 w-80">
-        <p className="mb-7 font-semibold tracking-widest text-xl">
-          <FontAwesomeIcon className="me-3" icon={faBriefcase} />
+        <p className="flex gap-x-4 items-center mb-7 font-semibold tracking-widest text-xl">
+          {icon}
           {title}
         </p>
         {dataContent}

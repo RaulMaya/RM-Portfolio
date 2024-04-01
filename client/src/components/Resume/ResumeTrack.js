@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import Awards from "./Awards";
 import TrackComponent from "./TrackComponent";
-import Education from "./Education";
-import Languages from "./Languages";
 
 import FordLogo from "./fordLogo.jpg";
 import wmwAltamira from "./wmwLogo.png";
 import SamsungLogo from "./samsungLogo.png";
+
+import { FaArrowTrendUp, FaAward } from "react-icons/fa6";
+import { IoSchoolSharp } from "react-icons/io5";
+import { FaLanguage } from "react-icons/fa";
 
 
 
@@ -44,14 +45,14 @@ const ResumeTrack = () => {
   const closeTrackModal = () => setOpenModal(false);
 
   return (
-      <div className="container m-auto">
-        <section className="flex flex-wrap gap-x-3 justify-evenly">
-          <TrackComponent title={"Experience"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal}/>
-          <TrackComponent title={"Education"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal}/>
-          <TrackComponent title={"Awards"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal}/>
-          <TrackComponent title={"Languages"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal}/>
-        </section>
-      </div>
+    <div className="container m-auto">
+      <section className="flex flex-wrap gap-x-3 justify-evenly">
+        <TrackComponent icon={<FaArrowTrendUp />} title={"Experience"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
+        <TrackComponent icon={<IoSchoolSharp />} title={"Education"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
+        <TrackComponent icon={<FaAward />} title={"Awards"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
+        <TrackComponent icon={<FaLanguage />} title={"Languages"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
+      </section>
+    </div>
   );
 };
 

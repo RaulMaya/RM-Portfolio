@@ -105,6 +105,15 @@ const typeDefs = gql`
     expertise: String
   }
 
+  type JobProject {
+    _id: ID
+    name: String
+    company: String
+    tags: String
+    description: String
+    portrait: String
+  }
+
   enum ProjectStatus {
     NotStarted
     InProgress
@@ -235,6 +244,14 @@ const typeDefs = gql`
       flag: String
       expertise: String
       ): Language
+
+    createJobProject(
+      name: String
+      company: String
+      tags: String
+      description: String
+      portrait: String
+      ): JobProject
 
     createTestimonials(
       userId: ID!

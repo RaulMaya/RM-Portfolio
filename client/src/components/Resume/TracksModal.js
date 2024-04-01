@@ -23,7 +23,7 @@ const TrackModal = ({ data, isOpen, onClose }) => {
 
     const modalContent = data.map(d => {
         return (
-            <article className="px-5 pt-5 mb-12">
+            <article key={d.id} className="px-5 pt-5 mb-12">
                 <p className="flex items-center mb-7 font-semibold tracking-widest text-sm">
                     <FaBriefcase className="me-3" />
                     {d.title}

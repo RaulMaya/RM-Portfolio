@@ -8,5 +8,6 @@ const Raul = require("./Raul");
 const Reply = require("./Reply");
 const Testimonial = require("./Testimonial");
 const User = require("./User");
+const JobProject = require("./JobProjects")
 
-module.exports = { Award, Comment, Education, Experience, Language, Projects, Raul, Reply, Testimonial, User };
+module.exports = { Award, Comment, Education, Experience, Language, Projects, Raul, Reply, Testimonial, User, JobProject };
