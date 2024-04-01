@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const jobprojectSchema = new Schema(
+const jobProjectSchema = new Schema(
     {
         name: {
             type: String,
@@ -20,7 +20,7 @@ const jobprojectSchema = new Schema(
         description: {
             type: String,
             required: true,
-            maxLength: 500,
+            maxLength: 280,
             minLength: 1,
         },
         portrait: {
@@ -35,6 +35,6 @@ const jobprojectSchema = new Schema(
     }
 );
 
-const Jobprojects = model("Jobproject", jobprojectSchema);
+const JobProjects = model("JobProject", jobProjectSchema);
 
-module.exports = Jobprojects;
+module.exports = JobProjects;

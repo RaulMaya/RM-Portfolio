@@ -105,15 +105,15 @@ const typeDefs = gql`
     expertise: String
   }
 
-  type JobProject {
+  type Jobprojects {
     _id: ID
     name: String
     company: String
-    tags: String
+    tags: [String]
     description: String
     portrait: String
   }
-
+  
   enum ProjectStatus {
     NotStarted
     InProgress
@@ -174,6 +174,7 @@ const typeDefs = gql`
     replies: [Reply]
     testimonials: [Testimonial]
     users: [User]
+    jobprojects: [Jobprojects]
   }
 
   type Query {
@@ -245,13 +246,13 @@ const typeDefs = gql`
       expertise: String
       ): Language
 
-    createJobProject(
+    createJobprojects(
       name: String
       company: String
       tags: String
       description: String
       portrait: String
-      ): JobProject
+      ): Jobprojects
 
     createTestimonials(
       userId: ID!

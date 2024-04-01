@@ -1,5 +1,5 @@
 const { Award, Comment, Education, Experience,
-    Language, Projects, Raul, Reply, Testimonial, User, JobProject } = require("../models");
+    Language, Projects, Raul, Reply, Testimonial, User, Jobprojects } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
@@ -60,8 +60,8 @@ const resolvers = {
             return await Testimonial.find({})
                 .populate("user")
         },
-        jobproject: async () => {
-            return await JobProject.find({})
+        jobprojects: async () => {
+            return await Jobprojects.find({});
         },
         users: async () => {
             return await User.find({})
@@ -155,9 +155,9 @@ const resolvers = {
                 throw new Error(`Failed to create project: ${error.message}`);
             }
         },
-        createJobProjects: async (parent, args) => {
+        createJobprojects: async (parent, args) => {
             try {
-                const jobProjectsCreated = await JobProject.create(args);
+                const jobProjectsCreated = await Jobprojects.create(args);
                 return jobProjectsCreated;
             } catch (error) {
                 throw new Error(`Failed to create JOB project: ${error.message}`);
