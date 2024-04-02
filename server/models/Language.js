@@ -2,18 +2,34 @@ const { Schema, model } = require("mongoose");
 
 const languageSchema = new Schema(
     {
-        language: {
+        school: {
             type: String,
             required: true,
             maxLength: 50,
             minLength: 1,
         },
-        flag: {
+        course: {
+            type: String,
+            required: true,
+            maxLength: 50,
+            minLength: 1,
+        },
+        startDate: {
+            type: Date,
+            required: true  // The start date is required
+        },
+        endDate: {
+            type: Date,
+            required: false  // The end date is not required, so it can be null or undefined
+        },
+        status: {
             type: String,
         },
-        expertise: {
+        schoolLogo: {
             type: String,
-            required: true  // The start date is required
+        },
+        url: {
+            type: String,
         }
     },
     {
@@ -23,6 +39,7 @@ const languageSchema = new Schema(
         id: false,
     }
 );
+
 
 const Language = model("Language", languageSchema);
 module.exports = Language;

@@ -3,6 +3,7 @@ import { FaBriefcase } from "react-icons/fa6";
 
 const TrackModal = ({ data, isOpen, onClose }) => {
     const contentRef = useRef();
+    console.log("Hello")
 
     useEffect(() => {
         const clickOutside = (e) => {
@@ -23,22 +24,22 @@ const TrackModal = ({ data, isOpen, onClose }) => {
 
     const modalContent = data.map(d => {
         return (
-            <article key={d.id} className="px-5 pt-5 mb-12">
+            <article key={d._id} className="px-5 pt-5 mb-12">
                 <p className="flex items-center mb-7 font-semibold tracking-widest text-sm">
                     <FaBriefcase className="me-3" />
-                    {d.title}
+                    {d.course}
                 </p>
-                <div key={d.id} className="flex mb-3">
+                <div className="flex mb-3">
                     <img
                         className="object-cover w-14 h-14 me-5"
-                        src={d.image}
+                        src={d.schoolLogo}
                         alt="Ford Motor Company Logo"
                     />
                     <div>
-                        <p className="font-semibold tracking-widest">{d.title}</p>
+                        <p className="font-semibold tracking-widest">{d.school}</p>
                         <ul>
-                            <li className="text-gray-500 text-sm">{d.subtitle}</li>
-                            <li className="text-gray-500 text-sm">{d.content}</li>
+                            <li className="text-gray-500 text-sm">{d.status}</li>
+                            <li className="text-gray-500 text-sm">{d.status}</li>
                         </ul>
                     </div>
                 </div>

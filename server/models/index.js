@@ -6,7 +6,6 @@ const Education = require("./Education");
 const Experience = require("./Experience");
 const Language = require("./Language");
 const Projects = require("./Projects");
-const Raul = require("./Raul");
 const Reply = require("./Reply");
 const Testimonial = require("./Testimonial");
 const User = require("./User");
@@ -19,7 +18,6 @@ module.exports = {
     Experience,
     Language,
     Projects,
-    Raul,
     Reply,
     Testimonial,
     User,

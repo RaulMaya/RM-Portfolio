@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import TrackComponent from "./TrackComponent";
 
 import FordLogo from "./fordLogo.jpg";
@@ -9,36 +9,45 @@ import { FaArrowTrendUp, FaAward } from "react-icons/fa6";
 import { IoSchoolSharp } from "react-icons/io5";
 import { FaLanguage } from "react-icons/fa";
 
+import { useQuery } from "@apollo/client";
+import { QUERY_EDUCATION, QUERY_EXPERIENCES, QUERY_AWARDS, QUERY_LANGUAGES } from "../../utils/queries";
 
-
-const experiences = [
-  {
-    id: 1,
-    task: 'Task One',
-    image: FordLogo, // Replace with actual image URL
-    title: 'Title of Task One',
-    subtitle: 'Subtitle of Task One',
-    content: 'Main Place'
-  },
-  {
-    id: 2,
-    task: 'Task Two',
-    image: wmwAltamira, // Replace with actual image URL
-    title: 'Title of Task Two',
-    subtitle: 'Subtitle of Task Two',
-    content: 'Main Place'
-  },
-  {
-    id: 3,
-    task: 'Task Three',
-    image: SamsungLogo, // Replace with actual image URL
-    title: 'Title of Task Three',
-    subtitle: 'Subtitle of Task Three',
-    content: 'Main Place'
-  }
-];
 
 const ResumeTrack = () => {
+  const {
+    loading: educationLoading,
+    error: educationError,
+    data: educationData,
+    refetch: refetchEducation
+  } = useQuery(QUERY_EDUCATION);
+
+  const {
+    loading: experiencesLoading,
+    error: experiencesError,
+    data: experiencesData,
+    refetch: refetchExperiences
+  } = useQuery(QUERY_EXPERIENCES);
+
+  const {
+    loading: awardLoading,
+    error: awardError,
+    data: awardData,
+    refetch: refetchAward
+  } = useQuery(QUERY_AWARDS);
+
+  const {
+    loading: languageLoading,
+    error: languageError,
+    data: languageData,
+    refetch: refetchLanguage
+  } = useQuery(QUERY_LANGUAGES);
+
+  const experiences = useMemo(() => experiencesData?.experiences || [], [experiencesData?.experiences]);
+  const education = useMemo(() => educationData?.educations || [], [educationData?.educations]);
+  const awards = useMemo(() => awardData?.awards || [], [awardData?.awards]);
+  const language = useMemo(() => languageData?.languages || [], [languageData?.languages]);
+
+
   const [openModal, setOpenModal] = useState(false)
 
   const openTrackModal = () => setOpenModal(true);
@@ -48,9 +57,9 @@ const ResumeTrack = () => {
     <div className="container m-auto">
       <section className="flex flex-wrap gap-x-3 justify-evenly">
         <TrackComponent icon={<FaArrowTrendUp />} title={"Experience"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
-        <TrackComponent icon={<IoSchoolSharp />} title={"Education"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
-        <TrackComponent icon={<FaAward />} title={"Awards"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
-        <TrackComponent icon={<FaLanguage />} title={"Languages"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
+        <TrackComponent icon={<IoSchoolSharp />} title={"Education"} data={education} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
+        <TrackComponent icon={<FaAward />} title={"Awards"} data={awards} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
+        <TrackComponent icon={<FaLanguage />} title={"Languages"} data={language} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
       </section>
     </div>
   );

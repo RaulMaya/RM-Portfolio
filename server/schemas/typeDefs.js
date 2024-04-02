@@ -23,31 +23,15 @@ const typeDefs = gql`
     company: String!
   }
 
-  type Raul {
-    _id: ID
-    name: String
-    midName: String
-    lastName: String
-    phoneNumber: String
-    email: String
-    location: String
-    socialMedias: socialApps
-    description: String
-    experience: [Experience]
-    education: [Education]
-    awards: [Award]
-    languages: [Language]
-  }
-
   type Award {
     _id: ID
-    teacher: String
+    school: String
     course: String
     startDate: String
     endDate: String
-    teacherLogo: String
+    status: String
+    schoolLogo: String
     url: String
-    awardImage: String
   }
 
   type Auth {
@@ -68,10 +52,6 @@ const typeDefs = gql`
     createdAt: String
   }
 
-  enum EducationStatus {
-    Graduated
-    CurrentlyEnrolled
-  }
 
   type Education {
     _id: ID
@@ -79,30 +59,31 @@ const typeDefs = gql`
     course: String
     startDate: String
     endDate: String
-    status: EducationStatus!
+    status: String
     schoolLogo: String
-  }
-
-  enum ExperienceStatus {
-    PastEmployment
-    CurrentJob
+    url: String
   }
 
   type Experience {
     _id: ID
-    company: String
-    position: String
+    school: String
+    course: String
     startDate: String
     endDate: String
-    status: ExperienceStatus!
-    companyLogo: String
+    status: String
+    schoolLogo: String
+    url: String
   }
 
   type Language {
     _id: ID
-    language: String
-    flag: String
-    expertise: String
+    school: String
+    course: String
+    startDate: String
+    endDate: String
+    status: String
+    schoolLogo: String
+    url: String
   }
 
   type Jobprojects {
@@ -114,12 +95,6 @@ const typeDefs = gql`
     portrait: String
   }
   
-  enum ProjectStatus {
-    NotStarted
-    InProgress
-    Completed
-  }
-
   type Projects {
     _id: ID
     name: String
@@ -133,7 +108,6 @@ const typeDefs = gql`
     viewsCount: Int
     startDate: String
     endDate: String
-    status: ProjectStatus
     deployment: String
   }
 
@@ -170,7 +144,6 @@ const typeDefs = gql`
     languages: [Language]
     comments: [Comments]
     projects: [Projects]
-    raul: Raul
     replies: [Reply]
     testimonials: [Testimonial]
     users: [User]
@@ -182,17 +155,6 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createRaul(    
-      name: String
-      midName: String
-      lastName: String
-      phoneNumber: String
-      email: String
-      location: String
-      socialMedias: socialAppsInput
-      description: String
-      ): Raul
-
     createUser(
       username: String!
       email: String!
@@ -212,13 +174,13 @@ const typeDefs = gql`
       ): Projects
 
     createAward(
-      teacher: String
+      school: String
       course: String
       startDate: String
       endDate: String
-      teacherLogo: String
+      status: String
+      schoolLogo: String
       url: String
-      awardImage: String
       ): Award
 
 
@@ -227,23 +189,29 @@ const typeDefs = gql`
       course: String
       startDate: String
       endDate: String
-      status: EducationStatus!
+      status: String
       schoolLogo: String
+      url: String
       ): Education
 
     createExperience(
-      company: String
-      position: String
+      school: String
+      course: String
       startDate: String
       endDate: String
-      status: ExperienceStatus!
-      companyLogo: String
+      status: String
+      schoolLogo: String
+      url: String
       ): Experience
 
     createLanguage(
-      language: String
-      flag: String
-      expertise: String
+      school: String
+      course: String
+      startDate: String
+      endDate: String
+      status: String
+      schoolLogo: String
+      url: String
       ): Language
 
     createJobprojects(

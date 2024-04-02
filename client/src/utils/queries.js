@@ -80,3 +80,62 @@ query Query {
   }
 }
 `
+
+export const QUERY_EDUCATION = gql`
+query Query {
+  educations {
+    _id
+    course
+    endDate
+    school
+    schoolLogo
+    startDate
+    status
+  }
+}
+`
+
+export const QUERY_EXPERIENCES = gql`
+query Query {
+  experiences {
+    _id
+    course
+    endDate
+    school
+    schoolLogo
+    startDate
+    status
+    url
+  }
+}
+`
+
+export const QUERY_AWARDS = gql`
+query Query {
+  awards {
+    _id
+    course
+    endDate
+    school
+    schoolLogo
+    startDate
+    status
+    url
+  }
+}
+`
+
+export const QUERY_LANGUAGES = gql`
+query Query {
+  languages {
+    _id
+    course
+    endDate
+    school
+    schoolLogo
+    startDate
+    status
+    url
+  }
+}
+`

@@ -2,13 +2,13 @@ const { Schema, model } = require("mongoose");
 
 const experienceSchema = new Schema(
     {
-        company: {
+        school: {
             type: String,
             required: true,
             maxLength: 50,
             minLength: 1,
         },
-        position: {
+        course: {
             type: String,
             required: true,
             maxLength: 50,
@@ -24,10 +24,11 @@ const experienceSchema = new Schema(
         },
         status: {
             type: String,
-            enum: ['PastEmployment', 'CurrentJob'],
-            default: 'PastEmployment'
         },
-        companyLogo: {
+        schoolLogo: {
+            type: String,
+        },
+        url: {
             type: String,
         }
     },
@@ -38,6 +39,7 @@ const experienceSchema = new Schema(
         id: false,
     }
 );
+
 
 const Experience = model("Experience", experienceSchema);
 module.exports = Experience;

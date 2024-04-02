@@ -24,10 +24,11 @@ const educationSchema = new Schema(
         },
         status: {
             type: String,
-            enum: ['Graduated', 'Currently Enrolled'],
-            default: 'Graduated'
         },
         schoolLogo: {
+            type: String,
+        },
+        url: {
             type: String,
         }
     },
@@ -38,6 +39,5 @@ const educationSchema = new Schema(
         id: false,
     }
 );
-
 const Education = model("Education", educationSchema);
 module.exports = Education;

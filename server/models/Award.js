@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const awardSchema = new Schema(
     {
-        teacher: {
+        school: {
             type: String,
             required: true,
             maxLength: 50,
@@ -22,13 +22,13 @@ const awardSchema = new Schema(
             type: Date,
             required: false  // The end date is not required, so it can be null or undefined
         },
-        teacherLogo: {
+        status: {
+            type: String,
+        },
+        schoolLogo: {
             type: String,
         },
         url: {
-            type: String,
-        },
-        awardImage: {
             type: String,
         }
     },

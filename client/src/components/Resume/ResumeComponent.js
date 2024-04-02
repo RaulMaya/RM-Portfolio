@@ -23,7 +23,6 @@ const ResumeComponent = () => {
   const { loading, error, data, refetch } = useQuery(QUERY_JOB_PROJECTS);
 
   const my_projects = useMemo(() => data?.jobprojects || [], [data?.jobprojects]);
-  console.log(my_projects)
 
   const jobProjects = my_projects.map(p => {
     return (<WorkProjectsComponent

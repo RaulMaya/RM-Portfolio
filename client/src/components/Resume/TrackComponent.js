@@ -5,17 +5,17 @@ const TrackComponent = ({ icon, title, data, action, isOpen, onClose }) => {
 
   const dataContent = data.map(d => {
     return (
-      <div key={d.id} className="flex mb-3">
+      <div key={d._id} className="flex mb-3">
         <img
           className="object-cover w-14 h-14 me-5"
-          src={d.image}
+          src={d.schoolLogo}
           alt="Ford Motor Company Logo"
         />
         <div>
-          <p className="font-semibold tracking-widest">{d.title}</p>
+          <p className="font-semibold tracking-widest">{d.course}</p>
           <ul>
-            <li className="text-gray-500 text-sm">{d.subtitle}</li>
-            <li className="text-gray-500 text-sm">{d.content}</li>
+            <li className="text-gray-500 text-sm">{d.school}</li>
+            <li className="text-gray-500 text-sm">{d.status}</li>
           </ul>
         </div>
       </div>

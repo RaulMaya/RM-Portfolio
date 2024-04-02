@@ -1,5 +1,5 @@
 const { Award, Comment, Education, Experience,
-    Language, Projects, Raul, Reply, Testimonial, User, Jobprojects } = require("../models");
+    Language, Projects, Reply, Testimonial, User, Jobprojects } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
@@ -42,14 +42,6 @@ const resolvers = {
                 .populate("likes")
                 .populate("dislikes")
                 .populate("user")
-        },
-        raul: async () => {
-            const raulDocument = await Raul.findOne({ name: "Raul" })
-                .populate("experience")
-                .populate("education")
-                .populate("awards")
-                .populate("languages");
-            return raulDocument;
         },
         replies: async () => {
             return await Reply.find({})
@@ -130,15 +122,6 @@ const resolvers = {
             } catch (error) {
                 console.error("Error logging in:", error);
                 throw new Error("Failed to log in");
-            }
-        },
-        // Create
-        createRaul: async (parent, args) => {
-            try {
-                const raulCreated = await Raul.create(args);
-                return { raul: raulCreated };
-            } catch (error) {
-                throw new Error(`Failed to create Raul: ${error.message}`);
             }
         },
         createUser: async (parent, args) => {
@@ -248,14 +231,6 @@ const resolvers = {
         createAward: async (parent, args) => {
             try {
                 const awardCreated = await Award.create(args);
-
-                const raul = await Raul.findOne({ name: "Raul" });
-                if (!raul) {
-                    throw new Error("Raul not found");
-                }
-                raul.awards.push(awardCreated._id);
-                await raul.save();
-
                 return awardCreated;
             } catch (error) {
                 throw new Error(`Failed to create and link award: ${error.message}`);
@@ -265,16 +240,6 @@ const resolvers = {
             try {
                 const eduactionCreated = await Education.create(args);
 
-                const raul = await Raul.findOne({ name: "Raul" });
-                if (!raul) {
-                    throw new Error("Raul not found");
-                }
-                console.log(eduactionCreated._id)
-                raul.education.push(eduactionCreated._id);
-                console.log('Raul found:', raul);
-
-                await raul.save();
-
                 return eduactionCreated;
             } catch (error) {
                 throw new Error(`Failed to create and link education: ${error.message}`);
@@ -283,18 +248,6 @@ const resolvers = {
         createExperience: async (parent, args) => {
             try {
                 const experienceCreated = await Experience.create(args);
-                console.log(experienceCreated);
-
-                const raul = await Raul.findOne({ name: "Raul" });
-                console.log(raul);
-
-                if (!raul) {
-                    throw new Error("Raul not found");
-                }
-
-                raul.experience.push(experienceCreated._id);
-                await raul.save();
-
                 return experienceCreated; // Return the experience directly
             } catch (error) {
                 throw new Error(`Failed to create and link experience: ${error.message}`);
@@ -303,14 +256,6 @@ const resolvers = {
         createLanguage: async (parent, args) => {
             try {
                 const languageCreated = await Language.create(args);
-
-                const raul = await Raul.findOne({ name: "Raul" });
-                if (!raul) {
-                    throw new Error("Raul not found");
-                }
-                raul.languages.push(languageCreated._id);
-                await raul.save();
-
                 return languageCreated;
             } catch (error) {
                 throw new Error(`Failed to create and link language: ${error.message}`);
