@@ -67,3 +67,16 @@ query Testimonials {
   }
 }
 `
+
+export const QUERY_JOB_PROJECTS = gql`
+query Query {
+  jobprojects {
+    _id
+    company
+    description
+    name
+    portrait
+    tags
+  }
+}
+`
