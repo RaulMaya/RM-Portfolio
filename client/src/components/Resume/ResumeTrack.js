@@ -48,18 +48,23 @@ const ResumeTrack = () => {
   const language = useMemo(() => languageData?.languages || [], [languageData?.languages]);
 
 
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(null);
 
-  const openTrackModal = () => setOpenModal(true);
-  const closeTrackModal = () => setOpenModal(false);
+  const openTrackModal = (identifier) => {
+    setOpenModal(identifier);
+  };
+
+  const closeTrackModal = () => {
+    setOpenModal(null);
+  };
 
   return (
     <div className="container m-auto">
       <section className="flex flex-wrap gap-x-3 justify-evenly">
-        <TrackComponent icon={<FaArrowTrendUp />} title={"Experience"} data={experiences} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
-        <TrackComponent icon={<IoSchoolSharp />} title={"Education"} data={education} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
-        <TrackComponent icon={<FaAward />} title={"Awards"} data={awards} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
-        <TrackComponent icon={<FaLanguage />} title={"Languages"} data={language} action={openTrackModal} isOpen={openModal} onClose={closeTrackModal} />
+        <TrackComponent icon={<FaArrowTrendUp />} title={"Experience"} data={experiences} action={() => openTrackModal("Experience")} isOpen={openModal === "Experience"} onClose={closeTrackModal} />
+        <TrackComponent icon={<IoSchoolSharp />} title={"Education"} data={education} action={() => openTrackModal("Education")} isOpen={openModal === "Education"} onClose={closeTrackModal} />
+        <TrackComponent icon={<FaAward />} title={"Awards"} data={awards} action={() => openTrackModal("Awards")} isOpen={openModal === "Awards"} onClose={closeTrackModal} />
+        <TrackComponent icon={<FaLanguage />} title={"Languages"} data={language} action={() => openTrackModal("Languages")} isOpen={openModal === "Languages"} onClose={closeTrackModal} />
       </section>
     </div>
   );
