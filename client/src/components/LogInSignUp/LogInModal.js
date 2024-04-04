@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 import { useMutation } from '@apollo/client';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import { LOGIN } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -19,6 +22,7 @@ const LoginModal = ({ openSign, isOpen, onClose }) => {
     };
 
     const [login, { loading, error, data }] = useMutation(LOGIN);
+    console.log(loading, error, data)
 
     useEffect(() => {
         const clickOutside = (e) => {
@@ -60,6 +64,7 @@ const LoginModal = ({ openSign, isOpen, onClose }) => {
             Auth.login(data.login.token);
         } catch (error) {
             console.error('Error in Log In:', error);
+            toast.error("The email/password you entered is incorrect.");
             // clear form values
             setFormData({
                 email: '',

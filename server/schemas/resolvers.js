@@ -125,10 +125,20 @@ const resolvers = {
             }
         },
         createUser: async (parent, args) => {
-            const userCreated = await User.create(args);
-            const token = signToken(userCreated);
-
-            return { token, user: userCreated };
+            try {
+                const userCreated = await User.create(args);
+                const token = signToken(userCreated);
+                return { token, user: userCreated };
+            } catch (error) {
+                // Check if the error is a duplicate key error
+                if (error.name === 'MongoError' && error.code === 11000) {
+                    // Here, you can also check error.message or error.keyValue to customize the error message
+                    throw new Error('A user with the given username or email already exists.');
+                } else {
+                    // Generic error handling
+                    throw new Error('Failed to create user.');
+                }
+            }
         },
         createProjects: async (parent, args) => {
             try {

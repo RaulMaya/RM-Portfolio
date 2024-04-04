@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   ApolloClient,
@@ -64,6 +66,7 @@ const App = () => {
   console.log(isAuthenticated)
   return (
     <ApolloProvider client={client}>
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <Router>
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isAuthenticated} />} />

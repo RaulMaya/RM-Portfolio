@@ -4,6 +4,9 @@ import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../utils/mutations';
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const SignUpModal = ({ openLog, isOpen, onClose }) => {
 
@@ -19,6 +22,8 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
     const [showCreatePassword, setShowCreatePassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+    const [fieldErrors, setFieldErrors] = useState({});
+
     const toggleCreatePasswordVisibility = () => {
         setShowCreatePassword(!showCreatePassword);
     };
@@ -27,7 +32,6 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
         setShowConfirmPassword(!showConfirmPassword);
     };
 
-    const [errorMessage, setErrorMessage] = useState(null);
 
     const [createUser, { loading, error, data }] = useMutation(CREATE_USER);
 
@@ -66,25 +70,50 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
     const handleSignUp = async (e) => {
         e.preventDefault();
 
+        // Reset field errors
+        setFieldErrors({});
+
+        let errors = {};
         // Check if passwords match
         if (signUpForm.password !== signUpForm.confirmPassword) {
+            errors.password = "Passwords do not match.";
             setPasswordMismatch(true); // Show password mismatch error
-            return; // Stop the form submission
         } else {
             setPasswordMismatch(false); // Hide password mismatch error
-            // Proceed with form submission logic...
         }
+
+        // Check for other required fields and add errors as needed
+        if (!signUpForm.email) {
+            errors.email = "Email is required.";
+        }
+        if (!signUpForm.username) {
+            errors.username = "Username is required.";
+        }
+        // Add other fields as necessary...
+
+        // If there are any errors, stop the form submission and set the errors
+        if (Object.keys(errors).length > 0) {
+            setFieldErrors(errors);
+            return; // Stop the form submission
+        }
+
+        // Proceed with form submission logic...
         try {
             const { data } = await createUser({
                 variables: { ...signUpForm },
             });
-
             Auth.login(data.createUser.token);
         } catch (error) {
-            console.error(error.message);
-            setErrorMessage(error.message);
+            // Assuming you're getting back a GraphQL error
+            const errorMessage = error.graphQLErrors ? error.graphQLErrors[0].message : error.message;
+            // Display a specific toast based on the error message
+            if (errorMessage.includes("already exists") || errorMessage.includes("Failed to create user")) {
+                toast.error("Email already exists.");
+            } else {
+                toast.error("An unexpected error occurred. Please try again later.");
+            }
         }
-    };
+    }
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
@@ -105,7 +134,9 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                             name="username"
                             type="text"
                             onChange={handleChange}
-                            value={signUpForm.username} />
+                            value={signUpForm.username}
+                            required />
+                        {fieldErrors.username && <p style={{ color: 'red' }}>{fieldErrors.username}</p>}
                     </div>
                     <div className="mb-6">
                         <label
@@ -119,7 +150,9 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                             name="email"
                             type="email"
                             onChange={handleChange}
-                            value={signUpForm.email} />
+                            value={signUpForm.email}
+                            required />
+                        {fieldErrors.email && <p style={{ color: 'red' }}>{fieldErrors.email}</p>}
                     </div>
                     <div className="mb-6">
                         <label
@@ -133,7 +166,9 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                             name="company"
                             type="text"
                             onChange={handleChange}
-                            value={signUpForm.company} />
+                            value={signUpForm.company}
+                            required />
+                        {fieldErrors.company && <p style={{ color: 'red' }}>{fieldErrors.company}</p>}
                     </div>
                     <div className="mb-6 relative">
                         <label
@@ -147,7 +182,8 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                             name="password"
                             type={showCreatePassword ? "text" : "password"}
                             onChange={handleChange}
-                            value={signUpForm.password} />
+                            value={signUpForm.password}
+                            required />
                         <button
                             onClick={toggleCreatePasswordVisibility}
                             type="button"
@@ -167,7 +203,8 @@ const SignUpModal = ({ openLog, isOpen, onClose }) => {
                             name="confirmPassword"
                             type={showConfirmPassword ? "text" : "password"}
                             onChange={handleChange}
-                            value={signUpForm.confirmPassword} />
+                            value={signUpForm.confirmPassword}
+                            required />
                         <button
                             onClick={toggleConfirmPasswordVisibility}
                             type="button"
