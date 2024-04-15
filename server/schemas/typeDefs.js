@@ -148,10 +148,8 @@ const typeDefs = gql`
     testimonials: [Testimonial]
     users: [User]
     jobprojects: [Jobprojects]
-  }
-
-  type Query {
     projectDetails(projectId: ID!): Projects
+    hello: String
   }
 
   type Mutation {
@@ -228,6 +226,8 @@ const typeDefs = gql`
       ): Testimonial
 
     createComment(projectId: ID!, userId: ID!, comment: String!): Comments
+
+    sendEmail(name: String!, email: String!, company: String!, phone: String!, message: String!): String
 
     createReply(commentId: ID!, userId: ID!, reply: String!): Reply
 

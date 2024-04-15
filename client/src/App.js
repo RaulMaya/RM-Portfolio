@@ -21,6 +21,7 @@ import SingleProject from "./pages/SingleProject";
 import UserDashboard from "./pages/UserDashboard";
 
 import AuthService from './utils/auth';
+import Authenticate from "./pages/Authenticate";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -76,6 +77,7 @@ const App = () => {
           <Route path="/projects" element={<Projects isLoggedIn={isAuthenticated} />} />
           <Route path="/project/:id" element={<SingleProject isLoggedIn={isAuthenticated} />} />
           <Route path="/userdashboard" element={<UserDashboard isLoggedIn={isAuthenticated} />} />
+          <Route path="/authenticate" element={<Authenticate isLoggedIn={isAuthenticated} />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Router>

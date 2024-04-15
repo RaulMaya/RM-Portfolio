@@ -3,6 +3,7 @@ const { Award, Comment, Education, Experience,
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const bcrypt = require("bcrypt");
+const nodemailer = require('nodemailer');
 
 const resolvers = {
     Projects: {
@@ -19,6 +20,9 @@ const resolvers = {
         },
     },
     Query: {
+        hello: () => {
+            'Hello world!'
+        },
         awards: async () => {
             return await Award.find({})
         },
@@ -101,6 +105,30 @@ const resolvers = {
 
     },
     Mutation: {
+        sendEmail: async (_, { name, email, company, phone, message }) => {
+            const transporter = nodemailer.createTransport({
+                service: 'Gmail', // Use your preferred service
+                auth: {
+                    user: 'raulmayas20@gmail.com',
+                    pass: ''
+                }
+            });
+
+            const mailOptions = {
+                from: email,
+                to: 'raulmayas20@gmail.com', // Your email where you want to receive messages
+                subject: `New Message from ${name}`,
+                text: `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nPhone: ${phone}\nMessage: ${message}`
+            };
+
+            try {
+                const info = await transporter.sendMail(mailOptions);
+                return 'Message sent successfully.';
+            } catch (error) {
+                console.error('Failed to send email:', error);
+                return 'Failed to send message.';
+            }
+        },
         login: async (parent, { email, password }) => {
             try {
                 // Find the user by username or email

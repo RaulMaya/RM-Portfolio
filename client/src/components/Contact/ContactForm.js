@@ -1,21 +1,39 @@
 import { React, useState } from "react";
-import "../../submitBtn.css";
+import { useMutation } from '@apollo/client';
+
+import { SEND_EMAIL } from "../../utils/mutations";
 
 const ContactForm = () => {
-  const [animation, setAnimation] = useState(false);
-  const [hide, setHide] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    message: ''
+  });
 
-  const animate = (e) => {
-    e.preventDefault();
-    setAnimation(true);
-    setTimeout(() => {
-      setHide(true);
-    }, 150);
+  const [sendEmail, { loading, error }] = useMutation(SEND_EMAIL);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await sendEmail({
+        variables: formData
+      });
+      alert('Email sent successfully!');
+      // Reset form or additional post-send actions
+    } catch (err) {
+      console.error('Error sending email:', err);
+      alert('Failed to send email.');
+    }
+  };
   return (
     <div className="basis-1/2 border-r-2 border-t-4 border-black flex justify-center">
-      <form onSubmit={animate} className="w-3/4 my-12">
+      <form onSubmit={handleSubmit} className="w-3/4 my-12">
         <div className="form-group flex justify-center">
           <div className="mt-8 max-w-md">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -23,6 +41,9 @@ const ContactForm = () => {
                 <span className="text-sm text-gray-500">Your Name</span>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="
               mt-1
               block
@@ -39,6 +60,9 @@ const ContactForm = () => {
                 <span className="text-sm text-gray-500">Email Address</span>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="
               mt-1
               block
@@ -55,6 +79,9 @@ const ContactForm = () => {
                 <span className="text-sm text-gray-500">Company</span>
                 <input
                   type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
                   className="
               mt-1
               block
@@ -71,6 +98,8 @@ const ContactForm = () => {
                 <span className="text-sm text-gray-500">Phone Number</span>
                 <input
                   type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
                   className="
               mt-1
               block
@@ -89,6 +118,9 @@ const ContactForm = () => {
                 <label className="block">
                   <span className="text-sm text-gray-500">Message</span>
                   <textarea
+                    value={formData.message}
+                    onChange={handleChange}
+                    name="message"
                     className="
               mt-1
               block

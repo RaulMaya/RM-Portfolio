@@ -130,3 +130,9 @@ mutation QuitdisLikeComment($userId: ID!, $commentId: ID!) {
   }
 }
 `
+
+export const SEND_EMAIL = gql`
+mutation SendEmail($name: String!, $email: String!, $company: String!, $phone: String!, $message: String!) {
+  sendEmail(name: $name, email: $email, company: $company, phone: $phone, message: $message)
+}
+`
