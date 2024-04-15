@@ -11,6 +11,7 @@ import Auth from "../../utils/auth";
 import TestimonialForm from "./TestimonialForm";
 
 import { FaDeleteLeft } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
 
 const Testimonials = ({ isLoggedIn }) => {
   const { loading, error, data, refetch } = useQuery(QUERY_TESTIMONIALS);
@@ -43,9 +44,12 @@ const Testimonials = ({ isLoggedIn }) => {
       <div key={t._id} className="relative mt-7">
         <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl">
           {isLoggedIn && t.user._id === Auth.getUser().data._id && (
-            <FaDeleteLeft onClick={() => {
-              handleTestimonialDelete(t._id)
-            }} className="text-4xl absolute cursor-pointer top-0 right-0 m-2 text-red-500" />
+            <>
+              <FaEdit className="text-3xl absolute cursor-pointer top-0 right-10 m-2" />
+              <FaDeleteLeft onClick={() => {
+                handleTestimonialDelete(t._id)
+              }} className="text-3xl absolute cursor-pointer top-0 right-0 m-2 text-red-500" />
+            </>
           )}
           <FontAwesomeIcon
             className="text-5xl mb-3 text-cyan-200"

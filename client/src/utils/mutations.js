@@ -136,3 +136,30 @@ mutation SendEmail($name: String!, $email: String!, $company: String!, $phone: S
   sendEmail(name: $name, email: $email, company: $company, phone: $phone, message: $message)
 }
 `
+
+export const UPDATE_COMMENT = gql`
+mutation Mutation($commentId: ID!, $commentText: String!) {
+  updateComment(commentId: $commentId, commentText: $commentText) {
+    _id
+    comment
+  }
+}
+`
+
+export const UPDATE_REPLY = gql`
+mutation Mutation($replyId: ID!, $replyText: String!) {
+  updateReply(replyId: $replyId, replyText: $replyText) {
+    _id
+    reply
+  }
+}
+`
+
+export const UPDATE_TESTIMONIAL = gql`
+mutation Mutation($testimonialId: ID!, $testimonialText: String!) {
+  updateTestimonial(testimonialId: $testimonialId, testimonialText: $testimonialText) {
+    _id
+    testimonial
+  }
+}
+`

@@ -12,12 +12,15 @@ import Auth from "../../utils/auth";
 
 import DeleteConfirmationModal from "./Modals/DeleteConfirmationModal";
 import CommentActions from "./LikeOrDislikeComment";
+import UpdateModal from "./Modals/UpdateModal";
 
 
 const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
     const currentDate = new Date();
     console.log(commentDetail)
     const [replyModalStates, setReplyModalStates] = useState({});
+    const [updateModalStates, setUpdateModalStates] = useState({});
+
     const [showReplies, setShowReplies] = useState(false)
 
     const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -35,6 +38,14 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
 
     const closeReplyModal = (commentId) => {
         setReplyModalStates(prev => ({ ...prev, [commentId]: false }));
+    };
+
+    const toggleUpdateModal = (commentId) => {
+        setUpdateModalStates(prev => ({ ...prev, [commentId]: !prev[commentId] }));
+    };
+
+    const closeUpdateModal = (commentId) => {
+        setUpdateModalStates(prev => ({ ...prev, [commentId]: false }));
     };
 
     const promptDeleteComment = (commentId) => {
@@ -83,7 +94,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
     const projComments = commentDetail.map(comment => {
         const commentDate = new Date(Number(comment.createdAt))
 
-        console.log("NetLikes",comment.netLikes)
+        console.log("NetLikes", comment.netLikes)
         const netLikes = comment.netLikes
         const diff = currentDate - commentDate;
         const minutes = Math.floor(diff / (1000 * 60));
@@ -118,7 +129,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                                     {comment.user._id === Auth.getUser().data._id && (
                                         <>
                                             <FaTrashAlt className="cursor-pointer hover:text-cyan-400 ease-in duration-200" onClick={() => promptDeleteComment(comment._id)} />
-                                            <CiEdit className="cursor-pointer hover:text-cyan-400 ease-in duration-200" />
+                                            <CiEdit className="cursor-pointer hover:text-cyan-400 ease-in duration-200" onClick={() => toggleUpdateModal(comment._id)} />
                                         </>
                                     )}
                                 </div>
@@ -145,6 +156,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                         <button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Hide Replies</button>
                     </>) : (<button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Show Replies ({comment.replies.length})</button>)}
                 <ReplyModal commentId={comment._id} isOpen={replyModalStates[comment._id]} onClose={() => closeReplyModal(comment._id)} refetch={refetch} />
+                <UpdateModal title="Comment" idx={comment._id} isOpen={updateModalStates[comment._id]} onClose={() => closeReplyModal(comment._id)} refetch={refetch} />
             </div>
         )
     })
