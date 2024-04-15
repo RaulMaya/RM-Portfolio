@@ -110,13 +110,13 @@ const resolvers = {
                 service: 'Gmail', // Use your preferred service
                 auth: {
                     user: 'raulmayas20@gmail.com',
-                    pass: ''
+                    pass: 
                 }
             });
 
             const mailOptions = {
                 from: email,
-                to: 'raulmayas20@gmail.com', // Your email where you want to receive messages
+                to: 'raulmayas20@gmail.com',
                 subject: `New Message from ${name}`,
                 text: `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nPhone: ${phone}\nMessage: ${message}`
             };
@@ -570,6 +570,69 @@ const resolvers = {
 
             // Delete the testimonials
             await Testimonial.deleteOne({ _id: testimonialId });
+        },
+        updateComment: async (parent, { commentId, commentText }) => {
+            try {
+                // Check if the comment exists
+                const comment = await Comment.findById(commentId);
+                if (!comment) {
+                    throw new Error("Comment not found");
+                }
+
+                // Update the comment text
+                comment.comment = commentText;
+
+                // Save the updated comment
+                await comment.save();
+
+                // Return the updated comment
+                return comment;
+            } catch (error) {
+                console.error("Error updating comment:", error);
+                throw new Error("Failed to update comment");
+            }
+        },
+        updateReply: async (parent, { replyId, replyText }) => {
+            try {
+                // Check if the reply exists
+                const reply = await Reply.findById(replyId);
+                if (!reply) {
+                    throw new Error("Reply not found");
+                }
+
+                // Update the reply text
+                reply.reply = replyText;
+
+                // Save the updated reply
+                await reply.save();
+
+                // Return the updated reply
+                return reply;
+            } catch (error) {
+                console.error("Error updating reply:", error);
+                throw new Error("Failed to update reply");
+            }
+        },
+        updateTestimonial: async (parent, { testimonialId, testimonialText }) => {
+            try {
+                // Check if the testimonial exists
+                const testimonial = await Testimonial.findById(testimonialId);
+                if (!testimonial) {
+                    throw new Error("Testimonial not found");
+                }
+
+                // Update the testimonial text
+                testimonial.testimonial = testimonialText;
+
+                // Save the updated testimonial
+                await testimonial.save();
+
+                // Return the updated testimonial
+                return testimonial;
+            } catch (error) {
+                console.error("Error updating testimonial:", error);
+                throw new Error("Failed to update testimonial");
+            }
         }
     },
 };

@@ -2,6 +2,9 @@ import { React, useState } from "react";
 import { useMutation } from '@apollo/client';
 
 import { SEND_EMAIL } from "../../utils/mutations";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -24,11 +27,18 @@ const ContactForm = () => {
       await sendEmail({
         variables: formData
       });
-      alert('Email sent successfully!');
+      toast.success('Email sent successfully!');
       // Reset form or additional post-send actions
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        message: ''
+      });
     } catch (err) {
       console.error('Error sending email:', err);
-      alert('Failed to send email.');
+      toast.error("Failed to send email.");
     }
   };
   return (

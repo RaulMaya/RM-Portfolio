@@ -19,6 +19,7 @@ const testimonialSchema = new Schema(
       virtuals: true,
     },
     id: false,
+    timestamps: true, // This line adds createdAt and updatedAt fields
   }
 );
 

@@ -50,6 +50,7 @@ const typeDefs = gql`
     netLikes: Int
     replies: [Reply]
     createdAt: String
+    updatedAt: String
   }
 
 
@@ -129,12 +130,15 @@ const typeDefs = gql`
     comment: Comments
     reply: String
     createdAt: String
+    updatedAt: String
   }
 
   type Testimonial {
     _id: ID
     user: User
     testimonial: String
+    createdAt: String
+    updatedAt: String
   }
 
   type Query {
@@ -250,6 +254,12 @@ const typeDefs = gql`
     deleteReply(userId: ID!, replyId: ID!): Reply
 
     deleteTestimonial(userId: ID!, testimonialId: ID!): Testimonial
+
+    updateComment(commentId: ID!, commentText: String!): Comments
+
+    updateReply(replyId: ID!, replyText: String!): Reply
+
+    updateTestimonial(testimonialId: ID!, testimonialText: String!): Testimonial
   }
 `;
 
