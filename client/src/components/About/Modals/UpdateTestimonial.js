@@ -1,34 +1,22 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useMutation } from '@apollo/client';
-import { UPDATE_COMMENT, UPDATE_REPLY } from "../../../utils/mutations";
-import Auth from '../../../utils/auth';
+import { UPDATE_TESTIMONIAL } from "../../../utils/mutations";
 
-
-const UpdateModal = ({ idx, title, onClose, isOpen, refetch }) => {
+const UpdateTestimonial = ({ idx, title, onClose, isOpen, refetch }) => {
     const contentTextRef = useRef();
     const [text, setText] = useState('');
 
-    const [updateComment, { error: updateCommentError }] = useMutation(UPDATE_COMMENT);
-    const [updateReply, { error: updateReplyError }] = useMutation(UPDATE_REPLY);
-
+    const [updateTestimonial, { error: updateTestimonialError }] = useMutation(UPDATE_TESTIMONIAL);
 
     const handleTextSubmit = async (event) => {
         event.preventDefault()
-        if (title === "Reply") {
-            await updateReply({
-                variables: {
-                    replyId: idx,
-                    replyText: text,
-                },
-            });
-        } else {
-            await updateComment({
-                variables: {
-                    commentId: idx,
-                    commentText: text,
-                },
-            });
-        }
+        await updateTestimonial({
+            variables: {
+                testimonialId: idx,
+                testimonialText: text,
+            },
+        });
+    
 
         setText('');
         refetch();
@@ -86,4 +74,4 @@ const UpdateModal = ({ idx, title, onClose, isOpen, refetch }) => {
         </div>
     );
 };
-export default UpdateModal
+export default UpdateTestimonial

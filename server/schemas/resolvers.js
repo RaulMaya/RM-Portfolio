@@ -110,7 +110,7 @@ const resolvers = {
                 service: 'Gmail', // Use your preferred service
                 auth: {
                     user: 'raulmayas20@gmail.com',
-                    pass: 
+                    pass: ''
                 }
             });
 

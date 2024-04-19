@@ -17,7 +17,7 @@ import UpdateModal from "./Modals/UpdateModal";
 
 const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
     const currentDate = new Date();
-    console.log(commentDetail)
+
     const [replyModalStates, setReplyModalStates] = useState({});
     const [updateModalStates, setUpdateModalStates] = useState({});
 
@@ -156,7 +156,7 @@ const ProjectComments = ({ isLoggedIn, commentDetail, refetch }) => {
                         <button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Hide Replies</button>
                     </>) : (<button className="border-t-2 border-cyan-400 font-semibold text-gray-400 hover:text-black transition-all min-w-full mt-5 tracking-widest py-2 text-sm" onClick={handleClick}>Show Replies ({comment.replies.length})</button>)}
                 <ReplyModal commentId={comment._id} isOpen={replyModalStates[comment._id]} onClose={() => closeReplyModal(comment._id)} refetch={refetch} />
-                <UpdateModal title="Comment" idx={comment._id} isOpen={updateModalStates[comment._id]} onClose={() => closeReplyModal(comment._id)} refetch={refetch} />
+                <UpdateModal title="Comment" idx={comment._id} isOpen={updateModalStates[comment._id]} onClose={() => closeUpdateModal(comment._id)} refetch={refetch} />
             </div>
         )
     })

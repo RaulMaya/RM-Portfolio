@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,11 +12,21 @@ import TestimonialForm from "./TestimonialForm";
 
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
+import UpdateTestimonial from "./Modals/UpdateTestimonial";
 
 const Testimonials = ({ isLoggedIn }) => {
   const { loading, error, data, refetch } = useQuery(QUERY_TESTIMONIALS);
 
   const [deleteTestimonial, { error: deleteTestimonialError }] = useMutation(DELETE_TESTIMONIAL);
+  const [updateTestimonialStates, setUpdateTestimonialStates] = useState({});
+
+  const toggleUpdateModal = (testId) => {
+    setUpdateTestimonialStates(prev => ({ ...prev, [testId]: !prev[testId] }));
+};
+
+  const closeUpdateModal = (testId) => {
+    setUpdateTestimonialStates(prev => ({ ...prev, [testId]: false }));
+  };
 
   const handleTestimonialDelete = async (testimonialId) => {
     try {
@@ -45,7 +55,7 @@ const Testimonials = ({ isLoggedIn }) => {
         <article className="bg-white p-5 w-72 h-96 rounded-lg drop-shadow-xl">
           {isLoggedIn && t.user._id === Auth.getUser().data._id && (
             <>
-              <FaEdit className="text-3xl absolute cursor-pointer top-0 right-10 m-2" />
+              <FaEdit className="text-3xl absolute cursor-pointer top-0 right-10 m-2" onClick={() => toggleUpdateModal(t._id)}/>
               <FaDeleteLeft onClick={() => {
                 handleTestimonialDelete(t._id)
               }} className="text-3xl absolute cursor-pointer top-0 right-0 m-2 text-red-500" />
@@ -62,6 +72,7 @@ const Testimonials = ({ isLoggedIn }) => {
           <p className="font-bold">{t.user.username}</p>
           <p className="text-sm">{t.user.company}</p>
         </article>
+        <UpdateTestimonial title="Testimonial" idx={t._id} isOpen={updateTestimonialStates[t._id]} onClose={() => closeUpdateModal(t._id)} refetch={refetch} />
       </div>
     )
   })

@@ -8,12 +8,24 @@ import { DELETE_REPLY } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 
 import DeleteConfirmationModal from "./Modals/DeleteConfirmationModal";
+import UpdateModal from './Modals/UpdateModal';
 
 const ProjectReplies = ({ isLoggedIn, replies, refetch }) => {
     const currentDate = new Date();
 
     const [showReplyConfirmation, setShowReplyConfirmation] = useState(false);
     const [replyToDelete, setReplyToDelete] = useState(null);
+
+    const [updateModalStates, setUpdateModalStates] = useState({});
+
+    const toggleUpdateModal = (replyId) => {
+        setUpdateModalStates(prev => ({ ...prev, [replyId]: !prev[replyId] }));
+    };
+
+    const closeUpdateModal = (replyId) => {
+        setUpdateModalStates(prev => ({ ...prev, [replyId]: false }));
+    };
+
 
     const promptDeleteReply = (replyId) => {
         setReplyToDelete(replyId);
@@ -87,7 +99,7 @@ const ProjectReplies = ({ isLoggedIn, replies, refetch }) => {
                     {isLoggedIn && r.user._id === Auth.getUser().data._id && (
                         <section className="flex justify-start gap-x-3">
                             <FaTrashAlt className="cursor-pointer hover:text-cyan-400 ease-in duration-200" onClick={() => promptDeleteReply(r._id)} />
-                            <CiEdit className="cursor-pointer hover:text-cyan-400 ease-in duration-200" />
+                            <CiEdit className="cursor-pointer hover:text-cyan-400 ease-in duration-200" onClick={() => toggleUpdateModal(r._id)}/>
                         </section>
                     )}
 
@@ -96,6 +108,7 @@ const ProjectReplies = ({ isLoggedIn, replies, refetch }) => {
                     )}
 
                 </section>
+                <UpdateModal title="Reply" idx={r._id} isOpen={updateModalStates[r._id]} onClose={() => closeUpdateModal(r._id)} refetch={refetch} />
             </div >
         )
     })
