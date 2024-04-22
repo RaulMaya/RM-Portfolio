@@ -57,6 +57,12 @@ const projectSchema = new Schema(
       maxLength: 280,
       minLength: 1,
     },
+    repository: {
+      type: String,
+      required: true,
+      maxLength: 280,
+      minLength: 1,
+    },
   },
   {
     toJSON: {

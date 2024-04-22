@@ -7,12 +7,14 @@ const typeDefs = gql`
     email: String!
     password: String!
     testimonials: [Testimonial]
-    likedprojects: [Projects]
+    likedProjects: [Projects]
     likedcomments: [Comments]
     dislikedcomments: [Comments]
     company: String!
     comments: [Comments]
     replies: [Reply]     
+    likedProjectsCount: Int
+    commentsCount: Int
   }
 
   input CreateUserInput {
@@ -110,6 +112,7 @@ const typeDefs = gql`
     startDate: String
     endDate: String
     deployment: String
+    repository: String
   }
 
   type socialApps {
@@ -153,6 +156,7 @@ const typeDefs = gql`
     users: [User]
     jobprojects: [Jobprojects]
     projectDetails(projectId: ID!): Projects
+    singleUser(userId: ID!): User
     hello: String
   }
 
@@ -173,6 +177,7 @@ const typeDefs = gql`
       startDate: String
       endDate: String
       deployment: String
+      repository: String
       ): Projects
 
     createAward(

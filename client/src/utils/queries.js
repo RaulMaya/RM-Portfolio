@@ -139,3 +139,20 @@ query Query {
   }
 }
 `
+
+export const QUERY_SINGLE_USER = gql`
+query Query($userId: ID!) {
+  singleUser(userId: $userId) {
+    _id
+    username
+    likedProjectsCount
+    commentsCount
+    company
+    likedProjects {
+      _id
+      portrait
+      name
+    }
+  }
+} 
+`

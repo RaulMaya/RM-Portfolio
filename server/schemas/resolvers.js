@@ -65,6 +65,26 @@ const resolvers = {
                 .populate("testimonials")
                 .populate("replies")
         },
+        singleUser: async (parent, { userId }) => {
+            try {
+                // Find the user by ID
+                const user = await User.findById(userId)
+                    .populate("comments")
+                    .populate("likedProjects")
+                    .populate("testimonials")
+                    .populate("replies")
+
+                if (!user) {
+                    throw new Error('User not found');
+                }
+
+                // Return the user details
+                return user;
+            } catch (error) {
+                console.error('Error fetching user details:', error);
+                throw new Error('Failed to fetch user details');
+            }
+        },
         // Resolver for getting project details and incrementing viewsCount
         projectDetails: async (parent, { projectId }) => {
             try {

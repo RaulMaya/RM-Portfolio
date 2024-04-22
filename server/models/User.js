@@ -42,12 +42,11 @@ const userSchema = new Schema(
                 ref: "Reply",
             },
         ],
-        likedProjects: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Project"
-            }
-        ],
+        likedProjects:
+        {
+            type: [Schema.Types.ObjectId],
+            ref: "Project"
+        },
         disLikedComments: [
             {
                 type: Schema.Types.ObjectId,
@@ -70,9 +69,19 @@ const userSchema = new Schema(
                 return ret;
             },
         },
+        toObject: { virtuals: true },
         id: false,
     }
 );
+
+userSchema.virtual('likedProjectsCount').get(function () {
+    return this.likedProjects.length;
+});
+
+userSchema.virtual('commentsCount').get(function () {
+    return this.comments.length;
+});
+
 
 // set up pre-save middleware to create password
 userSchema.pre("save", async function (next) {
