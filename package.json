@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/RaulMaya/RM-Portfolio#readme",
   "dependencies": {
-    "concurrently": "^8.2.1"
+    "concurrently": "^8.2.2"
   }
 }

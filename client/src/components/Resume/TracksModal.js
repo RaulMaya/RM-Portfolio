@@ -3,7 +3,7 @@ import { FaBriefcase } from "react-icons/fa6";
 
 const TrackModal = ({ data, isOpen, onClose }) => {
     const contentRef = useRef();
-    console.log("Hello")
+    
 
     useEffect(() => {
         const clickOutside = (e) => {

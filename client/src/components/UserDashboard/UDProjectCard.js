@@ -33,6 +33,7 @@ const UDProjectCard = ({ title, img, userId, refetch, projectId }) => {
                     Dislike
                 </button>
             </div>
+             {dislikeProjectError && <p>Error disliking project: {dislikeProjectError.message}</p>}
         </div>
     );
 };

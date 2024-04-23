@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Auth from "../utils/auth";
 
 import NavBarComponent from "../components/NavBarComponent";
