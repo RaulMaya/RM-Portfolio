@@ -17,7 +17,7 @@ const seedData = async () => {
         const project1 = await Project.create({
             name: "Party Master",
             tags: ["Event Manager", "React", "Chakra UI", "GraphQL", "Node"],
-            description: "Event Management Platform: Users create, discover, and manage events based on location. Register, log in, create profiles, specify event details, set visibility preferences, browse events, RSVP, and communicate with organizers and attendees. ",
+            description: "Introducing our MERN-based app with GraphQL integration! Designed to revolutionize event management, our platform simplifies the process of discovering, creating, and sharing events. With seamless integration of resolvers, deftypes, and mutations, our app empowers users to effortlessly generate and modify events according to their preferences. Stay connected with friends and the community as you invite, confirm, and comment on upcoming events. Our intuitive interface ensures that users are always informed and engaged with the latest happenings. Experience the ease and convenience of event planning with our innovative app.",
             portrait: "https://raw.githubusercontent.com/RaulMaya/PartyMaster/master/readme/landing.jpg",
             images: [
                 "https://raw.githubusercontent.com/RaulMaya/PartyMaster/master/readme/signup.jpg",
